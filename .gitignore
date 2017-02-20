@@ -47,3 +47,4 @@ Temporary Items
 .apdisk
 include/config.ini
 include/config.ini
+*.ini
