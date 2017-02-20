@@ -1,0 +1,84 @@
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+
+.form-container {
+	background-color: #fff;
+	border-radius: 5px;
+
+    padding: 5px 25px;
+    z-index: -1;
+	margin-top: 8px;
+}
+
+nav {
+    background-color: #133671 !important;
+}
+
+pre {
+    background-color: #fafafc !important;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #434343;
+    color: #e2e2e4;
+}
+
+body {
+	background-color: #f1f1f1 !important;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+  /*font-family: 'Open Sans light' !important;*/
+}
+
+.box-shadow {
+    -webkit-box-shadow: 0px 3px 4px 2px rgba(162, 169, 168,0.68);
+    -moz-box-shadow: 0px 3px 4px 2px rgba(162, 169, 168,0.68);
+    box-shadow: 0px 3px 4px 2px rgba(162, 169, 168,0.68);
+}
+
+.padding-50{
+  padding-top: 150px; 
+}
+
+.margin-50{
+  margin-top: 150px; 
+}
+
+.process-block {
+  padding: 15px 35px !important;
+}
+
+.input-group-addon {
+    min-width: 50px !important;
+}
+
+#body-login {
+    background: rgba(242,249,255,1);
+    background: -moz-linear-gradient(top, rgba(242,249,255,1) 0%, rgba(1,50,103,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(242,249,255,1)), color-stop(100%, rgba(1,50,103,1)));
+    background: -webkit-linear-gradient(top, rgba(242,249,255,1) 0%, rgba(1,50,103,1) 100%);
+    background: -o-linear-gradient(top, rgba(242,249,255,1) 0%, rgba(1,50,103,1) 100%);
+    background: -ms-linear-gradient(top, rgba(242,249,255,1) 0%, rgba(1,50,103,1) 100%);
+    background: linear-gradient(to bottom, rgba(242,249,255,1) 0%, rgba(1,50,103,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9ff', endColorstr='#013267', GradientType=0 );
+}
+
+.scoreValue {
+    font-size: 20pt;
+    font-weight: bold;
+}
