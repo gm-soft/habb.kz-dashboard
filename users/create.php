@@ -37,8 +37,8 @@ switch ($actionPerformed){
         break;
 
     case "dataInput":
-        $login = ApplicationHelper::ClearInputData($_REQUEST["userLogin"]);
-        $password = ApplicationHelper::ClearInputData($_REQUEST["userPassword"]);
+        $login      = FormHelper::ClearInputData($_REQUEST["userLogin"]);
+        $password   = FormHelper::ClearInputData($_REQUEST["userPassword"]);
 
         $newInstance = User::fromUserData($login, $password);
 

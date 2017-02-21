@@ -6,9 +6,9 @@ $user = User::getInstanceFromDatabase($_COOKIE["hash"], "user_hash", $_DATABASE)
 
 if (isset($_POST["actionPerformed"])) {
     // Если прислан запрос на изменение пароля
-    $currentPass    = ApplicationHelper::ClearInputData($_REQUEST["currentPassword"]);
-    $newPass        = ApplicationHelper::ClearInputData($_REQUEST["newPassword"]);
-    $confirmPass    = ApplicationHelper::ClearInputData($_REQUEST["confirmPassword"]);
+    $currentPass    = FormHelper::ClearInputData($_REQUEST["currentPassword"]);
+    $newPass        = FormHelper::ClearInputData($_REQUEST["newPassword"]);
+    $confirmPass    = FormHelper::ClearInputData($_REQUEST["confirmPassword"]);
 
     if (!$user->validatePassword($currentPass)) {
         CookieHelper::AddSessionMessage("Неверно указан текущий пароль", CookieHelper::DANGER);

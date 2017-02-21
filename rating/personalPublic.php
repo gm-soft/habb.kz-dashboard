@@ -28,7 +28,7 @@ Html::RenderHtmlHeader($pageTitle, false);
     <div class="container-fluid">
         <h1 class="mt-2">Личный рейтинг <?= $gameTitle ?></h1>
 
-        <?= HtmlHelper::getRatingGameButtons($gameName, "../rating/personalPublic.php"); ?>
+        <?= HtmlHelper::RenderRatingGameButtons($gameName, "../rating/personalPublic.php"); ?>
 
         <table class="table table-striped">
             <thead>
@@ -46,15 +46,15 @@ Html::RenderHtmlHeader($pageTitle, false);
             if (count($normal) > 0){
                 for ($i = 0; $i < count($normal); $i++){
 
-                    if ($i == 0) echo HtmlHelper::constructRow("Premium");
-                    if ($i == 5) echo HtmlHelper::constructRow("Дивизион 1");
-                    if ($i == 25) echo HtmlHelper::constructRow("Дивизион 2");
-                    if ($i == 45) echo HtmlHelper::constructRow("Дивизион 3");
-                    if ($i == 65) echo HtmlHelper::constructRow("Дивизион 4");
-                    if ($i == 85) echo HtmlHelper::constructRow("Дивизион 5");
+                    if ($i == 0) HtmlHelper::RenderHeaderRow("Premium");
+                    if ($i == 5) HtmlHelper::RenderHeaderRow("Дивизион 1");
+                    if ($i == 25) HtmlHelper::RenderHeaderRow("Дивизион 2");
+                    if ($i == 45) HtmlHelper::RenderHeaderRow("Дивизион 3");
+                    if ($i == 65) HtmlHelper::RenderHeaderRow("Дивизион 4");
+                    if ($i == 85) HtmlHelper::RenderHeaderRow("Дивизион 5");
 
                     $instance = $normal[$i];
-                    echo HtmlHelper::constructRowForPersonalInstancePublic($instance, $position);
+                    HtmlHelper::RenderRowForPersonalInstancePublic($instance, $position);
                     $position++;
                 }
             } ?>
@@ -63,12 +63,12 @@ Html::RenderHtmlHeader($pageTitle, false);
 
             if (count($bellow) > 0){
 
-                echo HtmlHelper::constructRow("Bellow the line");
+                HtmlHelper::RenderHeaderRow("Bellow the line");
                 for ($i = 0; $i < count($bellow); $i++){
 
                     $instance = $bellow[$i];
 
-                    echo HtmlHelper::constructRowForPersonalInstancePublic($instance, $position);
+                    HtmlHelper::RenderRowForPersonalInstancePublic($instance, $position);
                     $position++;
                 }
             } ?>

@@ -28,7 +28,7 @@ Html::RenderHtmlHeader($pageTitle, false);
 
         <h1 class="mt-2">Командный рейтинг <?= $gameTitle ?></h1>
 
-        <?= HtmlHelper::getRatingGameButtons($gameName, "../rating/teamPublic.php"); ?>
+        <?= HtmlHelper::RenderRatingGameButtons($gameName, "../rating/teamPublic.php"); ?>
 
         <table class="table table-striped">
             <thead>
@@ -56,12 +56,12 @@ Html::RenderHtmlHeader($pageTitle, false);
 
                 for ($i = 0; $i < count($normal); $i++){
 
-                    if ($i == 0) echo HtmlHelper::constructRow("Premium", 9);
-                    if ($i == 5) echo HtmlHelper::constructRow("Дивизион 1", 9);
-                    if ($i == 25) echo HtmlHelper::constructRow("Дивизион 2", 9);
-                    if ($i == 45) echo HtmlHelper::constructRow("Дивизион 3", 9);
-                    if ($i == 65) echo HtmlHelper::constructRow("Дивизион 4", 9);
-                    if ($i == 85) echo HtmlHelper::constructRow("Дивизион 5", 9);
+                    if ($i == 0) HtmlHelper::RenderHeaderRow("Premium", 9);
+                    if ($i == 5) HtmlHelper::RenderHeaderRow("Дивизион 1", 9);
+                    if ($i == 25) HtmlHelper::RenderHeaderRow("Дивизион 2", 9);
+                    if ($i == 45) HtmlHelper::RenderHeaderRow("Дивизион 3", 9);
+                    if ($i == 65) HtmlHelper::RenderHeaderRow("Дивизион 4", 9);
+                    if ($i == 85) HtmlHelper::RenderHeaderRow("Дивизион 5", 9);
 
 
                     $instance = $normal[$i];
@@ -72,7 +72,7 @@ Html::RenderHtmlHeader($pageTitle, false);
             }
 
             if (count($bellow) > 0){
-                echo HtmlHelper::constructRow("Bellow the line", 9);
+                HtmlHelper::RenderHeaderRow("Bellow the line", 9);
                 for ($i = 0; $i < count($bellow); $i++){
                     $instance = $bellow[$i];
                     echo HtmlHelper::constructRowForTeamInstancePublic($instance, $position);

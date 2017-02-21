@@ -14,13 +14,17 @@ class HtmlHelper
      * @param int $contentPos
      * @return string
      */
-    public static function constructRow($tdContent, $tdCount = 4, $contentPos = 2){
+    public static function RenderHeaderRow($tdContent, $tdCount = 4, $contentPos = 2){
+        ?>
+        <tr class="bg-custom">
+            <?php
+            for ($i = 1; $i <= $tdCount; $i++){
+                echo $i == $contentPos ? "<td><b>$tdContent</b></td>" : "<td></td>";
+            }
+            ?>
+        </tr>
 
-        $content = "<tr class='bg-custom'>";
-        for ($i = 1; $i <= $tdCount; $i++){
-            $content.= $i == $contentPos ? "<td><b>$tdContent</b></td>" : "<td></td>";
-        }
-        return $content;
+        <?php
     }
 
     /**
@@ -31,29 +35,33 @@ class HtmlHelper
         $scoreChangeValue = intval($scoreChange);
         $class = $scoreChangeValue >= 0 ? "text-success" : "text-danger";
         $textChanged = $scoreChangeValue >= 0 ? "+".$scoreChange : $scoreChange;
-        return "<span class='$class'>$textChanged</span>";
+        echo "<span class='$class'>$textChanged</span>";
     }
 
     /**
      * @param $instance
      * @param $position
+     * @param bool $withLink
      * @return string
      */
-    public static function constructRowForPersonalInstancePublic($instance, $position){
+    public static function RenderRowForPersonalInstancePublic($instance, $position, $withLink = false){
 
-        $content = "";
-        $content .= "<tr>";
-        $content .= "<td>".($position)."</td>";
-        $content .= "<td>ID".$instance["id"]." <b>".$instance["name"]."</b></a></td>";
-
-        $changeWrap= HtmlHelper::WrapScoreValueChange($instance["change"]);
-        $content .= "<td>".$instance["value"]." (".$changeWrap.")</td>";
-
-        $text = HtmlHelper::WrapScoreValueChange($instance["monthChange"]);
-        $content .= "<td>".$text."</td>\n";
-
-        $content .= "</tr>";
-        return $content;
+        $tdContent = "";
+        if ($withLink == true) {
+            $tdContent .= "<a href='../clients/view.php?id=".$instance["id"]."'>";
+        }
+        $tdContent .= "ID".$instance["id"]." <b>".$instance["name"]."</b>";
+        if ($withLink == true) {
+            $tdContent .= "</a>";
+        }
+        ?>
+        <tr>
+            <td><?= $position ?></td>
+            <td><?= $tdContent ?></b></td>
+            <td><?= $instance["value"]?> (<?= HtmlHelper::WrapScoreValueChange($instance["change"]) ?>)</td>
+            <td><?= HtmlHelper::WrapScoreValueChange($instance["monthChange"]) ?></td>
+        </tr>
+        <?php
     }
 
     /**
@@ -65,31 +73,29 @@ class HtmlHelper
 
         $team = $instance["team"];
         $players = $instance["players"];
-
-        $changeWrap= HtmlHelper::WrapScoreValueChange($team["change"]);
-
-        $content = "";
-        $content .= "<tr>";
-        $content .= "<td>".($position)."</td>";
-        $content .= "<td>ID".$team["id"]."<b> ".$team["name"]."</b></td>";
-        $content .= "<td>".$team["value"]." (".$changeWrap.")</td>";
-
-        $text = HtmlHelper::WrapScoreValueChange($team["monthChange"]);
-        $content .= "<td>".$text."</td>\n";
-
-        $content .= "<td><b>".$players[0]["name"]."</b><br>ID".$players[0]["id"].". Рейтинг: ".$players[0]["value"]."</td>";
-
-        for ($n = 1; $n < count($players); $n++){
-            if (!is_null($players[$n]["id"])) {
-                $content .= "<td><b>".$players[$n]["name"]."</b><br>ID".$players[$n]["id"].". Рейтинг: ".$players[$n]["value"]."</td>";
+        ?>
+        <tr>
+            <td><?= $position ?></td>
+            <td>ID<?= $team["id"]?><b> <?= $team["name"]?></b></td>
+            <td><?= $team["value"]?> (<?= HtmlHelper::WrapScoreValueChange($team["change"]) ?>)</td>
+            <td><?= HtmlHelper::WrapScoreValueChange($team["monthChange"]) ?></td>
+            <td><b><?= $players[0]["name"]?></b><br>ID<?= $players[0]["id"]?>. Рейтинг: <?= $players[0]["value"]?></td>
+            <?php
+            for ($n = 1; $n < count($players); $n++){
+                if (!is_null($players[$n]["id"])) {
+                    echo "<td><b>".$players[$n]["name"]."</b><br>ID".$players[$n]["id"].". Рейтинг: ".$players[$n]["value"]."</td>";
+                }
+                else {
+                    echo "<td>Отсутствует</td>";
+                }
             }
-            else {
-                $content .= "<td>Отсутствует</td>";
-            }
-        }
 
-        $content .= "</tr>";
-        return $content;
+            ?>
+            <td></td>
+
+        </tr>
+
+        <?php
     }
 
 
@@ -98,19 +104,24 @@ class HtmlHelper
      * @param $link string
      * @return string
      */
-    public static function getRatingGameButtons($currentGame, $link){
-        $content = "<div class='float-sm-right'>\n";
-        $content .= "<div class='btn-group' role='group' aria-label='navigation'>\n";
-
+    public static function RenderRatingGameButtons($currentGame, $link){
         $games = Score::getGameArray();
-        foreach ($games as $game){
-            $class = $game == $currentGame ? "primary" : "secondary";
-            $disableState = ($game == Score::SCORE_CSGO) ? "" : "disabled";
-            $content .= "<a href='$link?game=$game'  class='btn btn-$class $disableState'>".$game."</a>\n";
-        }
-        $content .= "</div>\n";
-        $content .= "</div>\n";
-        return $content;
+        ?>
+        <div class='float-sm-right'>
+            <div class='btn-group' role='group' aria-label='navigation'>
+                <?php
+
+                foreach ($games as $game){
+                    $class = $game == $currentGame ? "primary" : "secondary";
+                    $disableState = ($game == Score::SCORE_CSGO) ? "" : "disabled";
+                    echo "<a href='$link?game=$game'  class='btn btn-$class $disableState'>".$game."</a>\n";
+                }
+
+
+                ?>
+            </div>
+        </div>
+        <?php
     }
 
 

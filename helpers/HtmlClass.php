@@ -90,20 +90,28 @@ class Html
         $footer = ApplicationHelper::readFromFile($filename);
 
         if (DEBUG == true) {
-            $footer .= " <p>".
-                            "<pre>".
-                                var_export($_SERVER, true).
-                            "</pre>".
-                        "</p>";
+            ?>
+            <div class='container'>
+                <pre>
+                    <?= var_export($_SERVER, true) ?>
+                </pre>
+            </div>
+            <?php
 
         }
 
         if ($withNavbar == true) {
-           $footer .= "<footer class='footer'>\n"
-            ."<div class='container'>\n"
-                ."Habb.KZ - Управление аккаунтами habb"
-                ."<span class='float-sm-right'>2017</span>\n"
-            ."</div>\n</footer>";
+
+            ?>
+            <footer class='footer'>
+                <div class='container'>
+                    Habb.KZ - Управление аккаунтами habb
+                    <span class='float-sm-right'>2017</span>
+                </div>
+            </footer>
+
+
+            <?php
         }
         echo $footer;
     }

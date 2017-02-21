@@ -43,14 +43,14 @@ switch ($actionPerformed){
 
     case "dataInput":
 
-        $_REQUEST["id"] = ApplicationHelper::ClearInputData($_REQUEST["id"]);
-        $_REQUEST["name"] = ApplicationHelper::ClearInputData($_REQUEST["name"]);
+        $_REQUEST["id"]          = FormHelper::ClearInputData($_REQUEST["id"]);
+        $_REQUEST["name"]        = FormHelper::ClearInputData($_REQUEST["name"]);
 
-        $_REQUEST["captain_id"] = ApplicationHelper::ClearInputData($_REQUEST["captain_id"]);
-        $_REQUEST["player_2_id"] = ApplicationHelper::ClearInputData($_REQUEST["player_2_id"]);
-        $_REQUEST["player_3_id"] = ApplicationHelper::ClearInputData($_REQUEST["player_3_id"]);
-        $_REQUEST["player_4_id"] = ApplicationHelper::ClearInputData($_REQUEST["player_4_id"]);
-        $_REQUEST["player_5_id"] = ApplicationHelper::ClearInputData($_REQUEST["player_5_id"]);
+        $_REQUEST["captain_id"]  = FormHelper::ClearInputData($_REQUEST["captain_id"]);
+        $_REQUEST["player_2_id"] = FormHelper::ClearInputData($_REQUEST["player_2_id"]);
+        $_REQUEST["player_3_id"] = FormHelper::ClearInputData($_REQUEST["player_3_id"]);
+        $_REQUEST["player_4_id"] = FormHelper::ClearInputData($_REQUEST["player_4_id"]);
+        $_REQUEST["player_5_id"] = FormHelper::ClearInputData($_REQUEST["player_5_id"]);
 
         $_REQUEST["player_2_id"] = !empty($_REQUEST["player_2_id"]) ? $_REQUEST["player_2_id"] : "null";
         $_REQUEST["player_3_id"] = !empty($_REQUEST["player_3_id"]) ? $_REQUEST["player_3_id"] : "null";

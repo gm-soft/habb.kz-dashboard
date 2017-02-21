@@ -6,10 +6,10 @@ require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
 $performed = isset($_POST["performed"]) ? $_POST["performed"] : false;
 
 if ($performed == true) {
-    $err = array();
-    $login = ApplicationHelper::ClearInputData($_POST["login"]);
-    $password = ApplicationHelper::ClearInputData($_POST["password"]);
-    $password_conf = ApplicationHelper::ClearInputData($_POST["password_confirm"]);
+    $err            = array();
+    $login          = FormHelper::ClearInputData($_POST["login"]);
+    $password       = FormHelper::ClearInputData($_POST["password"]);
+    $password_conf  = FormHelper::ClearInputData($_POST["password_confirm"]);
 
     //if (preg_match("/^[a-zA-Z0-9]+$/", $login)) $err[] = "Логин может состоять только из букв английского алфавита и цифр";
     if ($password != $password_conf) $err[] = "Введенные пароли не совпадают";

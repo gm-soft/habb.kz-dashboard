@@ -43,8 +43,7 @@ if (isset($_POST["processed"]) && (
 else
 {
     $iOsDevice = stripos($_SERVER['HTTP_USER_AGENT'],"iPod")|| stripos($_SERVER['HTTP_USER_AGENT'],"iPhone") || stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
-    $cities = ApplicationHelper::query("http://registration.habb.kz/rest/account.php?action=cities.get");
-    $cities = $cities["result"];
+    $cities = ApplicationHelper::getCities();
 
     Html::RenderHtmlHeader("Регистрация участника HABB.KZ", false, Html::HTML_FRONT);
 

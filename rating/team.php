@@ -24,7 +24,7 @@ Html::RenderHtmlHeader($pageTitle);
 <div class="container">
     <h1 class="mt-2">Командный рейтинг  <?= $gameTitle ?></h1>
 
-    <?= HtmlHelper::getRatingGameButtons($gameName, "../rating/team.php"); ?>
+    <?= HtmlHelper::RenderRatingGameButtons($gameName, "../rating/team.php"); ?>
 
     <table class="table table-hover">
         <thead>
@@ -46,32 +46,28 @@ Html::RenderHtmlHeader($pageTitle);
         <?php
         for ($i = 0; $i < count($instances); $i++){
 
-            if ($i == 0) echo HtmlHelper::constructRow("Premium", 8);
-            if ($i == 5) echo HtmlHelper::constructRow("Дивизион 1", 8);
-            if ($i == 25) echo HtmlHelper::constructRow("Дивизион 2", 8);
-            if ($i == 45) echo HtmlHelper::constructRow("Дивизион 3", 8);
-            if ($i == 65) echo HtmlHelper::constructRow("Дивизион 4", 8);
-            if ($i == 85) echo HtmlHelper::constructRow("Дивизион 5", 8);
+            if ($i == 0) HtmlHelper::RenderHeaderRow("Premium", 8);
+            if ($i == 5) HtmlHelper::RenderHeaderRow("Дивизион 1", 8);
+            if ($i == 25) HtmlHelper::RenderHeaderRow("Дивизион 2", 8);
+            if ($i == 45) HtmlHelper::RenderHeaderRow("Дивизион 3", 8);
+            if ($i == 65) HtmlHelper::RenderHeaderRow("Дивизион 4", 8);
+            if ($i == 85) HtmlHelper::RenderHeaderRow("Дивизион 5", 8);
 
             $instance = $instances[$i];
             $team = $instance["team"];
             $players = $instance["players"];
-
-            $changeWrap= HtmlHelper::WrapScoreValueChange($team["change"]);
-            $changeMonth= HtmlHelper::WrapScoreValueChange($team["monthChange"]);
             ?>
 
             <tr>
                 <td><?= ($i+1) ?></td>
                 <td><a href='../teams/view.php?id=<?= $team["id"] ?>'><?= $team["name"] ?></a></td>
-                <td><?= $team["value"] ?> (<?= $changeWrap ?>)</td>
+                <td><?= $team["value"] ?> (<?= HtmlHelper::WrapScoreValueChange($team["change"]) ?>)</td>
 
                 <td class="">
                     <?php
-                    echo "<b><a href='../clients/view.php?id=".$players[0]["id"]."'>".$players[0]["name"]."</a></b><br>Рейтинг ".$players[0]["value"]."";
+                    echo "<b><a href='../clients/view.php?id=".$players[0]["id"]."'>".$players[0]["name"]."</a></b><br>Рейтинг ".$players[0]["value"]." ";
                     ?>
                 </td>
-
                 <?php
                 for ($n = 1; $n < count($players); $n++){
                     if (!is_null($players[$n]["id"])) {

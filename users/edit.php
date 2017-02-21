@@ -54,7 +54,7 @@ switch ($actionPerformed){
 
     case "dataInput":
         $id = $_REQUEST["id"];
-        $login = ApplicationHelper::ClearInputData($_REQUEST["userLogin"]);
+        $login = FormHelper::ClearInputData($_REQUEST["userLogin"]);
 
 
         $instance = User::getInstanceFromDatabase($id, "user_id", $_DATABASE);
@@ -63,7 +63,7 @@ switch ($actionPerformed){
         $instance->login = $login;
 
         if (!empty($_REQUEST["userPassword"])){
-            $password = ApplicationHelper::ClearInputData($_REQUEST["userPassword"]);
+            $password = FormHelper::ClearInputData($_REQUEST["userPassword"]);
             $instance->resetPassword($password);
         }
 

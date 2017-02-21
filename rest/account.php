@@ -16,13 +16,13 @@ ApplicationHelper::logEvent("account.php: \$_REQUEST[\"action\"]=".$action);
 switch ($action) {
 
     case "account.create":
-        $_REQUEST["name"] =         ApplicationHelper::ClearInputData($_REQUEST["name"]);
-        $_REQUEST["last_name"] =    ApplicationHelper::ClearInputData($_REQUEST["last_name"]);
+        $_REQUEST["name"] =         FormHelper::ClearInputData($_REQUEST["name"]);
+        $_REQUEST["last_name"] =    FormHelper::ClearInputData($_REQUEST["last_name"]);
         $_REQUEST["phone"] =        ApplicationHelper::formatPhone($_REQUEST["phone"]);
-        $_REQUEST["email"] =        ApplicationHelper::ClearInputData($_REQUEST["email"]);
+        $_REQUEST["email"] =        FormHelper::ClearInputData($_REQUEST["email"]);
         //$_REQUEST["steam"] =        ApplicationHelper::ClearInputData($_REQUEST["steam"]);
-        $_REQUEST["vk"] =           ApplicationHelper::ClearInputData($_REQUEST["vk"]);
-        $_REQUEST["institution"] =  ApplicationHelper::ClearInputData($_REQUEST["institution"]);
+        $_REQUEST["vk"] =           FormHelper::ClearInputData($_REQUEST["vk"]);
+        $_REQUEST["institution"] =  FormHelper::ClearInputData($_REQUEST["institution"]);
         $_REQUEST["secondary_games"] = join(", ", $_REQUEST["secondary_games"]);
 
         //-------------------------------
@@ -69,8 +69,8 @@ switch ($action) {
     case "account.search":
 
         header("Access-Control-Allow-Origin: *");
-        $searchField = isset($_REQUEST["field"]) ? ApplicationHelper::ClearInputData($_REQUEST["field"]) : null;
-        $value = isset($_REQUEST["value"]) ? ApplicationHelper::ClearInputData($_REQUEST["value"]) : null;
+        $searchField = isset($_REQUEST["field"]) ? FormHelper::ClearInputData($_REQUEST["field"]) : null;
+        $value = isset($_REQUEST["value"]) ? FormHelper::ClearInputData($_REQUEST["value"]) : null;
 
         if (is_null($searchField) || is_null($value)){
             $response["result"] = false;

@@ -209,17 +209,6 @@ class ApplicationHelper
     }
 
     /**
-     * Форматирует и очищает от спец-символов входные данные, которые вводятся в поля форм
-     *
-     * @param $requestVar
-     * @return string
-     */
-    public static function ClearInputData($requestVar){
-        $result = trim(htmlspecialchars(stripslashes($requestVar)));
-        return $result;
-    }
-
-    /**
      * Преобразовывает строку в формате json в объект-json. Возвратит исходный объект в случае ошибки
      * @param $content - исходная строка
      * @return array

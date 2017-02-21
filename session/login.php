@@ -6,8 +6,8 @@ $performed = isset($_POST["performed"]) ? $_POST["performed"] : false;
 
 if ($performed == true){
     $err = array();
-    $login = ApplicationHelper::ClearInputData($_POST["login"]);
-    $password = ApplicationHelper::ClearInputData($_POST["password"]);
+    $login = FormHelper::ClearInputData($_POST["login"]);
+    $password = FormHelper::ClearInputData($_POST["password"]);
 
     // if (preg_match("/^[a-zA-Z0-9]+$/", $login)) $err[] = "Логин может состоять только из букв английского алфавита и цифр";
     // if (strlen($login) >30 || strlen($login) <3) $err[] = "Логин должен быть не меньше 3-х символов и не больше 30";

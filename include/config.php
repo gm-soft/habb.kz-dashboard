@@ -13,6 +13,7 @@
     require ($_SERVER["DOCUMENT_ROOT"]."/models/StatisticClass.php");
     require ($_SERVER["DOCUMENT_ROOT"]."/models/ConfigClass.php");
 
+    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/FormHelperClass.php");
     require ($_SERVER["DOCUMENT_ROOT"]."/include/lib/ChallongeAPIClass.php");
     require ($_SERVER["DOCUMENT_ROOT"]."/helpers/Challonge.php");
     require ($_SERVER["DOCUMENT_ROOT"]."/helpers/HtmlClass.php");

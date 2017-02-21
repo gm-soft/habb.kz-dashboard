@@ -9,7 +9,7 @@ switch ($actionPerformed){
 
         $clients = Client::getClientsFromDatabase($_DATABASE);
 
-        $title = "Создание новой команды";
+        $pageTitle = "Создание новой команды";
         Html::RenderHtmlHeader($pageTitle);
         $formAction = "../teams/create.php";
 
@@ -24,22 +24,19 @@ switch ($actionPerformed){
         break;
 
     case "dataInput":
-        $_REQUEST["id"] = -1;
-        $_REQUEST["name"] = ApplicationHelper::ClearInputData($_REQUEST["name"]);
-
-        $_REQUEST["score"] = ApplicationHelper::ClearInputData($_REQUEST["score"]);
-        $_REQUEST["score_change"] = ApplicationHelper:: formatPhone($_REQUEST["score_change"]);
-
-        $_REQUEST["captain_id"] = ApplicationHelper::ClearInputData($_REQUEST["captain_id"]);
-        $_REQUEST["player_2_id"] = ApplicationHelper::ClearInputData($_REQUEST["player_2_id"]);
-        $_REQUEST["player_3_id"] = ApplicationHelper::ClearInputData($_REQUEST["player_3_id"]);
-        $_REQUEST["player_4_id"] = ApplicationHelper::ClearInputData($_REQUEST["player_4_id"]);
-        $_REQUEST["player_5_id"] = ApplicationHelper::ClearInputData($_REQUEST["player_5_id"]);
-
-        $_REQUEST["player_2_id"] = !empty($_REQUEST["player_2_id"]) ? $_REQUEST["player_2_id"] : "null";
-        $_REQUEST["player_3_id"] = !empty($_REQUEST["player_3_id"]) ? $_REQUEST["player_3_id"] : "null";
-        $_REQUEST["player_4_id"] = !empty($_REQUEST["player_4_id"]) ? $_REQUEST["player_4_id"] : "null";
-        $_REQUEST["player_5_id"] = !empty($_REQUEST["player_5_id"]) ? $_REQUEST["player_5_id"] : "null";
+        $_REQUEST["id"]             = -1;
+        $_REQUEST["name"]           = FormHelper::ClearInputData($_REQUEST["name"]);
+        $_REQUEST["score"]          = FormHelper::ClearInputData($_REQUEST["score"]);
+        $_REQUEST["score_change"]   = ApplicationHelper:: formatPhone($_REQUEST["score_change"]);
+        $_REQUEST["captain_id"]     = FormHelper::ClearInputData($_REQUEST["captain_id"]);
+        $_REQUEST["player_2_id"]    = FormHelper::ClearInputData($_REQUEST["player_2_id"]);
+        $_REQUEST["player_3_id"]    = FormHelper::ClearInputData($_REQUEST["player_3_id"]);
+        $_REQUEST["player_4_id"]    = FormHelper::ClearInputData($_REQUEST["player_4_id"]);
+        $_REQUEST["player_5_id"]    = FormHelper::ClearInputData($_REQUEST["player_5_id"]);
+        $_REQUEST["player_2_id"]    = !empty($_REQUEST["player_2_id"]) ? $_REQUEST["player_2_id"] : "null";
+        $_REQUEST["player_3_id"]    = !empty($_REQUEST["player_3_id"]) ? $_REQUEST["player_3_id"] : "null";
+        $_REQUEST["player_4_id"]    = !empty($_REQUEST["player_4_id"]) ? $_REQUEST["player_4_id"] : "null";
+        $_REQUEST["player_5_id"]    = !empty($_REQUEST["player_5_id"]) ? $_REQUEST["player_5_id"] : "null";
 
 
 

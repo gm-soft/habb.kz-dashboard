@@ -42,14 +42,12 @@ Html::RenderHtmlHeader($pageTitle);
                     $team = $instance["team"];
                     $players = $instance["players"];
 
-                    $changeWrap= HtmlHelper::WrapScoreValueChange($team["change"]);
-
                     ?>
 
                     <tr>
                         <td><?= $team["id"] ?></td>
                         <td><a href='/teams/view.php?id=<?= $team["id"] ?>'><?= $team["name"] ?></a></td>
-                        <td><?= $team["value"] ?> (<?= $changeWrap ?>)</td>
+                        <td><?= $team["value"] ?> (<?= HtmlHelper::WrapScoreValueChange($team["change"]) ?>)</td>
 
                         <td class="">
                             <?php

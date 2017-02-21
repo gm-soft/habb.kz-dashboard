@@ -46,16 +46,16 @@ switch ($actionPerformed){
 
     case "dataInput":
 
-        $_REQUEST["id"] = ApplicationHelper::ClearInputData($_REQUEST["id"]);
-        $_REQUEST["name"] = ApplicationHelper::ClearInputData($_REQUEST["name"]);
-        $_REQUEST["last_name"] = ApplicationHelper::ClearInputData($_REQUEST["last_name"]);
-        $_REQUEST["phone"] = ApplicationHelper:: formatPhone($_REQUEST["phone"]);
-        $_REQUEST["email"] = ApplicationHelper::ClearInputData($_REQUEST["email"]);
+        $_REQUEST["id"]         = FormHelper::ClearInputData($_REQUEST["id"]);
+        $_REQUEST["name"]       = FormHelper::ClearInputData($_REQUEST["name"]);
+        $_REQUEST["last_name"]  = FormHelper::ClearInputData($_REQUEST["last_name"]);
+        $_REQUEST["phone"]      = ApplicationHelper:: formatPhone($_REQUEST["phone"]);
+        $_REQUEST["email"]      = FormHelper::ClearInputData($_REQUEST["email"]);
 
-        $_REQUEST["steam"] = ApplicationHelper::ClearInputData($_REQUEST["steam"]);
-        $_REQUEST["vk"] = ApplicationHelper::ClearInputData($_REQUEST["vk"]);
+        $_REQUEST["steam"]      = FormHelper::ClearInputData($_REQUEST["steam"]);
+        $_REQUEST["vk"]         = FormHelper::ClearInputData($_REQUEST["vk"]);
 
-        $_REQUEST["institution"] = ApplicationHelper::ClearInputData($_REQUEST["institution"]);
+        $_REQUEST["institution"] = FormHelper::ClearInputData($_REQUEST["institution"]);
         $_REQUEST["secondary_games"] = join(", ", $_REQUEST["secondary_games"]);
 
         $instance = Client::fromRequest($_REQUEST);

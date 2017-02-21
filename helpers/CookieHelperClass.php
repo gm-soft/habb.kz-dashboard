@@ -81,41 +81,41 @@ class CookieHelper
     }
 
     public static function RenderSessionMessages(){
-        $content = "";
-        if (!self::HasSessionMessages()) return $content;
+
+        if (!self::HasSessionMessages()) return;
         //----------------------------------------
-        $content = "<div class='container'>\n";
-        //$content = "";
 
         foreach (self::TYPES as $type) {
-            if (isset($_SESSION[$type])){
-                $content .= self::constructSessionAlert($_SESSION[$type], $type);
-                self::ClearSessionMessage($type);
-            }
+            if (!isset($_SESSION[$type])) continue;
+            self::RenderSessionAlert($_SESSION[$type], $type);
+            self::ClearSessionMessage($type);
         }
-        $content .= "</div>";
-        return $content;
-
     }
 
 
-    private static function constructSessionAlert(array $messages, $type = self::SUCCESS){
-        $content = "<div class='alert alert-$type alert-dismissible fade in' role='alert'>\n".
-            "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>".
-            "<span aria-hidden='true'>&times;</span></button>";
+    private static function RenderSessionAlert(array $messages, $type = self::SUCCESS){
+        ?>
+        <div class='alert alert-<?=$type?> alert-dismissible fade in' role='alert'>
+            <div class="container">
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
 
-        if (count($messages) == 1){
-            $content .= $messages[0];
-        } else {
-            $content .= "<ul>";
-            foreach ($messages as $item) {
-                $content .= "<li>$item</li>";
-            }
-            $content .= "</ul>";
-        }
+                <?php
+                if (count($messages) == 1){
+                    echo $messages[0];
+                } else {
+                    echo "<ul>";
+                    foreach ($messages as $item) {
+                        echo "<li>$item</li>";
+                    }
+                    echo "</ul>";
+                }
 
-        $content .= "</div>";
-        return $content;
+                ?>
+            </div>
+        </div>
+        <?php
     }
 
 
