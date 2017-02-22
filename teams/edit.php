@@ -24,7 +24,7 @@ switch ($actionPerformed){
             ApplicationHelper::redirect("../teams/");
         }
 
-        $clients = Gamer::getInstancesFromDatabase($_DATABASE);
+        $gamers = Gamer::getInstancesFromDatabase($_DATABASE);
 
         $title = "Редактирование ".$instance->name;
         Html::RenderHtmlHeader("Редактирование команды");
@@ -36,7 +36,7 @@ switch ($actionPerformed){
             <div class="mt-2">
                 <h1>Редактирование команды <?= $instance->name ?></h1>
             </div>
-            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/teams/formFields.php"; ?>
+            <?php FormSnippets::RenderTeamFormFields($formData, $gamers, $formAction) ?>
         </div>
         <?php
         break;

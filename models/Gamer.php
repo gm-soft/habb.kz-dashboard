@@ -203,6 +203,19 @@ class Gamer extends BaseInstance
         return join(", ", $this->secondary_games);
     }
 
+    /**
+     * Возвращает очки по игре. Если не найдены, то null
+     * @param string $game
+     * @return null|Score
+     */
+    public function getScoresByGame($game = Score::SCORE_CSGO){
+        foreach ($this->scoreArray as $item) {
+            if ($item->gameName != $game) continue;
+            return $item;
+        }
+        return null;
+    }
+
 
     /**
      * Вставляет запись в БД
@@ -382,22 +395,19 @@ class Gamer extends BaseInstance
      * @param string $sortType
      * @return Gamer[]|null
      */
-    public static function filterInstancesFromDatabase($mysql, array $filterConditions, $condition = "AND", $withSort = false, $sortBy = "created_at", $sortType = "DESC"){
+    public static function filterInstancesFromDatabase($mysql, array $filterConditions, $condition = "AND", $withSort = false, $sortBy = "id", $sortType = "DESC"){
         $query = "SELECT * FROM ".TABLE_CLIENTS." ";
 
-        if (!is_null($filterConditions) && count($filterConditions) > 0){
+        $query .= " WHERE ";
+        $filterConditions[] = "is_active=1";
+        $filterConditionCount = count($filterConditions);
+        for ($i = 0; $i < $filterConditionCount; $i++){
+            $field = $filterConditions[$i];
 
-            $query .= " WHERE is_active=1 AND ";
-            for ($i = 0; $i < count($filterConditions); $i++){
-                $field = $filterConditions[$i];
-
-                $query .= $field;
-                if ($i != count($filterConditions) - 1) {
-                    $query .= " ".$condition. " ";
-                }
+            $query .= $field;
+            if ($i != $filterConditionCount - 1) {
+                $query .= " ".$condition. " ";
             }
-        } else {
-            $query .= " WHERE is_active=1";
         }
 
         if ($withSort == true){

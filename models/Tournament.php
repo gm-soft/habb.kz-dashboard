@@ -1,10 +1,7 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Next
- * Date: 22.02.2017
- * Time: 13:49
+ * Играемый турнир, в котором могут участовать либо команды, либо игроки.
  */
 class Tournament extends BaseInstance
 {
@@ -26,7 +23,7 @@ class Tournament extends BaseInstance
     /** @var array Массив айдишников участников как стринговых переменных. Конвертируется в строку при записи в SQL */
     public $participantIdS = array();
 
-    /** @var array Массив команд, участвующих в турнире */
+    /** @var array Массив участников в турнире */
     public $participants = array();
 
     /** @var string Тип турнира. Может быть командный и личный */
@@ -70,10 +67,4 @@ class Tournament extends BaseInstance
     {
         // TODO: Implement fill() method.
     }
-}
-
-
-abstract class TournamentTypes {
-    const Gamers = "gamers";
-    const Teams = "teams";
 }

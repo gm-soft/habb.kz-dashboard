@@ -7,7 +7,7 @@ $actionPerformed = isset($_REQUEST["actionPerformed"]) ? $_REQUEST["actionPerfor
 switch ($actionPerformed){
     case "initiated":
 
-        $clients = Gamer::getInstancesFromDatabase($_DATABASE);
+        $gamers = Gamer::getInstancesFromDatabase($_DATABASE);
 
         $pageTitle = "Создание новой команды";
         Html::RenderHtmlHeader($pageTitle);
@@ -18,7 +18,7 @@ switch ($actionPerformed){
             <div class="mt-2">
                 <h1><?= $title ?></h1>
             </div>
-            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/teams/formFields.php"; ?>
+            <?php FormSnippets::RenderTeamFormFields(null, $gamers, $formAction) ?>
         </div>
         <?php
         break;

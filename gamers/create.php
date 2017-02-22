@@ -15,9 +15,9 @@ switch ($actionPerformed){
         ?>
         <div class="container">
             <div class="mt-2">
-                <h1>Создание новой записи о клиенте</h1>
+                <h1>Создание новой записи о геймере</h1>
             </div>
-            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/gamers/formFields.php"; ?>
+            <?php FormSnippets::RenderGamerFormFields(); ?>
         </div>
         <?php
         break;

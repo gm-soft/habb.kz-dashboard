@@ -144,4 +144,15 @@ abstract class CookieHelper
     public static function ClearSessionMessage($type = self::INFO){
         unset($_SESSION[$type]);
     }
+
+    /**
+     * Проверяте, запущен ли сайт на iOS-девайсе
+     * @return bool
+     */
+    public static function IsIosDevice(){
+        $iOsDevice = stripos($_SERVER['HTTP_USER_AGENT'],"iPod")||
+            stripos($_SERVER['HTTP_USER_AGENT'],"iPhone") ||
+            stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
+        return $iOsDevice;
+    }
 }

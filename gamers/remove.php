@@ -40,14 +40,7 @@ if (!isset($_POST["confirmed"])){
             <dt>Дата создания</dt> <dd><?= date("d.m.Y H:i:s", $instance->createdAt->getTimestamp())?></dd>
         </dl>
         </p>
-        <form method="post" action="">
-            <input type="hidden" name="id" value="<?= $instance->id ?>">
-            <input type="hidden" name="confirmed" value="true">
-            <div class="checkbox">
-				<label><input type="checkbox" required> Подтвердить удаление</label>
-			</div>
-            <button type="submit" class="btn btn-danger">Удалить запись</button>
-        </form>
+        <?php FormSnippets::RenderDeleteFormFields($instance) ?>
 
     </div>
 

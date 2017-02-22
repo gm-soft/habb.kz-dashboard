@@ -42,7 +42,7 @@ if (isset($_POST["processed"]) && (
 }
 else
 {
-    $iOsDevice = stripos($_SERVER['HTTP_USER_AGENT'],"iPod")|| stripos($_SERVER['HTTP_USER_AGENT'],"iPhone") || stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
+    $iOsDevice = CookieHelper::IsIosDevice();
     $cities = ApplicationHelper::getCities();
 
     Html::RenderHtmlHeader("Регистрация участника HABB.KZ", false, Html::HTML_FRONT);

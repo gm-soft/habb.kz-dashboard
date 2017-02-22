@@ -35,7 +35,7 @@ switch ($actionPerformed){
             <div class="mt-2">
                 <h1>Редактирование записи <?= $instance->getFullName() ?></h1>
             </div>
-            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/gamers/formFields.php"; ?>
+            <?php FormSnippets::RenderGamerFormFields($formData); ?>
         </div>
         <?php
         break;

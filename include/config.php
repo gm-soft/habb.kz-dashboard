@@ -1,35 +1,42 @@
 <?php
 
     session_start();
+    $_DocumentRoot = $_SERVER["DOCUMENT_ROOT"];
 
-    require ($_SERVER["DOCUMENT_ROOT"]."/include/constants.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/include/lib/ChallongeAPIClass.php");
+    require "$_DocumentRoot/include/constants.php";
 
+    /** Snippets */
+    require "$_DocumentRoot/snippets/SharedSnippets.php";
+    require "$_DocumentRoot/snippets/FormSnippets.php";
 
-    require ($_SERVER["DOCUMENT_ROOT"]."/models/IDatabaseObject.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/models/BaseInstanceClass.php");
+    require ("$_DocumentRoot/include/lib/ChallongeAPIClass.php");
+    require("$_DocumentRoot/models/IDatabaseObject.php");
+    require("$_DocumentRoot/models/BaseInstance.php");
 
-    require($_SERVER["DOCUMENT_ROOT"] . "/models/Gamer.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/models/UserClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/models/TeamClass.php");
+    require("$_DocumentRoot/models/Gamer.php");
+    require("$_DocumentRoot/models/User.php");
+    require("$_DocumentRoot/models/Team.php");
 
-    require ($_SERVER["DOCUMENT_ROOT"]."/models/ScoreClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/models/StatisticClass.php");
-    require($_SERVER["DOCUMENT_ROOT"] . "/include/ConfigClass.php");
+    require("$_DocumentRoot/models/Score.php");
+    require("$_DocumentRoot/models/Statistic.php");
+    require("$_DocumentRoot/include/ConfigClass.php");
 
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/RequestHelper.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/FormHelper.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/SmtpEmailClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/Challonge.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/Html.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/CollectionHelper.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/HtmlHelper.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/VkHelper.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/ServerHelper.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/ApplicationHelper.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/CookieHelper.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/MysqlHelper.php");
-    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/BitrixHelper.php");
+    require("$_DocumentRoot/models/TournamentTypes.php");
+    require("$_DocumentRoot/models/Tournament.php");
+
+    require ("$_DocumentRoot/helpers/RequestHelper.php");
+    require ("$_DocumentRoot/helpers/FormHelper.php");
+    require ("$_DocumentRoot/helpers/SmtpEmailClass.php");
+    require ("$_DocumentRoot/helpers/Challonge.php");
+    require ("$_DocumentRoot/helpers/Html.php");
+    require ("$_DocumentRoot/helpers/CollectionHelper.php");
+    require ("$_DocumentRoot/helpers/HtmlHelper.php");
+    require ("$_DocumentRoot/helpers/VkHelper.php");
+    require ("$_DocumentRoot/helpers/ServerHelper.php");
+    require ("$_DocumentRoot/helpers/ApplicationHelper.php");
+    require ("$_DocumentRoot/helpers/CookieHelper.php");
+    require ("$_DocumentRoot/helpers/MysqlHelper.php");
+    require ("$_DocumentRoot/helpers/BitrixHelper.php");
 
 
     // Html::RenderError();

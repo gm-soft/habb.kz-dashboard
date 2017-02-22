@@ -167,15 +167,15 @@ class MysqlHelper
         LEFT JOIN
           ".TABLE_CLIENTS." AS c4 ON player_5_id = c4.id
         LEFT JOIN 
-          ".TABLE_SCORES." as s0 ON captain_id = s0.client_id AND s0.game_name='$gameName'
+          ".TABLE_SCORES." as s0 ON captain_id = s0.gamer_id AND s0.game_name='$gameName'
         LEFT JOIN 
-          ".TABLE_SCORES." as s1 ON player_2_id = s1.client_id AND s1.game_name='$gameName'
+          ".TABLE_SCORES." as s1 ON player_2_id = s1.gamer_id AND s1.game_name='$gameName'
         LEFT JOIN 
-          ".TABLE_SCORES." as s2 ON player_3_id = s2.client_id AND s2.game_name='$gameName'
+          ".TABLE_SCORES." as s2 ON player_3_id = s2.gamer_id AND s2.game_name='$gameName'
         LEFT JOIN 
-          ".TABLE_SCORES." as s3 ON player_4_id = s3.client_id AND s3.game_name='$gameName'
+          ".TABLE_SCORES." as s3 ON player_4_id = s3.gamer_id AND s3.game_name='$gameName'
         LEFT JOIN 
-          ".TABLE_SCORES." as s4 ON player_5_id = s4.client_id AND s4.game_name='$gameName' 
+          ".TABLE_SCORES." as s4 ON player_5_id = s4.gamer_id AND s4.game_name='$gameName' 
           
         LEFT JOIN 
           ".TABLE_TEAM_SCORES." ON ".TABLE_TEAMS.".id = ".TABLE_TEAM_SCORES.".team_id AND ".TABLE_TEAM_SCORES.".game_name='$gameName'  ".
@@ -251,7 +251,7 @@ class MysqlHelper
     public function getClientRating($gameName = Score::SCORE_CSGO, $greaterThan = -1, $withLimit = false, $limit = 10){
         $query = "SELECT ".TABLE_CLIENTS.".id, ".TABLE_CLIENTS.".name, ".TABLE_CLIENTS.".last_name, ".TABLE_SCORES.".total_value, ".TABLE_SCORES.".change_total, ".TABLE_SCORES.".month_value FROM ".TABLE_CLIENTS." ".
             "LEFT JOIN 
-              ".TABLE_SCORES." ON ".TABLE_CLIENTS.".id=".TABLE_SCORES.".client_id AND ".TABLE_SCORES.".game_name='$gameName' ".
+              ".TABLE_SCORES." ON ".TABLE_CLIENTS.".id=".TABLE_SCORES.".gamer_id AND ".TABLE_SCORES.".game_name='$gameName' ".
             "WHERE ".TABLE_SCORES.".total_value>$greaterThan ORDER BY ".TABLE_SCORES.".total_value DESC ";
         if ($withLimit == true){
             $query .= "LIMIT $limit";

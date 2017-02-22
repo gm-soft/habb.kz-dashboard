@@ -67,7 +67,7 @@ Html::RenderHtmlHeader($pageTitle);
             <div class="col-sm-6">
                 <?php
                     $teamActionPage = true;
-                    require_once $_SERVER["DOCUMENT_ROOT"]."/shared/scoreFields.php"
+                    SharedSnippets::RenderFastScoreFields($instance->scoreArray, $teamActionPage);
                 ?>
             </div>
 
@@ -76,15 +76,7 @@ Html::RenderHtmlHeader($pageTitle);
         <div class="row">
 
             <?php
-            $player = $captain;
-            $status = "Капитан";
-            require $_SERVER["DOCUMENT_ROOT"] . "/teams/playerDisplay.php";
-
-            $status = "Игрок";
-            $players = [$player2, $player3, $player4, $player5];
-            foreach ($players as $player){
-                require $_SERVER["DOCUMENT_ROOT"] . "/teams/playerDisplay.php";
-            }
+            SharedSnippets::RenderTeamGamerTable([$captain, $player2, $player3, $player4, $player5]);
 
             ?>
 

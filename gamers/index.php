@@ -13,18 +13,11 @@ $instances = Gamer::filterInstancesFromDatabase($_DATABASE, [], null, true);
 Html::RenderHtmlHeader($pageTitle);
     ?>
     <div class="container">
-        <p class="mt-2">
-            <h1>Список зарегистрировавшихся (<?= count($instances) ?> записей)</h1>
-        </p>
-
-        <div class="card">
-            <div class="card-block">
-                <h5 class="card-title">Фильтр и сортировка</h5>
-                <p class="card-text">
-
-                </p>
-            </div>
+        <div class="mt-2">
+            <h1>Список игроков (<?= count($instances) ?> записей)</h1>
         </div>
+
+        <?php SharedSnippets::RenderFilterIndexCard($_SERVER["PHP_SELF"]) ?>
 
 
         <div id="outputDiv">
@@ -50,7 +43,7 @@ Html::RenderHtmlHeader($pageTitle);
                     ?>
                     <tr>
                         <td><?= $value->id ?></td>
-                        <td><a href="../gamers/view.php?id=<?= $value->id?>" title="Открыть"><?= $value->getFullName()?></a></td>
+                        <td><a href="/gamers/view.php?id=<?= $value->id?>" title="Открыть"><?= $value->getFullName()?></a></td>
                         <td><?= $value->phone?></td>
                         <td><?= $value->email?></td>
 

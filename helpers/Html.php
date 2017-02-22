@@ -12,10 +12,9 @@ abstract class Html
      * Функция рендерит страницу, расположение которой передается по аргументу
      * @param $filename
      * @param bool $withDeath
-     * @param int $responseCode
      */
-    public static function Render($filename, $withDeath = false, $responseCode = 200){
-        header("HTTP $responseCode");
+    public static function Render($filename, $withDeath = false){
+
         $content = ApplicationHelper::readFromFile($filename);
         if (!is_null($content)){
             echo $content;
@@ -39,6 +38,7 @@ abstract class Html
                 $filename = $_SERVER["DOCUMENT_ROOT"]."/shared/error.html";
                 break;
         }
+        header("HTTP $code");
         self::Render($filename, true, $code);
     }
 

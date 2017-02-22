@@ -246,10 +246,12 @@ abstract class HtmlHelper
         return $content;
     }
 
-    public static function constructCitiesSelect($selectedCity = null) {
+    public static function constructCitiesSelect($selectedCity = null, $isRequired = true, $name = "city", $id = "city", $withAll = false) {
         $cities = ApplicationHelper::getCities();
-        $content = "<select class='form-control' name='city' required>\n";
+        $requiredState = $isRequired == true ? "required" : "";
+        $content = "<select class='form-control' name='$name' id='$id' $requiredState>\n";
         $content .= "<option value='' disabled>Город</option>\n";
+        $content .= $withAll == true ? "<option value='all' selected>Все города</option>\n" : "";
 
         for ($i = 0; $i<count($cities); $i++) {
 

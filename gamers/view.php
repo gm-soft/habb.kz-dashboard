@@ -77,7 +77,9 @@ Html::RenderHtmlHeader($pageTitle);
 
 
             <div class="col-sm-6">
-                <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/shared/scoreFields.php" ?>
+                <?php
+                    SharedSnippets::RenderFastScoreFields($instance->scoreArray);
+                ?>
             </div>
         </div>
 
