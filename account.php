@@ -9,7 +9,7 @@ if (isset($_POST["processed"]) && (
         !empty($_REQUEST["email"]) )) {
 
     $_REQUEST["action"] = "account.create";
-    $createResponse = ApplicationHelper::query("http://registration.habb.kz/rest/account.php", $_REQUEST);
+    $createResponse = RequestHelper::query("http://registration.habb.kz/rest/account.php", $_REQUEST);
     if ($createResponse["result"] == true) {
 
         $name = $createResponse["name"];

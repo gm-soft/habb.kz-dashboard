@@ -15,7 +15,7 @@ if (!$currentUser->checkPermission(1)) {
 switch ($actionPerformed){
     case "initiated":
 
-        $instance = Team::getInstanceFromDatabase($_REQUEST["id"], "id", $_DATABASE);
+        $instance = Team::getInstanceFromDatabase($_REQUEST["id"], $_DATABASE);
 
 
 
@@ -24,7 +24,7 @@ switch ($actionPerformed){
             ApplicationHelper::redirect("../teams/");
         }
 
-        $clients = Client::getClientsFromDatabase($_DATABASE);
+        $clients = Gamer::getInstancesFromDatabase($_DATABASE);
 
         $title = "Редактирование ".$instance->name;
         Html::RenderHtmlHeader("Редактирование команды");
@@ -70,11 +70,11 @@ switch ($actionPerformed){
         if ($updateResult["result"] == true){
             $message = "Команда сохранена";
             $type = CookieHelper::SUCCESS;
-            $url = "../teams/view.php?id=".$_REQUEST["id"];
+            $url = "/teams/view.php?id=".$_REQUEST["id"];
         } else {
             $message = $updateResult["data"];
             $type = CookieHelper::DANGER;
-            $url = "../teams/edit.php?id=".$_REQUEST["id"];
+            $url = "/teams/edit.php?id=".$_REQUEST["id"];
         }
         CookieHelper::AddSessionMessage($message, $type);
         ApplicationHelper::redirect($url);
@@ -87,7 +87,7 @@ switch ($actionPerformed){
         $scoreId = $_REQUEST["scoreId"];
         $clientId = $_REQUEST["clientId"];
 
-        if ($changed == 0) ApplicationHelper::redirect("../teams/view.php?id=$clientId");
+        if ($changed == 0) ApplicationHelper::redirect("/teams/view.php?id=$clientId");
 
 
         $scoreChangeText =  $changed > 0 ? "+$changed" : "$changed";
@@ -95,7 +95,7 @@ switch ($actionPerformed){
         $lastOperation = "Пользователь ".$_COOKIE["login"]." установил новое значение очков: $newScore ($scoreChangeText)";
         $updateResult = $_DATABASE->updateTeamScore($clientId, $gameName, $newScore, $scoreChangeText);
 
-        $team = Team::getInstanceFromDatabase($_REQUEST["clientId"], "id", $_DATABASE);
+        $team = Team::getInstanceFromDatabase($_REQUEST["clientId"], $_DATABASE);
         $playerScoreUpdate = $_DATABASE->updateTeamPlayersScore($team->getPlayersIdAsArray(), $changed, $gameName);
 
 
@@ -104,13 +104,13 @@ switch ($actionPerformed){
         $type = null;
 
         if ($updateResult["result"] == true && $playerScoreUpdate == true){
-            $url = "../teams/view.php?id=$clientId";
+            $url = "/teams/view.php?id=$clientId";
             $message = "Очки записаны";
             $type = CookieHelper::SUCCESS;
         } else {
             $message = $updateResult["data"];
             $type = CookieHelper::DANGER;
-            $url = "../teams/edit.php?id=$clientId";
+            $url = "/teams/edit.php?id=$clientId";
 
         }
         CookieHelper::AddSessionMessage($message, $type);

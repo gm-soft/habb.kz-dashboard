@@ -6,11 +6,8 @@
  * Date: 10.02.2017
  * Time: 10:45
  */
-class Statistic
+class Statistic extends BaseInstance
 {
-    /** @var  int */
-    public $id;
-
     /**
      * Массив в формате json
      * @var null|array() */
@@ -21,9 +18,6 @@ class Statistic
 
     /** @var  string */
     public $game;
-
-    /** @var  DateTime */
-    public $createdAt;
 
 
     const CLIENT_TYPE = "client";
@@ -87,7 +81,7 @@ class Statistic
         return true;
     }
 
-    protected function fill(array $row){
+    public function fill(array $row){
         $this->id       = isset($row["statistic_id"]) ?         intval($row["statistic_id"]) : $this->id;
 
         $content = isset($row["statistic_body"]) ?    $row["statistic_body"] : null;
@@ -233,7 +227,11 @@ class Statistic
     }
 
 
-
+    static function filterInstancesFromDatabase($mysql, array $filterConditions, $condition, $withSort, $sortBy, $sortType)
+    {
+        // TODO: Implement filterInstancesFromDatabase() method.
+        return self::getInstancesFromDatabase($mysql);
+    }
 }
 
 

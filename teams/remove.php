@@ -15,7 +15,7 @@ if (!$currentUser->checkPermission(1)) {
 }
 
 
-$instance = Team::getInstanceFromDatabase($id, "id", $_DATABASE);
+$instance = Team::getInstanceFromDatabase($id, $_DATABASE);
 
 if (is_null($instance)) {
     CookieHelper::AddSessionMessage("Команда с ID".$_REQUEST["id"]." не найдена в базе данных", CookieHelper::DANGER);

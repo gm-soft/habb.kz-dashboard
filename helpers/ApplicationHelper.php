@@ -6,7 +6,7 @@
  * Date: 06.01.2017
  * Time: 8:11
  */
-class ApplicationHelper
+abstract class ApplicationHelper
 {
     /**
      * Производит перенаправление пользователя на заданный адрес
@@ -18,61 +18,6 @@ class ApplicationHelper
         header("HTTP 302 Found");
         header("Location: ".$url);
         die();
-    }
-
-
-    /**
-     * Возвращает массив авторизационных данных, содержащийся в файле
-     *
-     * @param bool $token_only
-     * @return array|null
-     */
-    public static function readAccessData($token_only = false) {
-        $access_source = ApplicationHelper::readFromFile(AUTH_FILENAME);
-        if ($access_source == "null") return null;
-        $access_data = ApplicationHelper::toJson($access_source);
-
-        if ($token_only == true) {
-            $access_data = isset($access_data["access_token"]) ? $access_data["access_token"] : $access_data;
-        }
-
-        return $access_data;
-    }
-
-
-    /**
-     * Совершает запрос с заданными данными по заданному адресу. В ответ ожидается JSON
-     *
-     * @param string $url адрес
-     * @param array|null $data параметры запроса: Post или Get аргументы
-     * @param string $method GET|POST - тип запроса
-     * @return array
-     */
-    public static function query($url, $data = null, $method = "POST")
-    {
-        $query_data = "";
-
-        $curlOptions = array(
-            CURLOPT_RETURNTRANSFER => true
-        );
-
-        if($method == "POST")
-        {
-            $curlOptions[CURLOPT_POST] = true;
-            $curlOptions[CURLOPT_POSTFIELDS] = http_build_query($data);
-        }
-        elseif(!empty($data))
-        {
-            $url .= strpos($url, "?") > 0 ? "&" : "?";
-            $url .= http_build_query($data);
-        }
-
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt_array($curl, $curlOptions);
-        $result = curl_exec($curl);
-        //ApplicationHelper::debug($result);
-        return json_decode($result, 1);
     }
 
     /**
@@ -202,7 +147,7 @@ class ApplicationHelper
      * @param $array array
      * @return mixed
      */
-    public static function getRandomItem($array){
+    public static function getRandomItem(array $array){
         $max = count($array) - 1;
         $randomNumber = self::getRandomNumber($max);
         return $array[$randomNumber];

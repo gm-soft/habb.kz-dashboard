@@ -5,7 +5,7 @@
 
     if (!is_null($player)){
         $title = $player->name. " ". $player->last_name;
-        $content = "<i>$status</i><br><a href='../clients/view.php?id=$player->id'>ID $player->id</a>";
+        $content = "<i>$status</i><br><a href='../gamers/view.php?id=$player->id'>ID $player->id</a>";
     } else {
         $title  = "Свободная карта";
         $content = "Игрок отсутствует";

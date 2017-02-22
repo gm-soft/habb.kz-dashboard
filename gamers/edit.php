@@ -9,7 +9,7 @@ if (!$currentUser->checkPermission(1)) {
 
     CookieHelper::AddSessionMessage("У вас недостаточно прав для совершения этого действия", CookieHelper::DANGER);
     $id = isset($_REQUEST["clientId"]) ? $_REQUEST["clientId"] : $_REQUEST["id"];
-    ApplicationHelper::redirect("../clients/view.php?id=$id");
+    ApplicationHelper::redirect("../gamers/view.php?id=$id");
 }
 
 
@@ -17,7 +17,7 @@ switch ($actionPerformed){
     case "initiated":
 
         //$instance = $mysql->getClient($_REQUEST["id"]);
-        $instance = Client::getFromDatabase($_DATABASE, $_REQUEST["id"]);
+        $instance = Gamer::getInstanceFromDatabase($_REQUEST["id"], $_DATABASE);
 
         if (is_null($instance)) {
             CookieHelper::AddSessionMessage("Клиент с ID".$_REQUEST["id"]." не найден в базе данных", CookieHelper::DANGER);
@@ -35,12 +35,8 @@ switch ($actionPerformed){
             <div class="mt-2">
                 <h1>Редактирование записи <?= $instance->getFullName() ?></h1>
             </div>
-            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/clients/formFields.php"; ?>
+            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/gamers/formFields.php"; ?>
         </div>
-
-        <pre>
-            <?= Html::RenderDebug($instance) ?>
-        </pre>
         <?php
         break;
 
@@ -58,7 +54,7 @@ switch ($actionPerformed){
         $_REQUEST["institution"] = FormHelper::ClearInputData($_REQUEST["institution"]);
         $_REQUEST["secondary_games"] = join(", ", $_REQUEST["secondary_games"]);
 
-        $instance = Client::fromRequest($_REQUEST);
+        $instance = Gamer::fromRequest($_REQUEST);
 
         $updateResult = $instance->updateInDatabase($_DATABASE);
 
@@ -66,13 +62,13 @@ switch ($actionPerformed){
         $type = null;
 
         if ($updateResult["result"] == true){
-            $url = "../clients/view.php?id=".$_REQUEST["id"];
+            $url = "/gamers/view.php?id=".$_REQUEST["id"];
             $message = "Запись сохранена";
             $type = CookieHelper::SUCCESS;
         } else {
             $message = $updateResult["data"];
             $type = CookieHelper::DANGER;
-            $url = "../clients/edit.php?id=".$_REQUEST["id"];
+            $url = "/gamers/edit.php?id=".$_REQUEST["id"];
 
         }
         CookieHelper::AddSessionMessage($message, $type);
@@ -90,7 +86,7 @@ switch ($actionPerformed){
         $clientId = $_REQUEST["clientId"];
 
 
-        if ($changed == 0) ApplicationHelper::redirect("../clients/view.php?id=".$_REQUEST["clientId"]);
+        if ($changed == 0) ApplicationHelper::redirect("/gamers/view.php?id=".$_REQUEST["clientId"]);
 
 
         $scoreChangeText =  $changed > 0 ? "+$changed" : "$changed";
@@ -101,17 +97,17 @@ switch ($actionPerformed){
         $type = null;
 
         if ($updateResult["result"] == true){
-            $url = "../clients/view.php?id=".$_REQUEST["id"];
+            $url = "/gamers/view.php?id=".$_REQUEST["id"];
             $message = "Очки записаны";
             $type = CookieHelper::SUCCESS;
         } else {
             $message = $updateResult["data"];
             $type = CookieHelper::DANGER;
-            $url = "../clients/edit.php?id=".$_REQUEST["id"];
+            $url = "/gamers/edit.php?id=".$_REQUEST["id"];
 
         }
         CookieHelper::AddSessionMessage($message, $type);
-        ApplicationHelper::redirect("../clients/view.php?id=".$_REQUEST["clientId"]);
+        ApplicationHelper::redirect("/gamers/view.php?id=".$_REQUEST["clientId"]);
         break;
 
 }

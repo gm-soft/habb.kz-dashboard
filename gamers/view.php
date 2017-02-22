@@ -5,11 +5,11 @@ require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
 $id = isset($_REQUEST["id"]) && $_REQUEST["id"] != ""  ? $_REQUEST["id"] : null;
 if (is_null($id)) ApplicationHelper::redirect("/");
 
-$instance = Client::getFromDatabase($_DATABASE, $id);
+$instance = Gamer::getInstanceFromDatabase($id, $_DATABASE);
 
 
 if (is_null($instance)) {
-    CookieHelper::AddSessionMessage("Клиент с ID".$_REQUEST["id"]." не найден в базе данных", CookieHelper::DANGER);
+    CookieHelper::AddSessionMessage("Игрок с ID".$_REQUEST["id"]." не найден в базе данных", CookieHelper::DANGER);
     ApplicationHelper::redirect("/");
 }
 
@@ -57,7 +57,7 @@ Html::RenderHtmlHeader($pageTitle);
                             <dt class="col-sm-3">ID Лида в Б24:</dt>
                             <dd class="col-sm-9"><a href="https://habb1.bitrix24.kz/crm/lead/show/<?= $instance->lead_id?>/" title="Открыть в Битрикс24">ID<?= $instance->lead_id?></a></dd>
                             <dt class="col-sm-3">Дата регистрации:</dt>
-                            <dd class="col-sm-9"><?= date("d.m.Y H:i:s", $instance->created_at->getTimestamp())?></dd>
+                            <dd class="col-sm-9"><?= date("d.m.Y H:i:s", $instance->createdAt->getTimestamp())?></dd>
                             <dt class="col-sm-3">Комментарий:</dt>
                             <dd class="col-sm-9"><?= $instance->comment ?></dd>
                         </dl>
@@ -66,9 +66,9 @@ Html::RenderHtmlHeader($pageTitle);
                     </div>
                     <div class="card-footer">
                         <div class="float-sm-right">
-                            <a href="../clients/"  class="btn btn-secondary"><span class="fa fa-chevron-circle-left"></span> В список</a>
-                            <a href="../clients/edit.php?id=<?= $instance->id?>"  class="btn btn-secondary"><span class="fa fa-pencil"></span> Редактировать</a>
-                            <a href="../clients/remove.php?id=<?= $instance->id?>"  class="btn btn-danger"><span class="fa fa-remove"></span> Удалить</a>
+                            <a href="../gamers/"  class="btn btn-secondary"><span class="fa fa-chevron-circle-left"></span> В список</a>
+                            <a href="../gamers/edit.php?id=<?= $instance->id?>"  class="btn btn-secondary"><span class="fa fa-pencil"></span> Редактировать</a>
+                            <a href="../gamers/remove.php?id=<?= $instance->id?>"  class="btn btn-danger"><span class="fa fa-remove"></span> Удалить</a>
                         </div>
                     </div>
                 </div>

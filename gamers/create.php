@@ -3,7 +3,7 @@
 require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
 
 $actionPerformed = isset($_REQUEST["actionPerformed"]) ? $_REQUEST["actionPerformed"] : "initiated";
-$pageTitle = "Создание новой записи о клиенте";
+$pageTitle = "Создание новой записи о геймере";
 
 switch ($actionPerformed){
     case "initiated":
@@ -17,7 +17,7 @@ switch ($actionPerformed){
             <div class="mt-2">
                 <h1>Создание новой записи о клиенте</h1>
             </div>
-            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/clients/formFields.php"; ?>
+            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/gamers/formFields.php"; ?>
         </div>
         <?php
         break;

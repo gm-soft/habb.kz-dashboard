@@ -288,17 +288,17 @@ class MysqlHelper
      * Обновляет значение очков игрока
      *
      * @param $scoreId - ID записи очков
-     * @param $clientId - ID клиента
+     * @param $gamerId - ID геймера
      * @param $gameName - Название дисциплины
      * @param $scoreValue - значение очков
      * @param $changeText - значение измененного текста
      * @return array
      */
-    public function updateScore($scoreId, $clientId, $gameName, $scoreValue, $changeText){
+    public function updateScore($scoreId, $gamerId, $gameName, $scoreValue, $changeText){
         $query = "UPDATE `".TABLE_SCORES."` SET ".
             "`total_value`=$scoreValue,".
             "`change_total`='$changeText'".
-            " WHERE client_id=$clientId AND game_name='$gameName'";
+            " WHERE gamer_id=$gamerId AND game_name='$gameName'";
         $query_result = $this->executeQuery($query);
 
         return $query_result;
@@ -335,7 +335,7 @@ class MysqlHelper
             if (is_null($id) || $id == "null") continue;
 
             $operation = intval($scoreValue) > 0 ? "+" : "";
-            $query = "UPDATE ".TABLE_SCORES." SET total_value=total_value$operation$scoreValue WHERE client_id=$id AND game_name='$gameName' ";
+            $query = "UPDATE ".TABLE_SCORES." SET total_value=total_value$operation$scoreValue WHERE gamer_id=$id AND game_name='$gameName' ";
             $query_result = $this->executeQuery($query);
             $result = $result && $query_result["result"];
         }
@@ -449,7 +449,7 @@ class MysqlHelper
 
     /**
      * Обновляет номер лида в CRM
-     * @param $client Client
+     * @param $client Gamer
      * @return array
      */
     public function updateLeadId($client) {

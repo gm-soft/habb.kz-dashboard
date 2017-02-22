@@ -1,14 +1,10 @@
 <?php
 
-/** ClientClass
- *
- * Класс для создания объекта Клиент в системе habb.kz
-*
+/** Gamer
+ * Модель представляет аккаунт игрока в системе HABB. Может участовать в командах, турнирах
 */
-class Client
+class Gamer extends BaseInstance
 {
-    /** @var int $id - id клиента */
-    public $id;
 
     /** @var string Имя клиента */
     public $name;
@@ -44,16 +40,10 @@ class Client
     public $secondary_games;
 
     /** @var string ID лида в битриксе */
-    public $lead_id = null;
-
-    /** @var DateTime Время создания */
-    public $created_at;
+    public $lead_id = '0';
 
     /** @var Score[] */
     public $scoreArray;
-
-    /** @var string Комментарий пользователя */
-    public $comment;
 
 
     function __construct($id = -1)
@@ -129,7 +119,7 @@ class Client
     }
 
 
-    protected function fill( array $row )
+    public function fill( array $row )
     {
         $this->id = isset($row["id"]) ? $row["id"] : $this->id ;
         $this->name = $row["name"];
@@ -154,7 +144,7 @@ class Client
 
         $this->lead_id = isset($row["lead_id"]) ? $row["lead_id"] : $this->lead_id;
 
-        $this->created_at = isset($row["created_at"]) ? DateTime::createFromFormat("Y-m-d H:i:s", $row["created_at"]) : $this->created_at;
+        $this->createdAt = isset($row["created_at"]) ? DateTime::createFromFormat("Y-m-d H:i:s", $row["created_at"]) : $this->createdAt;
         $this->lead_id = isset($row["lead_id"]) ? $row["lead_id"] : $this->lead_id;
         $this->comment = isset($row["comment"]) ? $row["comment"] : $this->comment;
     }
@@ -184,7 +174,7 @@ class Client
             "primary_game" => $this->primary_game,
             "secondary_games" => $this->secondary_games,
             "lead_id" => $this->lead_id,
-            "created_at" => $this->created_at,
+            "created_at" => $this->createdAt,
             "comment" => $this->comment ,
             "score_array" => $this->scoreArray
         ];
@@ -303,7 +293,7 @@ class Client
             "`primary_game`='".$this->primary_game."',".
             "`secondary_games`='".$sec_games."', ".
             "`comment`='".$this->comment."', ".
-            "`lead_id`=".$this->lead_id." ".
+            "`lead_id`='".$this->lead_id."' ".
             " WHERE id=".$this->id;
         $query_result = $mysql->executeQuery($query);
 
@@ -333,12 +323,12 @@ class Client
     }
 
     /**
-     * @param $mysql MysqlHelper
      * @param $searchable - ID клиента или иное искомое значение
+     * @param $mysql MysqlHelper
      * @param string $field - искомое поле. ID по умолчанию
-     * @return Client|null
+     * @return Gamer|null
      */
-    public static function getFromDatabase($mysql, $searchable, $field = "id"){
+    public static function getInstanceFromDatabase($searchable, $mysql, $field = "id"){
         $query = "SELECT * FROM ".TABLE_CLIENTS." WHERE $field='$searchable'";
 
         $query_result = $mysql->executeQuery($query);
@@ -352,13 +342,14 @@ class Client
         return null;
     }
 
+
     /**
      * Получение списка всех записей с возможностью пагинации
      *
      * @param $mysql MysqlHelper
-     * @return Client[]|null
+     * @return Gamer[]|null
      */
-    public static function getClientsFromDatabase($mysql){
+    public static function getInstancesFromDatabase($mysql){
 
         $query = "SELECT * FROM ".TABLE_CLIENTS. "  WHERE is_active=1";
 
@@ -389,9 +380,9 @@ class Client
      * @param bool $withSort
      * @param string $sortBy
      * @param string $sortType
-     * @return Client[]|null
+     * @return Gamer[]|null
      */
-    public static function filterClientsFromDatabase($mysql, $filterConditions, $condition = "AND", $withSort = false, $sortBy = "created_at", $sortType = "DESC"){
+    public static function filterInstancesFromDatabase($mysql, array $filterConditions, $condition = "AND", $withSort = false, $sortBy = "created_at", $sortType = "DESC"){
         $query = "SELECT * FROM ".TABLE_CLIENTS." ";
 
         if (!is_null($filterConditions) && count($filterConditions) > 0){

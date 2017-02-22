@@ -16,7 +16,7 @@ if ($performed == true) {
     if (strlen($login) >30 || strlen($login) <3) $err[] = "Логин должен быть не меньше 3-х символов и не больше 30";
 
 
-    $instance = User::getInstanceFromDatabase($login, "username", $_DATABASE);
+    $instance = User::getInstanceFromDatabase($login, $_DATABASE);
 
     if (!is_null($instance)) {
         $err[] = "Пользователь с таким логином уже существует в базе данных";

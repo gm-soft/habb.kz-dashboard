@@ -20,7 +20,7 @@ if ($viewPermission == false){
 $pageTitle = "Просмотр сущности NEXT.Accounts";
 Html::RenderHtmlHeader($pageTitle);
 
-$instance = User::getInstanceFromDatabase($id, "user_id", $_DATABASE);
+$instance = User::getInstanceFromDatabase($id, $_DATABASE, "user_id");
 ?>
     <div class="container">
         <div class="mt-2">

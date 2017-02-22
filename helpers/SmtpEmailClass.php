@@ -8,23 +8,25 @@
  */
 class SmtpEmail
 {
+    /** @var SmtpEmail */
+    private static $_instance = null;
     /** @var string $smtp_username - логин */
-    public $smtp_username;
+    private $smtp_username;
 
     /** @var string $smtp_password - пароль */
-    public $smtp_password;
+    private $smtp_password;
 
     /** @var string $smtp_host - хост */
-    public $smtp_host;
+    private $smtp_host;
 
     /** @var string $smtp_from - от кого */
-    public $smtp_from;
+    private $smtp_from;
 
     /** @var integer $smtp_port - порт */
-    public $smtp_port;
+    private $smtp_port;
 
     /** @var string $smtp_charset - кодировка */
-    public $smtp_charset;
+    private $smtp_charset;
 
     public function __construct($smtp_username, $smtp_password, $smtp_host, $smtp_from, $smtp_port = 25, $smtp_charset = "utf-8") {
         $this->smtp_username = $smtp_username;
@@ -35,20 +37,17 @@ class SmtpEmail
         $this->smtp_charset = $smtp_charset;
     }
 
-    /**
-     * @return SmtpEmail
-     */
-    public static function getNewInstance(){
-
-        $login = Config::getValue(Config::SMTP_LOGIN);
-        $pass = Config::getValue(Config::SMTP_PASS);
-        $server = Config::getValue(Config::SMTP_SERVER);
-        $from = Config::getValue(Config::SMTP_FROM);
-        $port = Config::getValue(Config::SMTP_PORT);
-
-        $instance = new self($login, $pass, $server, $from, $port);
-        //$instance = new SmtpEmail(EMAIL_LOGIN, EMAIL_PASSWORD, EMAIL_SMTP, EMAIL_FROM, EMAIL_PORT);
-        return $instance;
+    public static function getInstance(){
+        if(is_null(self::$_instance))
+        {
+            $login = Config::getValue(Config::SMTP_LOGIN);
+            $pass = Config::getValue(Config::SMTP_PASS);
+            $server = Config::getValue(Config::SMTP_SERVER);
+            $from = Config::getValue(Config::SMTP_FROM);
+            $port = Config::getValue(Config::SMTP_PORT);
+            self::$_instance = new self($login, $pass, $server, $from, $port);
+        }
+        return self::$_instance;
     }
 
     /**

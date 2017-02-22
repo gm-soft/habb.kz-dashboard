@@ -2,7 +2,7 @@
 require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
 
 
-$access_data =  ApplicationHelper::readAccessData();
+$access_data =  ServerHelper::readAccessData();
 
 $result = false;
 $action = $_REQUEST["action"];
@@ -26,7 +26,7 @@ switch ($action) {
         $_REQUEST["secondary_games"] = join(", ", $_REQUEST["secondary_games"]);
 
         //-------------------------------
-        $client = Client::fromRequest($_REQUEST);
+        $client = Gamer::fromRequest($_REQUEST);
 
         $added_result = $client->insertToDatabase($_DATABASE);
         //$added_result = $mysql->addClient($client);
@@ -78,7 +78,7 @@ switch ($action) {
             break;
         }
 
-        $account = Client::getFromDatabase($_DATABASE, $value, $searchField);
+        $account = Gamer::getInstanceFromDatabase($value, $_DATABASE, $searchField);
         if (!is_null($account)){
             $response["result"] = true;
             $response["account"] = [
@@ -153,7 +153,7 @@ echo json_encode($response);
 
 
 function sendEmail($subject, $message){
-    $mailSMTP = SmtpEmail::getNewInstance();
+    $mailSMTP = SmtpEmail::getInstance();
 
     $result =  $mailSMTP->send($_REQUEST["email"], $subject, $message); // отправляем письмо
     return $result;

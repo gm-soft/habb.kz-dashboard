@@ -5,7 +5,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
 $id = isset($_REQUEST["id"]) && $_REQUEST["id"] != ""  ? $_REQUEST["id"] : null;
 if (is_null($id)) ApplicationHelper::redirect("../teams/");
 
-$instance = Team::getInstanceFromDatabase($id, "id", $_DATABASE);
+$instance = Team::getInstanceFromDatabase($id, $_DATABASE);
 
 
 if (is_null($instance)) {
@@ -13,12 +13,12 @@ if (is_null($instance)) {
     ApplicationHelper::redirect("../teams/");
 }
 
-$captain = Client::getFromDatabase($_DATABASE, $instance->captain_id);
+$captain = Gamer::getInstanceFromDatabase($instance->captain_id, $_DATABASE);
 
-$player2 = Client::getFromDatabase($_DATABASE, $instance->player_2_id);
-$player3 = Client::getFromDatabase($_DATABASE, $instance->player_3_id);
-$player4 = Client::getFromDatabase($_DATABASE, $instance->player_4_id);
-$player5 = Client::getFromDatabase($_DATABASE, $instance->player_5_id);
+$player2 = Gamer::getInstanceFromDatabase($instance->player_2_id, $_DATABASE);
+$player3 = Gamer::getInstanceFromDatabase($instance->player_3_id, $_DATABASE);
+$player4 = Gamer::getInstanceFromDatabase($instance->player_4_id, $_DATABASE);
+$player5 = Gamer::getInstanceFromDatabase($instance->player_5_id, $_DATABASE);
 
 $pageTitle = "HABB.KZ - ".$instance->name;
 Html::RenderHtmlHeader($pageTitle);
@@ -43,9 +43,9 @@ Html::RenderHtmlHeader($pageTitle);
                                 <dt class="col-sm-3">Последняя операция:</dt>
                                 <dd class="col-sm-9"> <?= $instance->last_operation ?></dd>
                                 <dt class="col-sm-3">Обновлена:</dt>
-                                <dd class="col-sm-9"><?= date("d.m.Y H:i:s", $instance->updated_at->getTimestamp()) ?></dd>
+                                <dd class="col-sm-9"><?= date("d.m.Y H:i:s", $instance->updatedAt->getTimestamp()) ?></dd>
                                 <dt class="col-sm-3">Создана:</dt>
-                                <dd class="col-sm-9"><?= date("d.m.Y H:i:s", $instance->created_at->getTimestamp()) ?></dd>
+                                <dd class="col-sm-9"><?= date("d.m.Y H:i:s", $instance->createdAt->getTimestamp()) ?></dd>
                                 <dt class="col-sm-3">Комментарий:</dt>
                                 <dd class="col-sm-9"><?= $instance->comment ?></dd>
                             </dl>

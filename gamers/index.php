@@ -2,11 +2,11 @@
 
 require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
 
-$pageTitle = "Список клиентов";
+$pageTitle = "Список игроков";
 
 //$instances = Client::getClientsFromDatabase($_DATABASE);
 
-$instances = Client::filterClientsFromDatabase($_DATABASE, null, null, true);
+$instances = Gamer::filterInstancesFromDatabase($_DATABASE, [], null, true);
 
 
 
@@ -50,14 +50,14 @@ Html::RenderHtmlHeader($pageTitle);
                     ?>
                     <tr>
                         <td><?= $value->id ?></td>
-                        <td><a href="../clients/view.php?id=<?= $value->id?>" title="Открыть"><?= $value->getFullName()?></a></td>
+                        <td><a href="../gamers/view.php?id=<?= $value->id?>" title="Открыть"><?= $value->getFullName()?></a></td>
                         <td><?= $value->phone?></td>
                         <td><?= $value->email?></td>
 
                         <td><?= date("d.m.Y", $value->birthday->getTimestamp())?> (<?= $value->getAge() ?> лет)</td>
                         <td><?= $value->vk?></td>
                         <td><?= $value->getSecondaryGamesString()?></td>
-                        <td><?= date("d.m.Y H:i:s", $value->created_at->getTimestamp())?></td>
+                        <td><?= date("d.m.Y H:i:s", $value->createdAt->getTimestamp())?></td>
                     </tr>
 
                     <?php

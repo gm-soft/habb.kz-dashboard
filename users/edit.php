@@ -23,7 +23,7 @@ $pageTitle = "Редактирование сущности NEXT.Accounts";
 switch ($actionPerformed){
     case "initiated":
 
-        $instance = User::getInstanceFromDatabase($id, "user_id", $_DATABASE);
+        $instance = User::getInstanceFromDatabase($id, $_DATABASE, "user_id");
 
         if (is_null($instance)) {
             CookieHelper::AddSessionMessage("Пользователь с ID".$id." не найден в базе данных", CookieHelper::DANGER);
@@ -57,7 +57,7 @@ switch ($actionPerformed){
         $login = FormHelper::ClearInputData($_REQUEST["userLogin"]);
 
 
-        $instance = User::getInstanceFromDatabase($id, "user_id", $_DATABASE);
+        $instance = User::getInstanceFromDatabase($id, $_DATABASE, "user_id");
 
         $instance->permission = intval($_REQUEST["permission"]);
         $instance->login = $login;

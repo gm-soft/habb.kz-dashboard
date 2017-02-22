@@ -1,12 +1,9 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Next
- * Date: 10.02.2017
- * Time: 10:33
+ * Хедпер для рендера отдельных страниц html
  */
-class Html
+abstract class Html
 {
     const HTML_BACK = "back";
     const HTML_FRONT = "front";
@@ -14,22 +11,25 @@ class Html
     /**
      * Функция рендерит страницу, расположение которой передается по аргументу
      * @param $filename
+     * @param bool $withDeath
      * @param int $responseCode
      */
-    public static function Render($filename, $responseCode = 200){
+    public static function Render($filename, $withDeath = false, $responseCode = 200){
         header("HTTP $responseCode");
         $content = ApplicationHelper::readFromFile($filename);
-        if (is_null($content)){
-            self::RenderError();
-        }
-        else {
+        if (!is_null($content)){
             echo $content;
+        } else {
+            ApplicationHelper::processError("Файл $filename отсутствует");
         }
 
-        die();
+        if ($withDeath == true) die();
     }
 
-
+    /**
+     * Рендерит ошибку по запросу.
+     * @param int $code
+     */
     public static function RenderError($code = 500){
         switch ($code){
             case 404:
@@ -39,7 +39,7 @@ class Html
                 $filename = $_SERVER["DOCUMENT_ROOT"]."/shared/error.html";
                 break;
         }
-        self::Render($filename, $code);
+        self::Render($filename, true, $code);
     }
 
     /**
@@ -61,7 +61,7 @@ class Html
         if ($withNavbar == true) {
             self::RenderHtmlNavbar();
         }
-        echo CookieHelper::RenderSessionMessages();
+        CookieHelper::RenderSessionMessages();
 
     }
 
@@ -126,10 +126,20 @@ class Html
         echo json_encode($object);
     }
 
+    /**
+     * Выводит некий объект через функцию var_export(). Может вернуть контент либо зарендерить его
+     * @param $object mixed
+     * @param bool $toReturn
+     * @return mixed
+     */
     public static function RenderDebug($object, $toReturn = false){
         $result = var_export($object, true);
-        if ($toReturn == true) return $result;
-        echo $result;
+        if ($toReturn == true) {
+            return $result;
+        } else {
+            echo $result;
+        }
+
     }
 
 }

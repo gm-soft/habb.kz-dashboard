@@ -46,19 +46,19 @@ Html::RenderHtmlHeader($pageTitle);
 
                     <tr>
                         <td><?= $team["id"] ?></td>
-                        <td><a href='/teams/view.php?id=<?= $team["id"] ?>'><?= $team["name"] ?></a></td>
+                        <td><b><a href='/teams/view.php?id=<?= $team["id"] ?>'><?= $team["name"] ?></a></b></td>
                         <td><?= $team["value"] ?> (<?= HtmlHelper::WrapScoreValueChange($team["change"]) ?>)</td>
 
                         <td class="">
                             <?php
-                            echo "<b><a href='/clients/view.php?id=".$players[0]["id"]."'>".$players[0]["name"]."</a></b><br>Рейтинг ".$players[0]["value"]."";
+                            echo "<i><a href='/gamers/view.php?id=".$players[0]["id"]."'>".$players[0]["name"]."</a></i><br>Рейтинг ".$players[0]["value"]."";
                             ?>
                         </td>
 
                         <?php
                         for ($n = 1; $n < count($players); $n++){
                             if (!is_null($players[$n]["id"])) {
-                                echo "<td><a href='/clients/view.php?id=".$players[$n]["id"]."'>".$players[$n]["name"]."</a><br>Рейтинг ".$players[$n]["value"]."</td>";
+                                echo "<td><a href='/gamers/view.php?id=".$players[$n]["id"]."'>".$players[$n]["name"]."</a><br>Рейтинг ".$players[$n]["value"]."</td>";
                             }
                             else {
                                 echo "<td>Отсутствует</td>";

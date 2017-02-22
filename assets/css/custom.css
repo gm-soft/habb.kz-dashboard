@@ -39,10 +39,14 @@ pre {
 }
 
 body {
-	background-color: #f1f1f1 !important;
+
     /* Margin bottom by footer height */
     margin-bottom: 60px;
   /*font-family: 'Open Sans light' !important;*/
+}
+
+.reg-body {
+    background-color: #f1f1f1 !important;
 }
 
 .box-shadow {

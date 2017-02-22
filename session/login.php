@@ -13,7 +13,7 @@ if ($performed == true){
     // if (strlen($login) >30 || strlen($login) <3) $err[] = "Логин должен быть не меньше 3-х символов и не больше 30";
 
     //$user = $mysql->getUser($login);
-    $user = User::getInstanceFromDatabase($login, "user_login", $_DATABASE);
+    $user = User::getInstanceFromDatabase($login, $_DATABASE, "user_login");
 
     if (is_null($user)) {
         $err[] = "Пользователь с таким логином отсутствует в базе";

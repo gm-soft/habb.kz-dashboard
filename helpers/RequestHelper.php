@@ -6,7 +6,7 @@
  * Date: 17.02.2017
  * Time: 19:52
  */
-class RequestHelper
+abstract class RequestHelper
 {
 
     const METHOD_GET = "GET";

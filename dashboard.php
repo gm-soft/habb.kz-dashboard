@@ -3,7 +3,7 @@
     require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
     //ApplicationHelper::redirect("../clients/");
 
-    $clients = Client::getClientsFromDatabase($_DATABASE);
+    $clients = Gamer::getInstancesFromDatabase($_DATABASE);
 
     $teams = Team::getInstancesFromDatabase($_DATABASE);
 
@@ -15,7 +15,7 @@
     $now = new DateTime();
     foreach ($clients as $client){
 
-        $difference = $now->diff($client->created_at);
+        $difference = $now->diff($client->createdAt);
         if ($difference->days <= 1) {
             $clientsForDay[] = $client;
         }
@@ -28,7 +28,7 @@
 
 foreach ($teams as $team){
 
-    $difference = $now->diff($team->created_at);
+    $difference = $now->diff($team->createdAt);
     if ($difference->days <= 7) {
         $teamsForWeek[] = $team;
     }
@@ -57,7 +57,7 @@ $statistic = Statistic::getInstancesFromDatabase($_DATABASE);
                             Количество аккаунтов: <b><?= count($clients) ?></b><br>
                             Аккаунты за последний день: <b><?= count($clientsForDay) ?></b><br>
                             Аккаунты за неделю: <b><?= count($clientsForWeek) ?></b><br>
-                            <a href="/clients/" class="btn btn-outline-primary float-sm-right">Открыть</a>
+                            <a href="/gamers/" class="btn btn-outline-primary float-sm-right">Открыть</a>
                         </p>
                     </div>
                 </div>

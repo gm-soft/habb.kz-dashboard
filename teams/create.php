@@ -7,7 +7,7 @@ $actionPerformed = isset($_REQUEST["actionPerformed"]) ? $_REQUEST["actionPerfor
 switch ($actionPerformed){
     case "initiated":
 
-        $clients = Client::getClientsFromDatabase($_DATABASE);
+        $clients = Gamer::getInstancesFromDatabase($_DATABASE);
 
         $pageTitle = "Создание новой команды";
         Html::RenderHtmlHeader($pageTitle);

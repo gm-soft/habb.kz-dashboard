@@ -6,11 +6,8 @@
  * Date: 19.11.2016
  * Time: 10:11
  */
-class User
+class User extends BaseInstance
 {
-
-    /** @var int */
-    public $id;
 
     /** @var string Логин пользователя */
     public $login;
@@ -24,26 +21,23 @@ class User
     /** @var int Уровень прав доступа пользователя */
     public $permission;
 
-    /** @var DateTime Дата регистрации */
-    public $created_at;
-
     function __construct($id = -1)
     {
         $this->id = $id;
         $this->login = null;
         $this->password = null;
         $this->permission = 1;
-        $this->created_at = time();
+        $this->createdAt = new DateTime();
         $this->hash = null;
     }
 
-    protected function fill( array $row ) {
+    public function fill( array $row ) {
         $this->id           = $row["user_id"];
         $this->login        = $row["user_login"];
         $this->password     = $row["user_password"];
         $this->permission   = $row["user_permission"];
         $this->hash         = $row["user_hash"];
-        $this->created_at   = DateTime::createFromFormat("Y-m-d H:i:s", $row["created_at"]);
+        $this->createdAt   = DateTime::createFromFormat("Y-m-d H:i:s", $row["created_at"]);
     }
 
     public static function fromDatabase(array $databaseRow)
@@ -132,11 +126,11 @@ class User
      * иначе null
      *
      * @param mixed $searchable - Искомое значение
-     * @param string $field - названеи поля, по которому осуществлять поиск
      * @param $mysql MysqlHelper
+     * @param string $field - названеи поля, по которому осуществлять поиск
      * @return null|User
      */
-    public static function getInstanceFromDatabase($searchable, $field = "user_login", $mysql) {
+    public static function getInstanceFromDatabase($searchable, $mysql, $field = "user_login") {
 
 
         $query = "select * from ".TABLE_USERS." where ".$field."='".$searchable."'";
@@ -155,17 +149,11 @@ class User
      * Возвращает список пользователей системы
      *
      * @param $mysql MysqlHelper
-     * @param bool $withPagination
-     * @param int $startFrom
-     * @param int $limit
      * @return null|User[]
      */
-    public static function getInstancesFromDatabase($mysql, $withPagination = false, $startFrom = 0, $limit = 50){
+    public static function getInstancesFromDatabase($mysql){
 
         $query = "select * from ".TABLE_USERS;
-        if ($withPagination == true){
-            $query .= " LIMIT $startFrom, $limit";
-        }
 
         $query_result = $mysql->selectData($query);
         if ($query_result["result"] == true) {
@@ -265,7 +253,9 @@ class User
     }
 
 
-
-
-
+    static function filterInstancesFromDatabase($mysql, array $filterConditions, $condition, $withSort, $sortBy, $sortType)
+    {
+        // TODO: Implement filterInstancesFromDatabase() method.
+        return self::getInstancesFromDatabase($mysql);
+    }
 }

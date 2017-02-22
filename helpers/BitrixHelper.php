@@ -6,11 +6,11 @@
  * Date: 18.11.2016
  * Time: 8:46
  */
-class BitrixHelper
+abstract class BitrixHelper
 {
 
     public static function getAuth() {
-        $url = "http://newb24.next.kz/rest/control.php";
+        $url = "http://registration.habb.kz/rest/control.php";
         $params = array("action" => "getAccessToken");
         $result = RequestHelper::Get($url, $params);
         $result = isset($result["access_token"]) ? $result["access_token"] : null;
@@ -19,7 +19,7 @@ class BitrixHelper
 
 
     /**
-     * @param $client Client
+     * @param $client Gamer
      * @param null $auth
      * @return array|null
      */

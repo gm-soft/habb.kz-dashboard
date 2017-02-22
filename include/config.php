@@ -3,28 +3,33 @@
     session_start();
 
     require ($_SERVER["DOCUMENT_ROOT"]."/include/constants.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/RequestHelperClass.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/include/lib/ChallongeAPIClass.php");
 
-    require ($_SERVER["DOCUMENT_ROOT"]."/models/ClientClass.php");
+
+    require ($_SERVER["DOCUMENT_ROOT"]."/models/IDatabaseObject.php");
+    require ($_SERVER["DOCUMENT_ROOT"]."/models/BaseInstanceClass.php");
+
+    require($_SERVER["DOCUMENT_ROOT"] . "/models/Gamer.php");
     require ($_SERVER["DOCUMENT_ROOT"]."/models/UserClass.php");
     require ($_SERVER["DOCUMENT_ROOT"]."/models/TeamClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/models/SmtpEmailClass.php");
+
     require ($_SERVER["DOCUMENT_ROOT"]."/models/ScoreClass.php");
     require ($_SERVER["DOCUMENT_ROOT"]."/models/StatisticClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/models/ConfigClass.php");
+    require($_SERVER["DOCUMENT_ROOT"] . "/include/ConfigClass.php");
 
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/FormHelperClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/include/lib/ChallongeAPIClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/Challonge.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/HtmlClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/CollectionHelperClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/HtmlHelperClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/VkHelperClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/ServerHelperClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/ApplicationHelperClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/CookieHelperClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/MysqlHelperClass.php");
-    require ($_SERVER["DOCUMENT_ROOT"]."/helpers/BitrixHelperClass.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/RequestHelper.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/FormHelper.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/SmtpEmailClass.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/Challonge.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/Html.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/CollectionHelper.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/HtmlHelper.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/VkHelper.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/ServerHelper.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/ApplicationHelper.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/CookieHelper.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/MysqlHelper.php");
+    require ($_SERVER["DOCUMENT_ROOT"] . "/helpers/BitrixHelper.php");
 
 
     // Html::RenderError();

@@ -6,19 +6,14 @@
  * Date: 20.01.2017
  * Time: 21:00
  */
-class Team
+class Team extends BaseInstance
 {
-    /** @var int ID команды */
-    public $id;
 
     /** @var string Название команды */
     public $name;
 
     /** @var string Город */
     public $city;
-
-    /** @var string Комментарий пользователя */
-    public $comment;
 
     /** @var string Запись о последнем изменении очков .+/-25, к примеру */
     public $score_change;
@@ -43,12 +38,6 @@ class Team
 
     /** @var Score[] */
     public $scoreArray;
-
-    /** @var DateTime Время обновления */
-    public $updated_at;
-
-    /** @var DateTime Время создания */
-    public $created_at;
 
     function __construct($id = -1)
     {
@@ -123,7 +112,7 @@ class Team
         return $instance;
     }
 
-    private function fill(array $row) {
+    public function fill(array $row) {
         $this->id = $row["id"];
         $this->name = $row["team_name"];
         $this->city = $row["city"];
@@ -136,8 +125,8 @@ class Team
         $this->player_4_id = $row["player_4_id"];
         $this->player_5_id = $row["player_5_id"];
 
-        $this->created_at = DateTime::createFromFormat("Y-m-d H:i:s", $row["created_at"]);
-        $this->updated_at = DateTime::createFromFormat("Y-m-d H:i:s", $row["updated_at"]);
+        $this->createdAt = DateTime::createFromFormat("Y-m-d H:i:s", $row["created_at"]);
+        $this->updatedAt = DateTime::createFromFormat("Y-m-d H:i:s", $row["updated_at"]);
     }
 
     /**
@@ -217,7 +206,7 @@ class Team
      * @param $mysql MysqlHelper
      * @return null|Team
      */
-    public static function getInstanceFromDatabase($searchable, $field = "id", $mysql) {
+    public static function getInstanceFromDatabase($searchable, $mysql, $field = "id") {
 
         $query = "select * from ".TABLE_TEAMS." where $field='$searchable'";
         $data = $mysql->executeQuery($query);
@@ -326,4 +315,9 @@ class Team
     }
 
 
+    static function filterInstancesFromDatabase($mysql, array $filterConditions, $condition, $withSort, $sortBy, $sortType)
+    {
+        // TODO: Implement filterInstancesFromDatabase() method.
+        return self::getInstancesFromDatabase($mysql);
+    }
 }

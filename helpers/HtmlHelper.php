@@ -6,7 +6,7 @@
  * Date: 08.02.2017
  * Time: 15:51
  */
-class HtmlHelper
+abstract class HtmlHelper
 {
     /**
      * @param string $tdContent
@@ -48,7 +48,7 @@ class HtmlHelper
 
         $tdContent = "";
         if ($withLink == true) {
-            $tdContent .= "<a href='../clients/view.php?id=".$instance["id"]."'>";
+            $tdContent .= "<a href='/gamers/view.php?id=".$instance["id"]."'>";
         }
         $tdContent .= "ID".$instance["id"]." <b>".$instance["name"]."</b>";
         if ($withLink == true) {
@@ -181,7 +181,7 @@ class HtmlHelper
     /**
      * Формирует Select-2 список игроков
      *
-     * @param $clients Client[]
+     * @param $clients Gamer[]
      * @param $fieldName string
      * @param $fieldId string|null
      * @param array|null $formData

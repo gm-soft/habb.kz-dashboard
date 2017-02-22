@@ -1,7 +1,7 @@
 
     <?php
     $scoreArray = $instance->scoreArray;
-    $actionPage = isset($teamActionPage) && $teamActionPage == true ? "../teams/edit.php" : "../clients/edit.php";
+    $actionPage = isset($teamActionPage) && $teamActionPage == true ? "/teams/edit.php" : "/clients/edit.php";
 
     for ($i = 0; $i < count($scoreArray); $i++){
         $item = $scoreArray[$i];

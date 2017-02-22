@@ -47,7 +47,7 @@
     }
 
     $page_header = !is_null($log_filename) ? "Файл ".$log_filename : "Открыть файл логов";
-    $link_to_file = str_replace("/var/www/newb24.next.kz", '', $log_filename);
+    $link_to_file = str_replace("/var/www/registration.habb.kz", '', $log_filename);
     Html::RenderHtmlHeader($pageTitle);
 
 ?>

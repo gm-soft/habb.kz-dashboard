@@ -6,10 +6,8 @@
  * Date: 01.02.2017
  * Time: 13:26
  */
-class Score
+class Score extends BaseInstance
 {
-    /** @var int */
-    public $id = -1;
 
     /** @var int ID клиента */
     public $clientId = -1;
@@ -28,12 +26,6 @@ class Score
 
     /** @var int Прирост очков за месяц */
     public $monthChange = 0;
-
-    /** @var  DateTime */
-    public $createdAt;
-
-    /** @var  DateTime */
-    public $updatedAt;
 
 
     const SCORE_CSGO = "cs:go";
@@ -54,12 +46,12 @@ class Score
         $this->updatedAt = $this->createdAt;
     }
 
-    protected function fill( array $row )
+    public function fill( array $row )
     {
         $this->id           = isset($row["id"]) ?         intval($row["id"]) : $this->id;
 
-        if (isset($row["client_id"])){
-            $this->clientId = intval($row["client_id"]);
+        if (isset($row["gamer_id"])){
+            $this->clientId = intval($row["gamer_id"]);
         } elseif (isset($row["team_id"])){
             $this->clientId = intval($row["team_id"]);
         }
@@ -121,7 +113,7 @@ class Score
     public function getAsArray(){
         $result = [
             "id" => $this->id,
-            "client_id" => $this->clientId,
+            "gamer_id" => $this->clientId,
             "game_name" => $this->gameName,
             "total_value" => $this->value,
             "month_value" => $this->monthValue,
@@ -139,7 +131,7 @@ class Score
      */
     public static function getSetFromDatabase($clientId, $mysql, $clientTable = true){
 
-        $fieldName = $clientTable == true ? "client_id" : "team_id";
+        $fieldName = $clientTable == true ? "gamer_id" : "team_id";
         $tableName = $clientTable == true ? TABLE_SCORES : TABLE_TEAM_SCORES;
 
         $query = "SELECT * FROM $tableName WHERE $fieldName=$clientId";
@@ -173,7 +165,7 @@ class Score
      */
     public function insertToDatabase($mysql, $clientTable = true){
 
-        $fieldName = $clientTable == true ? "client_id" : "team_id";
+        $fieldName = $clientTable == true ? "gamer_id" : "team_id";
         $tableName = $clientTable == true ? TABLE_SCORES : TABLE_TEAM_SCORES;
 
         $query = "INSERT INTO $tableName ($fieldName, game_name) VALUES (".$this->clientId.", '".$this->gameName."')";
@@ -192,7 +184,7 @@ class Score
      */
     public function updateInDatabase($mysql, $clientTable = true){
 
-        $fieldName = $clientTable == true ? "client_id" : "team_id";
+        $fieldName = $clientTable == true ? "gamer_id" : "team_id";
         $tableName = $clientTable == true ? TABLE_SCORES : TABLE_TEAM_SCORES;
 
         $query = "UPDATE $tableName SET ".
@@ -215,7 +207,7 @@ class Score
      * @return mixed
      */
     public function deleteFromDatabase($mysql, $clientTable = true){
-        $fieldName = $clientTable == true ? "client_id" : "team_id";
+        $fieldName = $clientTable == true ? "gamer_id" : "team_id";
         $tableName = $clientTable == true ? TABLE_SCORES : TABLE_TEAM_SCORES;
 
         $query = "DELETE FROM $tableName WHERE id=".$this->id." ";
@@ -231,7 +223,7 @@ class Score
      */
     public static function deleteSetDatabase($clientId, $mysql, $clientTable = true){
 
-        $fieldName = $clientTable == true ? "client_id" : "team_id";
+        $fieldName = $clientTable == true ? "gamer_id" : "team_id";
         $tableName = $clientTable == true ? TABLE_SCORES : TABLE_TEAM_SCORES;
 
         $query = "delete from $tableName where $fieldName=$clientId ";
@@ -244,4 +236,19 @@ class Score
         return $array;
     }
 
+    public static function getInstanceFromDatabase($searchable, $mysql, $searchField)
+    {
+        // TODO: Implement getInstanceFromDatabase() method.
+    }
+
+    public static function filterInstancesFromDatabase($mysql, array $filterConditions, $condition, $withSort, $sortBy, $sortType)
+    {
+        // TODO: Implement filterInstancesFromDatabase() method.
+        return self::getInstancesFromDatabase($mysql);
+    }
+
+    public static function getInstancesFromDatabase($mysql)
+    {
+        // TODO: Implement getInstancesFromDatabase() method.
+    }
 }

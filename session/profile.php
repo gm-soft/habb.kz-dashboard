@@ -2,7 +2,7 @@
 require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
 //---------------------------------------------
 
-$user = User::getInstanceFromDatabase($_COOKIE["hash"], "user_hash", $_DATABASE);
+$user = User::getInstanceFromDatabase($_COOKIE["hash"], $_DATABASE, "user_hash");
 
 if (isset($_POST["actionPerformed"])) {
     // Если прислан запрос на изменение пароля
@@ -48,7 +48,7 @@ if (isset($_POST["actionPerformed"])) {
         <dl class="row">
             <dt class="col-sm-3">Логин</dt><dd class="col-sm-9"><?= $user->login?></dd>
             <dt class="col-sm-3">Группа</dt><dd class="col-sm-9"><?= $user->getPermissionTitle()?></dd>
-            <dt class="col-sm-3">Дата регистрации</dt><dd class="col-sm-9"><?= date("Y-m-d H:i:s", $user->created_at->getTimestamp())?></dd>
+            <dt class="col-sm-3">Дата регистрации</dt><dd class="col-sm-9"><?= date("Y-m-d H:i:s", $user->createdAt->getTimestamp())?></dd>
         </dl>
 
         <hr>

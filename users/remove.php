@@ -18,7 +18,7 @@ if ($viewPermission == false){
     ApplicationHelper::redirect("../users/");
 }
 
-$instance = User::getInstanceFromDatabase($id, "user_id", $_DATABASE);
+$instance = User::getInstanceFromDatabase($id, $_DATABASE, "user_id");
 $pageTitle = "Удаление сущности NEXT.Accounts";
 
 if (!isset($_POST["confirmed"])){

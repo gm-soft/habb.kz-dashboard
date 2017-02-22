@@ -3,21 +3,21 @@
 require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
 
 $id = isset($_REQUEST["id"]) && $_REQUEST["id"] != ""  ? $_REQUEST["id"] : null;
-if (is_null($id)) ApplicationHelper::redirect("../clients/");
+if (is_null($id)) ApplicationHelper::redirect("/gamers/");
 
 $currentUser = CookieHelper::GetCurrentUser($_DATABASE);
 if (!$currentUser->checkPermission(4)) {
 
     CookieHelper::AddSessionMessage("У вас недостаточно прав для совершения этого действия", CookieHelper::DANGER);
     $id = isset($_REQUEST["clientId"]) ? $_REQUEST["clientId"] : $_REQUEST["id"];
-    ApplicationHelper::redirect("/clients/view.php?id=$id");
+    ApplicationHelper::redirect("/gamers/view.php?id=$id");
 }
 
-$instance = Client::getFromDatabase($_DATABASE, $id);
+$instance = Gamer::getInstanceFromDatabase($id, $_DATABASE);
 
 if (is_null($instance)) {
-    CookieHelper::AddSessionMessage("Клиент с ID".$_REQUEST["id"]." не найден в базе данных", CookieHelper::DANGER);
-    ApplicationHelper::redirect("/clients/");
+    CookieHelper::AddSessionMessage("Сущность с ID".$_REQUEST["id"]." не найдена в базе данных", CookieHelper::DANGER);
+    ApplicationHelper::redirect("/gamers/");
 }
 
 $pageTitle = "Удаление аккаунта";
@@ -37,7 +37,7 @@ if (!isset($_POST["confirmed"])){
             <dt>Номер телефона</dt> <dd><?= $instance->phone ?></dd>
             <dt>Email</dt> <dd><?= $instance->email ?></dd>
             <dt>ID Лида в Б24</dt> <dd><?= $instance->lead_id?></dd>
-            <dt>Дата создания</dt> <dd><?= date("d.m.Y H:i:s", $instance->created_at->getTimestamp())?></dd>
+            <dt>Дата создания</dt> <dd><?= date("d.m.Y H:i:s", $instance->createdAt->getTimestamp())?></dd>
         </dl>
         </p>
         <form method="post" action="">
@@ -70,5 +70,5 @@ if (!isset($_POST["confirmed"])){
         $type = CookieHelper::DANGER;
     }
     CookieHelper::AddSessionMessage($message, $type);
-    ApplicationHelper::redirect("/clients/");
+    ApplicationHelper::redirect("/gamers/");
 }

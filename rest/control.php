@@ -2,7 +2,7 @@
 	require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
 
 
-	$access_data =  ApplicationHelper::readAccessData();
+	$access_data =  ServerHelper::readAccessData();
 
 	$result = false;
 	$action = $_REQUEST["action"];
@@ -45,7 +45,7 @@
 
         case "test":
 
-            $mailSMTP = SmtpEmail::getNewInstance();
+            $mailSMTP = SmtpEmail::getInstance();
             $json_array =  $mailSMTP->send("maximgorbatyuk191093@gmail.com", "Hello", "Hey! F**k you");
 
             /*$api_id = 5860760; // Insert here id of your application

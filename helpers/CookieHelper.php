@@ -1,12 +1,9 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Next
- * Date: 05.01.2017
- * Time: 19:12
+ * Хедпер для работы с кукисами и сессией как объектом
  */
-class CookieHelper
+abstract class CookieHelper
 {
 
     const SUCCESS = "success";
@@ -29,6 +26,10 @@ class CookieHelper
         return true;
     }
 
+    /**
+     * Возвращает логин, записанный в кукисах
+     * @return string
+     */
     public static function GetSavedUsername(){
         $username = isset($_COOKIE["login"]) ? $_COOKIE["login"] : "Не известен";
         return $username;
@@ -61,25 +62,31 @@ class CookieHelper
         $hash = isset($_COOKIE["hash"]) ? $_COOKIE["hash"] : null;
 
         if (is_null($hash)) return null;
-        $user = User::getInstanceFromDatabase($hash, "user_hash", $mysql);
+        $user = User::getInstanceFromDatabase($hash, $mysql, "user_hash");
         return $user;
     }
 
+    /**
+     * Возвращает результат проверки на присутствие уникальтного хэша авторизации в кукисах
+     * @return bool
+     */
     public static function IsAuthorized(){
         $result = isset($_COOKIE) && isset($_COOKIE["hash"]);
         return $result;
     }
 
-    public static function CheckAuthorizationInfo(){
-        if (!CookieHelper::IsAuthorized() && $_SERVER['REQUEST_URI'] != "/session/login.php"){
-            ApplicationHelper::redirect("../session/login.php");
-        }
-    }
-
+    /**
+     * Добавляет сообщение для юзера, которое будет выведено при перезагрузке страницы. У сообщения есть тип, который соответствует классу Bootstrap 4
+     * @param $message
+     * @param string $type
+     */
     public static function AddSessionMessage($message, $type = self::INFO) {
         $_SESSION[$type][] = $message;
     }
 
+    /**
+     * Выводит все накопившиеся сообщения в сессии
+     */
     public static function RenderSessionMessages(){
 
         if (!self::HasSessionMessages()) return;
@@ -92,7 +99,11 @@ class CookieHelper
         }
     }
 
-
+    /**
+     * Рендерит сообщение определенного типа с определенным текстом
+     * @param array $messages
+     * @param string $type
+     */
     private static function RenderSessionAlert(array $messages, $type = self::SUCCESS){
         ?>
         <div class='alert alert-<?=$type?> alert-dismissible fade in' role='alert'>
@@ -118,11 +129,18 @@ class CookieHelper
         <?php
     }
 
-
+    /**
+     * Проверяет наличие в сессии сохраненных сообщения для вывода
+     * @return bool
+     */
     public static function HasSessionMessages(){
         return isset($_SESSION[self::SUCCESS]) || isset($_SESSION[self::DANGER]) || isset($_SESSION[self::WARNING]) || isset($_SESSION[self::INFO]);
     }
 
+    /**
+     * Очищает сессионные сообщения
+     * @param string $type
+     */
     public static function ClearSessionMessage($type = self::INFO){
         unset($_SESSION[$type]);
     }

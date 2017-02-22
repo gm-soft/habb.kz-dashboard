@@ -6,7 +6,7 @@
  * Date: 19.01.2017
  * Time: 19:14
  */
-class ServerHelper
+abstract class ServerHelper
 {
     /**
      * Возвращает набор параметров для обновения токена авторизации
@@ -48,5 +48,23 @@ class ServerHelper
             "code" => $code,
         );
         return $params;
+    }
+
+    /**
+     * Возвращает массив авторизационных данных, содержащийся в файле
+     *
+     * @param bool $token_only
+     * @return array|null
+     */
+    public static function readAccessData($token_only = false) {
+        $access_source = ApplicationHelper::readFromFile(AUTH_FILENAME);
+        if ($access_source == "null") return null;
+        $access_data = ApplicationHelper::toJson($access_source);
+
+        if ($token_only == true) {
+            $access_data = isset($access_data["access_token"]) ? $access_data["access_token"] : $access_data;
+        }
+
+        return $access_data;
     }
 }
