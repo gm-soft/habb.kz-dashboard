@@ -1,7 +1,7 @@
 <?php
 
 require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
-
+// TODO нужно отредактировать. Пока базовая редакция
 $actionPerformed = isset($_REQUEST["actionPerformed"]) ? $_REQUEST["actionPerformed"] : "initiated";
 
 switch ($actionPerformed){
@@ -9,9 +9,9 @@ switch ($actionPerformed){
 
         $gamers = Gamer::getInstancesFromDatabase($_DATABASE);
 
-        $pageTitle = "Создание новой команды";
+        $pageTitle = "Создание нового турнира";
         Html::RenderHtmlHeader($pageTitle);
-        $formAction = "../teams/create.php";
+        $formAction = "/tournaments/create.php";
 
         ?>
         <div class="container">
@@ -52,11 +52,11 @@ switch ($actionPerformed){
             $message = "Команда сохранена";
             $type = CookieHelper::SUCCESS;
 
-            $url = "../teams/view.php?id=".$updateResult["data"];
+            $url = "../tournaments/view.php?id=".$updateResult["data"];
         } else {
             $message = $updateResult["data"];
             $type = CookieHelper::DANGER;
-            $url = "../teams/create.php";
+            $url = "../tournaments/create.php";
         }
         CookieHelper::AddSessionMessage($message, $type);
         ApplicationHelper::redirect($url);

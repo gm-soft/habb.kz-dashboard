@@ -82,7 +82,7 @@ abstract class FormSnippets
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="city">Город</label>
                                 <div class="col-sm-9">
-                                    <?= HtmlHelper::constructCitiesSelect($formData["city"]) ?>
+                                    <?php SharedSnippets::RenderCitiesSelect($formData["city"]) ?>
                                 </div>
                             </div>
 
@@ -233,7 +233,7 @@ abstract class FormSnippets
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="id">TEAM ID</label>
                                 <div class="col-sm-9">
-                                    <input type="number" id="id"  class="form-control" required maxlength="50" value="<?= $formData["id"] ?>" >
+                                    <input type="number" id="id"  class="form-control" required maxlength="50" value="<?= $formData["id"] ?>" disabled>
                                     <input type="hidden" name="id" value="<?= $formData["id"] ?>" >
                                 </div>
                             </div>
@@ -252,7 +252,7 @@ abstract class FormSnippets
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="city">Город</label>
                                 <div class="col-sm-9">
-                                    <?= HtmlHelper::constructCitiesSelect($formData["city"]) ?>
+                                    <?php SharedSnippets::RenderCitiesSelect($formData["city"]) ?>
                                 </div>
                             </div>
 
@@ -280,7 +280,11 @@ abstract class FormSnippets
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="player_2_id">Капитан</label>
                                 <div class="col-sm-9">
-                                    <?= HtmlHelper::constructClientSelectField($gamers, "captain_id", "captain_id", $formData, true) ?>
+
+                                    <?php
+                                        $fieldName = "captain_id";
+                                        SharedSnippets::RenderGamerSelectField($gamers, $fieldName, $fieldName, $formData[$fieldName], true) ;
+                                    ?>
                                 </div>
                             </div>
 
@@ -288,8 +292,10 @@ abstract class FormSnippets
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="player_2_id">Игрок 2</label>
                                 <div class="col-sm-9">
-                                    <?= HtmlHelper::constructClientSelectField($gamers, "player_2_id", "player_2_id", $formData) ?>
-
+                                    <?php
+                                    $fieldName = "player_2_id";
+                                    SharedSnippets::RenderGamerSelectField($gamers, $fieldName, $fieldName, $formData[$fieldName]) ;
+                                    ?>
                                 </div>
                             </div>
 
@@ -297,19 +303,28 @@ abstract class FormSnippets
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="player_3_id">Игрок 3</label>
                                 <div class="col-sm-9">
-                                    <?= HtmlHelper::constructClientSelectField($gamers, "player_3_id", "player_3_id", $formData) ?>
+                                    <?php
+                                    $fieldName = "player_3_id";
+                                    SharedSnippets::RenderGamerSelectField($gamers, $fieldName, $fieldName, $formData[$fieldName]) ;
+                                    ?>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="player_4_id">Игрок 4</label>
                                 <div class="col-sm-9">
-                                    <?= HtmlHelper::constructClientSelectField($gamers, "player_4_id", "player_4_id", $formData) ?>
+                                    <?php
+                                    $fieldName = "player_4_id";
+                                    SharedSnippets::RenderGamerSelectField($gamers, $fieldName, $fieldName, $formData[$fieldName]) ;
+                                    ?>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="player_5_id">Игрок 5</label>
                                 <div class="col-sm-9">
-                                    <?= HtmlHelper::constructClientSelectField($gamers, "player_5_id", "player_5_id", $formData) ?>
+                                    <?php
+                                    $fieldName = "player_5_id";
+                                    SharedSnippets::RenderGamerSelectField($gamers, $fieldName, $fieldName, $formData[$fieldName]) ;
+                                    ?>
                                 </div>
                             </div>
 
@@ -332,9 +347,9 @@ abstract class FormSnippets
 
         <script type="text/javascript">
 
-            $(".select2-single").select2({
+            /*$(".select2-single").select2({
                 placeholder: "Выберите участника",
-            });
+            });*/
 
             $('#form').submit(function(){
                 $("#submit-btn").prop('disabled',true);

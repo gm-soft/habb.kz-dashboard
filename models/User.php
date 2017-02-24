@@ -105,7 +105,7 @@ class User extends BaseInstance
      *
      * @return array
      */
-    public function getAsFormData(){
+    public function getAsFormArray(){
 
         $formData = [
             "user_id" => $this->id,

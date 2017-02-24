@@ -94,7 +94,7 @@ class Statistic extends BaseInstance
         $this->createdAt= isset($row["created_at"]) ? DateTime::createFromFormat("Y-m-d H:i:s", $row["created_at"]) : $this->createdAt;
     }
 
-    public static function fromDatabase($row)
+    public static function fromDatabase(array $row)
     {
         $instance = new self();
 
@@ -231,6 +231,11 @@ class Statistic extends BaseInstance
     {
         // TODO: Implement filterInstancesFromDatabase() method.
         return self::getInstancesFromDatabase($mysql);
+    }
+
+    public function getAsFormArray()
+    {
+        // TODO: Implement getAsFormArray() method.
     }
 }
 

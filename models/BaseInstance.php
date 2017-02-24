@@ -14,6 +14,9 @@ abstract class BaseInstance implements IDatabaseObject
     /** @var null|string Комментарий пользователя к сущности. Служит для хранения пользовательской информации о сущности*/
     public $comment = null;
 
+    /** @var string|null Строковое отображение последней операции над сущностью */
+    public $lastOperation = null;
+
     /** @var  DateTime Время создания*/
     public $createdAt;
 

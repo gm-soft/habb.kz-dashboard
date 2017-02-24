@@ -13,6 +13,8 @@ class MysqlHelper
     /** @var mysqli */
     private $context = null;
     const DB_HOST           = "localhost";
+    /** @var MysqlHelper */
+    private static $_instance = null;
 
 
     function __construct($username, $password, $db_name) {
@@ -30,6 +32,18 @@ class MysqlHelper
             //mysqli_set_charset($this->context, "utf8");
             return true;
         }
+    }
+
+    /**
+     * Синглтон
+     * @return MysqlHelper
+     */
+    public static function getInstance(){
+        if(is_null(self::$_instance))
+        {
+            self::$_instance = self::getNewInstance();
+        }
+        return self::$_instance;
     }
 
     /**

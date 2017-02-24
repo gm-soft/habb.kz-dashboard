@@ -8,7 +8,7 @@
  */
 interface IDatabaseObject
 {
-    public static function getInstanceFromDatabase($searchable, $mysql, $searchField);
+    public static function getInstanceFromDatabase($searchable, $mysql, $field);
     public static function filterInstancesFromDatabase($mysql, array $filterConditions, $condition, $withSort, $sortBy, $sortType);
     public static function getInstancesFromDatabase($mysql);
 
@@ -17,4 +17,6 @@ interface IDatabaseObject
     public function updateInDatabase($mysql);
 
     function fill(array $row);
+    public static function fromDatabase(array $row);
+    public function getAsFormArray();
 }

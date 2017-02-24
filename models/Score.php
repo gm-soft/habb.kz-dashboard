@@ -69,7 +69,7 @@ class Score extends BaseInstance
         $this->monthChange = $this->value - $this->monthValue;
     }
 
-    public static function fromDatabase($row)
+    public static function fromDatabase(array $row)
     {
         $instance = new self();
 
@@ -250,5 +250,10 @@ class Score extends BaseInstance
     public static function getInstancesFromDatabase($mysql)
     {
         // TODO: Implement getInstancesFromDatabase() method.
+    }
+
+    public function getAsFormArray()
+    {
+        // TODO: Implement getAsFormArray() method.
     }
 }

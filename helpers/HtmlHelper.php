@@ -179,37 +179,6 @@ abstract class HtmlHelper
     }
 
     /**
-     * Формирует Select-2 список игроков
-     *
-     * @param $clients Gamer[]
-     * @param $fieldName string
-     * @param $fieldId string|null
-     * @param array|null $formData
-     * @param bool $isRequired
-     * @return string
-     */
-    public static function constructClientSelectField($clients, $fieldName, $fieldId = null, array $formData = null, $isRequired = false){
-
-        $fieldId = !is_null($fieldId) ? $fieldId : $fieldName;
-        $requiredState = $isRequired == true ? "required" : "";
-
-
-        $content = "<select class='form-control select2-single' id='$fieldId' name='$fieldName' $requiredState>\n";
-        $content .= $isRequired == false ? "<option value='null'>Без игрока</option>\n" : "<option value=''>Выберите аккаунт</option>\n";
-
-        foreach ($clients as $client) {
-            $selected = !is_null($formData) && $client->id == $formData[$fieldName] ? "selected" : "";
-
-            $optionText = "[ID ".$client->id."] ".$client->getFullName() ." (".$client->phone.")";
-            $optionText = "<option value='".$client->id."' $selected>$optionText</option>\n";
-            $content .= $optionText;
-        }
-        $content .= "</select>";
-        return $content;
-
-    }
-
-    /**
      * @param string $fieldName
      * @param string|null $fieldId
      * @param array|null $userGames
@@ -243,22 +212,6 @@ abstract class HtmlHelper
         }
         $content .= "</select>";
 
-        return $content;
-    }
-
-    public static function constructCitiesSelect($selectedCity = null, $isRequired = true, $name = "city", $id = "city", $withAll = false) {
-        $cities = ApplicationHelper::getCities();
-        $requiredState = $isRequired == true ? "required" : "";
-        $content = "<select class='form-control' name='$name' id='$id' $requiredState>\n";
-        $content .= "<option value='' disabled>Город</option>\n";
-        $content .= $withAll == true ? "<option value='all' selected>Все города</option>\n" : "";
-
-        for ($i = 0; $i<count($cities); $i++) {
-
-            $selectedState = $selectedCity == $cities[$i] ? "selected" : "";
-            $content .= "<option value='$cities[$i]' $selectedState>$cities[$i]</option>";
-        }
-        $content .= "</select>";
         return $content;
     }
 }

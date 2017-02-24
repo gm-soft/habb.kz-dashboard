@@ -6,7 +6,7 @@
  * Date: 20.01.2017
  * Time: 21:00
  */
-class Team extends BaseInstance
+class Team extends BaseInstance implements ISelectableOption, ITournamentParticipant
 {
 
     /** @var string Название команды */
@@ -33,9 +33,6 @@ class Team extends BaseInstance
     /** @var int Игрок 5 */
     public $player_5_id;
 
-    /** @var string Последняя выполненная операция */
-    public $last_operation;
-
     /** @var Score[] */
     public $scoreArray;
 
@@ -54,7 +51,7 @@ class Team extends BaseInstance
         $this->scoreArray = Score::getDefaultSet($this->id);
     }
 
-    public static function fromDatabase($row){
+    public static function fromDatabase(array $row){
         $instance = new self();
         $instance->fill($row);
 
@@ -117,7 +114,7 @@ class Team extends BaseInstance
         $this->name = $row["team_name"];
         $this->city = $row["city"];
         $this->comment = $row["comment"];
-        $this->last_operation = $row["last_operation"];
+        $this->lastOperation = $row["last_operation"];
 
         $this->captain_id = $row["captain_id"];
         $this->player_2_id = $row["player_2_id"];
@@ -143,7 +140,7 @@ class Team extends BaseInstance
         return $result;
     }
 
-    public function getAsArray(){
+    public function getAsFormArray(){
 
 
         $result = [
@@ -181,7 +178,7 @@ class Team extends BaseInstance
             .$this->player_3_id.", "
             .$this->player_4_id.", "
             .$this->player_5_id.", "
-            ."'".$this->last_operation."' )";
+            ."'".$this->lastOperation."' )";
 
         $query_result = $mysql->executeQuery($query);
         if ($query_result["result"] != true) {
@@ -260,7 +257,7 @@ class Team extends BaseInstance
             "`player_3_id`=".$this->player_3_id.", ".
             "`player_4_id`=".$this->player_4_id.", ".
             "`player_5_id`=".$this->player_5_id.", ".
-            "`last_operation`='".$this->last_operation."', ".
+            "`last_operation`='".$this->lastOperation."', ".
             "updated_at=NOW() ".
             " WHERE id=".$this->id;
         $query_result = $mysql->executeQuery($query);
@@ -320,4 +317,47 @@ class Team extends BaseInstance
         // TODO: Implement filterInstancesFromDatabase() method.
         return self::getInstancesFromDatabase($mysql);
     }
+
+    public function getKey()
+    {
+        return $this->id;
+    }
+
+    public function getValue()
+    {
+        $result = "[ID ".$this->id."] ".$this->name;
+        return $result;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        $result = "[ID ".$this->id."] ".$this->name;
+        return $result;
+    }
+
+    public function getScore($gameName)
+    {
+        $result = null;
+        foreach ($this->scoreArray as $item) {
+            if ($item->gameName != $gameName) continue;
+            return $item;
+        }
+        return $result;
+    }
+
+    public function getLink()
+    {
+        return "/teams/view.php?id=".$this->id;
+    }
+
+    public function getClass()
+    {
+        return get_class($this);
+    }
+
 }

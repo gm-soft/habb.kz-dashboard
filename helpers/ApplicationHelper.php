@@ -197,4 +197,24 @@ abstract class ApplicationHelper
         $cities = explode(",", $cityString);
         return $cities;
     }
+
+    /**
+     * Соединяет элементы массива в строку
+     * @param array $array
+     * @param string $joiner
+     * @return string
+     */
+    public static function joinArray(array $array, $joiner = ","){
+        return join($joiner, $array);
+    }
+
+    /**
+     * Разделяет строку на массив
+     * @param $source
+     * @param string $delimiter
+     * @return array
+     */
+    public static function explodeArray($source, $delimiter = ","){
+        return explode($delimiter, $source);
+    }
 }

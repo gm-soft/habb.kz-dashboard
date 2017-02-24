@@ -3,7 +3,7 @@
 /** Gamer
  * Модель представляет аккаунт игрока в системе HABB. Может участовать в командах, турнирах
 */
-class Gamer extends BaseInstance
+class Gamer extends BaseInstance implements ISelectableOption, ITournamentParticipant
 {
 
     /** @var string Имя клиента */
@@ -66,7 +66,6 @@ class Gamer extends BaseInstance
         $this->secondary_games = [];
 
         $this->lead_id = "";
-        $this->comment = null;
         $this->scoreArray = Score::getDefaultSet($this->id);
     }
 
@@ -149,14 +148,14 @@ class Gamer extends BaseInstance
         $this->comment = isset($row["comment"]) ? $row["comment"] : $this->comment;
     }
 
-    public static function fromDatabase($row)
+    public static function fromDatabase(array $row)
     {
         $instance = new self();
         $instance->fill( $row );
         return $instance;
     }
 
-    public function getAsArray(){
+    public function getAsFormArray(){
 
         $birthday = date("Y-m-d", $this->birthday->getTimestamp());
 
@@ -182,7 +181,7 @@ class Gamer extends BaseInstance
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFullName()
     {
@@ -201,19 +200,6 @@ class Gamer extends BaseInstance
 
     public function getSecondaryGamesString(){
         return join(", ", $this->secondary_games);
-    }
-
-    /**
-     * Возвращает очки по игре. Если не найдены, то null
-     * @param string $game
-     * @return null|Score
-     */
-    public function getScoresByGame($game = Score::SCORE_CSGO){
-        foreach ($this->scoreArray as $item) {
-            if ($item->gameName != $game) continue;
-            return $item;
-        }
-        return null;
     }
 
 
@@ -485,4 +471,60 @@ class Gamer extends BaseInstance
         return $mysql->executeQuery($query);
     }
 
+    public function getKey()
+    {
+        return $this->id;
+    }
+
+    public function getValue()
+    {
+        $result = "[ID ".$this->id."] ".$this->getFullName(). " ($this->phone)";
+        return $result;
+    }
+
+    /**
+     *
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        return $this->getFullName();
+    }
+
+    /**
+     * Возвращает очки по игре. Если не найдены, то null
+     * @param string $gameName
+     * @return null|Score
+     */
+    public function getScore($gameName)
+    {
+        $result = null;
+        foreach ($this->scoreArray as $item) {
+            if ($item->gameName != $gameName) continue;
+            return $item;
+        }
+        return $result;
+    }
+
+    /**
+     * Возвращает линк на себя для встраивания в ссылки
+     * @return string
+     */
+    public function getLink()
+    {
+        return "/gamers/view.php?id=".$this->id;
+    }
+
+    /**
+     * Возвращает строковое отображение названия класса
+     * @return string
+     */
+    public function getClass()
+    {
+        return get_class($this);
+    }
 }

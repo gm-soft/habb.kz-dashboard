@@ -218,9 +218,10 @@ abstract class SharedSnippets
                 $id = $gamer->id;
                 $status = $i == 0 ? "<i>Капитан</i>" : "Игрок ".($i+1);
                 $name = "ID".$id." <b>".$gamer->getFullName()."</b>";
-                $scoreObject = $gamer->getScoresByGame();
+                $scoreObject = $gamer->getScore(Score::SCORE_CSGO);
                 $score = $scoreObject->value;
-                echo "<tr><td>$status</td><td>$name</td><td>$score</td><td><a href='/gamers/view.php?id=$id'>Открыть</a></td></tr>";
+                $link = $gamer->getLink();
+                echo "<tr><td>$status</td><td>$name</td><td>$score</td><td><a href='$link'>Открыть</a></td></tr>";
             }
             ?>
             </tbody>
@@ -254,7 +255,7 @@ abstract class SharedSnippets
 
                         <div class="form-group mb-2 mr-sm-2 mb-sm-0">
                             <label class="form-control-label" for="filterByCity">Город</label><br>
-                            <?= HtmlHelper::constructCitiesSelect(null, false, "filterByCity", "filterByCity", true) ?>
+                            <?php SharedSnippets::RenderCitiesSelect(null, false, "filterByCity", "filterByCity", true) ?>
                         </div>
 
 
@@ -266,4 +267,98 @@ abstract class SharedSnippets
         </div>
         <?php
     }
+
+    /**
+     * Выводит выбираемый из списка инпут, который использует библиотеку select2.
+     *
+     * @param ISelectableOption[] $options
+     * @param string $fieldName Название поля
+     * @param string|null $fieldId Id поля. Если null, то присваивается $fieldName
+     * @param string|null $selectedValue Выбранное значение, если есть
+     * @param bool $isRequired Обязательное ли
+     * @param bool $isMultiple Мультиселект
+     */
+    public static function RenderGamerSelectField($options, $fieldName, $fieldId = null, $selectedValue = null, $isRequired = false, $isMultiple = false) {
+        $fieldId = !is_null($fieldId) ? $fieldId : $fieldName;
+        $fieldName = $isMultiple == true ? $fieldName."[]" : $fieldName;
+        $requiredState = $isRequired == true ? "required" : "";
+
+        $multipleAttr = $isMultiple == true ? "multiple='multiple'" : "";
+        $classAttr = $isMultiple == true ? "multiple" : "single";
+
+        ?>
+        <select class='form-control select2-<?=$classAttr?>' id='<?=$fieldId?>' name='<?=$fieldName?>' <?=$requiredState?> <?=$multipleAttr?>>
+            <?= $isRequired == false ? "<option value='null'>Без значения</option>" : "<option value=''>Выберите значение</option>" ?>
+            <?php
+            foreach ($options as $option) {
+                $selected = !is_null($selectedValue) && $option->getKey() == $selectedValue ? "selected" : "";
+
+                $optionText = $option->getValue();
+                $optionText = "<option value='".$option->getKey()."' $selected>$optionText</option>\n";
+                echo $optionText;
+            }
+
+            ?>
+        </select>
+        <script type="text/javascript">
+            $("#<?= $fieldId?>").select2({
+                placeholder: "Выберите значение",
+            });
+        </script>
+        <?php
+    }
+
+    /**
+     * Выводит список городов в селекте
+     *
+     * @param string|null $selectedCity
+     * @param bool $isRequired
+     * @param string $name
+     * @param string $id
+     * @param bool $withAll
+     */
+    public static function RenderCitiesSelect($selectedCity = null, $isRequired = true, $name = "city", $id = "city", $withAll = false) {
+        $cities = ApplicationHelper::getCities();
+        $requiredState = $isRequired == true ? "required" : "";
+        ?>
+            <select class='form-control' name='<?=$name?>' id='<?=$id?>' <?=$requiredState?>>
+                <option value='' disabled>Город</option>
+                <?php
+                echo $withAll == true ? "<option value='all' selected>Все города</option>\n" : "";
+
+                for ($i = 0; $i<count($cities); $i++) {
+
+                    $selectedState = $selectedCity == $cities[$i] ? "selected" : "";
+                    echo "<option value='$cities[$i]' $selectedState>$cities[$i]</option>";
+                }
+
+
+                ?>
+            </select>
+        <?php
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

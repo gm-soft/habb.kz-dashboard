@@ -9,7 +9,7 @@ if (!$currentUser->checkPermission(1)) {
 
     CookieHelper::AddSessionMessage("У вас недостаточно прав для совершения этого действия", CookieHelper::DANGER);
     $id = $_REQUEST["id"];
-    ApplicationHelper::redirect("../teams/view.php?id=$id");
+    ApplicationHelper::redirect("/tournaments/view.php?id=$id");
 }
 
 switch ($actionPerformed){
@@ -20,21 +20,21 @@ switch ($actionPerformed){
 
 
         if (is_null($instance)) {
-            CookieHelper::AddSessionMessage("Команда с ID".$_REQUEST["id"]." не найдена в базе данных", CookieHelper::DANGER);
-            ApplicationHelper::redirect("../teams/");
+            CookieHelper::AddSessionMessage("Турнир с ID".$_REQUEST["id"]." не найден в базе данных", CookieHelper::DANGER);
+            ApplicationHelper::redirect("/tournaments/");
         }
 
         $gamers = Gamer::getInstancesFromDatabase($_DATABASE);
 
         $title = "Редактирование ".$instance->name;
-        Html::RenderHtmlHeader("Редактирование команды");
+        Html::RenderHtmlHeader("Редактирование турнира");
         $formAction = "../teams/edit.php";
         $formData = $instance->getAsFormArray();
 
         ?>
         <div class="container">
             <div class="mt-2">
-                <h1>Редактирование команды <?= $instance->name ?></h1>
+                <h1>Редактирование турнира <?= $instance->name ?></h1>
             </div>
             <?php FormSnippets::RenderTeamFormFields($formData, $gamers, $formAction) ?>
         </div>
@@ -70,11 +70,11 @@ switch ($actionPerformed){
         if ($updateResult["result"] == true){
             $message = "Команда сохранена";
             $type = CookieHelper::SUCCESS;
-            $url = "/teams/view.php?id=".$_REQUEST["id"];
+            $url = "/tournaments/view.php?id=".$_REQUEST["id"];
         } else {
             $message = $updateResult["data"];
             $type = CookieHelper::DANGER;
-            $url = "/teams/edit.php?id=".$_REQUEST["id"];
+            $url = "/tournaments/edit.php?id=".$_REQUEST["id"];
         }
         CookieHelper::AddSessionMessage($message, $type);
         ApplicationHelper::redirect($url);
@@ -87,7 +87,7 @@ switch ($actionPerformed){
         $scoreId = $_REQUEST["scoreId"];
         $clientId = $_REQUEST["clientId"];
 
-        if ($changed == 0) ApplicationHelper::redirect("/teams/view.php?id=$clientId");
+        if ($changed == 0) ApplicationHelper::redirect("/tournaments/view.php?id=$clientId");
 
 
         $scoreChangeText =  $changed > 0 ? "+$changed" : "$changed";
@@ -104,13 +104,13 @@ switch ($actionPerformed){
         $type = null;
 
         if ($updateResult["result"] == true && $playerScoreUpdate == true){
-            $url = "/teams/view.php?id=$clientId";
+            $url = "/tournaments/view.php?id=$clientId";
             $message = "Очки записаны";
             $type = CookieHelper::SUCCESS;
         } else {
             $message = $updateResult["data"];
             $type = CookieHelper::DANGER;
-            $url = "/teams/edit.php?id=$clientId";
+            $url = "/tournaments/edit.php?id=$clientId";
 
         }
         CookieHelper::AddSessionMessage($message, $type);

@@ -27,7 +27,7 @@ switch ($actionPerformed){
         $pageTitle = "Редактирование ".$instance->getFullName();
         Html::RenderHtmlHeader($pageTitle);
         $formAction = "edit.php";
-        $formData = $instance->getAsArray();
+        $formData = $instance->getAsFormArray();
 
 
         ?>

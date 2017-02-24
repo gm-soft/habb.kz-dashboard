@@ -4,13 +4,15 @@
     $_DocumentRoot = $_SERVER["DOCUMENT_ROOT"];
 
     require "$_DocumentRoot/include/constants.php";
+    require("$_DocumentRoot/interfaces/IDatabaseObject.php");
+    require("$_DocumentRoot/interfaces/ISelectableOption.php");
+    require("$_DocumentRoot/interfaces/ITournamentParticipant.php");
 
     /** Snippets */
     require "$_DocumentRoot/snippets/SharedSnippets.php";
     require "$_DocumentRoot/snippets/FormSnippets.php";
 
     require ("$_DocumentRoot/include/lib/ChallongeAPIClass.php");
-    require("$_DocumentRoot/models/IDatabaseObject.php");
     require("$_DocumentRoot/models/BaseInstance.php");
 
     require("$_DocumentRoot/models/Gamer.php");
@@ -44,7 +46,7 @@
 
     Config::Init();
     Challonge::Init(Config::getValue(Config::CHALLONGE_API));
-    $_DATABASE = MysqlHelper::getNewInstance();
+    $_DATABASE = MysqlHelper::getInstance();
 
     $username = isset($_COOKIE["login"]) ? $_COOKIE["login"] : null;
     $expired = isset($_COOKIE["expired"]) ? $_COOKIE["expired"] : 3601;

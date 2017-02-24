@@ -40,7 +40,7 @@ switch ($actionPerformed){
 
         Html::RenderHtmlHeader($pageTitle);
         $formAction = "edit.php";
-        $formData = $instance->getAsFormData();
+        $formData = $instance->getAsFormArray();
 
         ?>
         <div class="container">

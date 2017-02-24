@@ -12,3 +12,4 @@
     define('TABLE_USERS', "users");
     define('TABLE_TEAMS', "teams");
     define('TABLE_STATISTIC', "statistic");
+    define('TABLE_TOURNAMENTS', "tournaments");
