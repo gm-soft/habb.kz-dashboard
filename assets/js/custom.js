@@ -73,7 +73,7 @@ $(document).ready(function(){
 
 
 function SearchValue(field, value){
-    var url = "http://registration.habb.kz/rest/account.php";
+    var url = "http://registration.habb.kz/rest/ajax.php";
     var paramsData = {
         "action" : "account.search",
         "field" : field,
@@ -160,5 +160,7 @@ function MarkFields(field, statement) {
         sbtBtn.prop("disabled", false);
     }
 }
+
+
 
 

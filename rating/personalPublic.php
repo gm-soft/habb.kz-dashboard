@@ -21,8 +21,8 @@ $withNavBar = false;
 $pageTitle = "Личный рейтинг HABB.KZ";
 
 $position = 1;
-
-Html::RenderHtmlHeader($pageTitle, false);
+$displayHeaderImage = isset($_GET["iframed"]);
+Html::RenderFrontHtmlHeader($pageTitle, !$displayHeaderImage);
 ?>
 
     <div class="container-fluid">
@@ -78,5 +78,5 @@ Html::RenderHtmlHeader($pageTitle, false);
     </div>
 
 <?php
-Html::RenderHtmlFooter(false);
+Html::RenderFrontFooter();
 

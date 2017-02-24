@@ -318,11 +318,19 @@ class Team extends BaseInstance implements ISelectableOption, ITournamentPartici
         return self::getInstancesFromDatabase($mysql);
     }
 
+    /**
+     * Возвращает текстовое отображение ключеового поля объекта для заполнения в селект-списки
+     * @return string
+     */
     public function getKey()
     {
         return $this->id;
     }
 
+    /**
+     * Возвращает текстовое отображение объекта для заполнения в селект-списки
+     * @return string
+     */
     public function getValue()
     {
         $result = "[ID ".$this->id."] ".$this->name;

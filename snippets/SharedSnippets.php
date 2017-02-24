@@ -337,6 +337,50 @@ abstract class SharedSnippets
             </select>
         <?php
     }
+
+
+    /**
+     * Выводит таблицу с участниками турнира
+     *
+     * @param ITournamentParticipant[] $participants Участники турнира
+     * @param string $gameName Название игры для сортировки очков
+     */
+    public static function RenderParticipantTable($participants, $gameName){
+
+        ?>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Название</td>
+                    <td>Очки</td>
+                    <td>Действия</td>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+            for ($i=1;$i <= count($participants); $i++ ){
+
+                $participant = $participants[$i-1];
+                $row = "<tr>";
+                $row .= "<td>$i</td>";
+                $row .= "<td>".$participant->getId()." ".$participant->getName()."</td>";
+                $row .= "<td>".$participant->getScore($gameName)."</td>";
+                $row .= "<td>".$participant->getLink()."</td>";
+                $row .= "</tr>\n";
+                echo $row;
+            }
+
+
+            ?>
+
+
+            </tbody>
+
+        </table>
+
+        <?php
+    }
 }
 
 

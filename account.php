@@ -1,7 +1,7 @@
 <?php
 
 require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
-
+$displayHeaderImage = isset($_GET["iframed"]);
 if (isset($_POST["processed"]) && (
         !empty($_REQUEST["name"]) &&
         !empty($_REQUEST["last_name"]) &&
@@ -26,7 +26,7 @@ if (isset($_POST["processed"]) && (
         $content = "<h1 class='text-center'>Ошибка регистрации</h1>".
                     "<p>$errorMessage</p>\n";
     }
-    Html::RenderHtmlHeader("Регистрация участника HABB.KZ", false, Html::HTML_FRONT);
+    Html::RenderFrontHtmlHeader("Регистрация участника HABB.KZ", !$displayHeaderImage);
     ?>
 
     <div class="row margin-50">
@@ -38,201 +38,199 @@ if (isset($_POST["processed"]) && (
     </div>
 
     <?php
-    Html::RenderHtmlFooter(false, Html::HTML_FRONT);
+    Html::RenderFrontFooter();
 }
 else
 {
     $iOsDevice = CookieHelper::IsIosDevice();
     $cities = ApplicationHelper::getCities();
 
-    Html::RenderHtmlHeader("Регистрация участника HABB.KZ", false, Html::HTML_FRONT);
+
+    // Html::RenderHtmlHeader("Регистрация участника HABB.KZ", false, Html::HTML_FRONT);
+    Html::RenderFrontHtmlHeader("Регистрация участника HABB.KZ", !$displayHeaderImage);
 
     ?>
 
     <div class="container">
         <div class="row">
-            <div class="">
-                <div class="form-container">
-                    <div class="text-sm-center">
-                        <h1 class="mt-1">Регистрация</h1>
-                    </div>
+            <div class="form-container">
+                <div class="text-sm-center">
+                    <h1 class="mt-1">Регистрация участника HABB</h1>
+                </div>
 
 
-                    <form id="form" method="post" action="account.php">
-                        <input type="hidden" name="processed" value="true"/>
+                <form id="form" method="post" action="account.php">
+                    <input type="hidden" name="processed" value="true"/>
 
-                        <div class="row">
-                            <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
 
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <input type="text" id="name" name="name" class="form-control" required placeholder="Имя" maxlength="50" >
-                                        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                    </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" id="name" name="name" class="form-control" required placeholder="Имя" maxlength="50" >
+                                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <div class="input-group">
+                            <div class="form-group">
+                                <div class="input-group">
 
-                                        <input type="text" id="last_name" name="last_name" class="form-control" required placeholder="Фамилия" maxlength="50">
-                                        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    <input type="text" id="last_name" name="last_name" class="form-control" required placeholder="Фамилия" maxlength="50">
+                                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
 
-                                    </div>
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <div class="input-group">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <?php
+                                    if ($iOsDevice) {
+                                        ?>
+                                        <input type="date" class="form-control" id="birthday" name="birthday" required placeholder="Дата рождения">
+                                        <span class="input-group-addon">Дата рождения <i class="fa fa-calendar" aria-hidden="true"></i></span>
                                         <?php
-                                        if ($iOsDevice) {
+                                    } else {
+                                        ?>
+                                        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" id="birthday" name="birthday" required placeholder="Дата рождения">
+                                        <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <select class="form-control" name="city" required>
+                                        <option value="" disabled selected>Город</option>
+                                        <?php
+
+                                        for ($i = 0; $i<count($cities); $i++) {
                                             ?>
-                                            <input type="date" class="form-control" id="birthday" name="birthday" required placeholder="Дата рождения">
-                                            <span class="input-group-addon">Дата рождения <i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                            <?php
-                                        } else {
-                                            ?>
-                                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" id="birthday" name="birthday" required placeholder="Дата рождения">
-                                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                            <option value='<?= $cities[$i] ?>'><?= $cities[$i] ?></option>
                                             <?php
                                         }
                                         ?>
-                                    </div>
-                                </div>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-building" aria-hidden="true"></i></span>
 
-
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <select class="form-control" name="city" required>
-                                            <option value="" disabled selected>Город</option>
-                                            <?php
-
-                                            for ($i = 0; $i<count($cities); $i++) {
-                                                ?>
-                                                <option value='<?= $cities[$i] ?>'><?= $cities[$i] ?></option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                        <span class="input-group-addon"><i class="fa fa-building" aria-hidden="true"></i></span>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div id="divPhone" class="form-group">
-                                    <div class="input-group">
-                                        <input type="tel" class="form-control" id="phone" name="phone" pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7}$" required placeholder="Мобильный телефон">
-                                        <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
-
-                                <div id="divEmail" class="form-group">
-                                    <div class="input-group">
-                                        <input type="email" class="form-control" id="email" name="email" pattern="^([A-Za-z0-9_\.-]+)@([A-Za-z0-9_\.-]+)\.([a-z\.]{2,10})$" required placeholder="yourname@example.com" maxlength="50">
-                                        <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group ">
-                                    <div class="input-group">
-
-                                        <input type="text" class="form-control" id="vk" name="vk" pattern="^(https:\/\/)?(vk\.com)([\/\w \.-]{1,50})*\/?$" required placeholder="https://vk.com/" maxlength="40">
-                                        <span class="input-group-addon"><i class="fa fa-vk" aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="">
-                            <h4 class="text-sm-center">Статус</h4>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <select class="form-control" name="status" required>
-                                            <option value="" disabled selected>Статус</option>
-                                            <option value="student">Студент</option>
-                                            <option value="pupil">Школьник</option>
-                                            <option value="employee">Работаю</option>
-                                            <option value="dumbass">В активном поиске себя</option>
-                                        </select>
-                                        <span class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div class="form-group ">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="institution" name="institution" placeholder="Название учреждения" required maxlength="50">
-                                        <span class="input-group-addon"><i class="fa fa-university" aria-hidden="true"></i></span>
-                                    </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        <div class="text-sm-center">
-                            <h4>Я играю</h4>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <select class="form-control select2 select2-single" name="primary_game" required>
-                                            <option value="" selected disabled>Играю активно</option>
-                                            <option value="dota">Dota</option>
-                                            <option value="cs:go">CS:GO</option>
-                                            <option value="lol">League of Legends</option>
-                                            <option value="hearthstone">Hearthstone</option>
-                                            <option value="wot">World of Tanks</option>
-                                            <option value="overwatch">Overwatch</option>
-                                            <option value="cod">Call of Duty (серия игр)</option>
-                                        </select>
-                                        <span class="input-group-addon"><i class="fa fa-gamepad" aria-hidden="true"></i></span>
-                                    </div>
+                        <div class="col-sm-6">
+                            <div id="divPhone" class="form-group">
+                                <div class="input-group">
+                                    <input type="tel" class="form-control" id="phone" name="phone" pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7}$" required placeholder="Мобильный телефон">
+                                    <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
                                 </div>
                             </div>
 
-
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <select class="form-control select2 select2-multiple" name="secondary_games[]" required multiple="multiple" >
-                                            <option value="dota">Dota</option>
-                                            <option value="cs:go">CS:GO</option>
-                                            <option value="lol">League of Legends</option>
-                                            <option value="hearthstone">Hearthstone</option>
-                                            <option value="wot">World of Tanks</option>
-                                            <option value="overwatch">Overwatch</option>
-                                            <option value="cod">Call of Duty (серия игр)</option>
-                                        </select>
-                                        <span class="input-group-addon"><i class="fa fa-gamepad" aria-hidden="true"></i></span>
-                                    </div>
+                            <div id="divEmail" class="form-group">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" id="email" name="email" pattern="^([A-Za-z0-9_\.-]+)@([A-Za-z0-9_\.-]+)\.([a-z\.]{2,10})$" required placeholder="yourname@example.com" maxlength="50">
+                                    <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                                 </div>
                             </div>
 
+                            <div class="form-group ">
+                                <div class="input-group">
 
-                        </div>
-
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="inqured" name="inqured" required> Ознакомлен с <a href="#" data-toggle="modal" data-target="#exampleModalLong">условиями</a> и даю согласие на обработку моих данных</label>
+                                    <input type="text" class="form-control" id="vk" name="vk" pattern="^(https:\/\/)?(vk\.com)([\/\w \.-]{1,50})*\/?$" required placeholder="https://vk.com/" maxlength="40">
+                                    <span class="input-group-addon"><i class="fa fa-vk" aria-hidden="true"></i></span>
+                                </div>
                             </div>
 
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <button type="submit" id="submit-btn" class="btn btn-primary btn-block">Отправить</button>
+                    <h4 class="text-sm-center">Статус</h4>
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <select class="form-control" name="status" required>
+                                        <option value="" disabled selected>Статус</option>
+                                        <option value="student">Студент</option>
+                                        <option value="pupil">Школьник</option>
+                                        <option value="employee">Работаю</option>
+                                        <option value="dumbass">В активном поиске себя</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group ">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="institution" name="institution" placeholder="Название учреждения" required maxlength="50">
+                                    <span class="input-group-addon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="text-sm-center">
+                        <h4>Я играю</h4>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <select class="form-control select2 select2-single" name="primary_game" required>
+                                        <option value="" selected disabled>Играю активно</option>
+                                        <option value="dota">Dota</option>
+                                        <option value="cs:go">CS:GO</option>
+                                        <option value="lol">League of Legends</option>
+                                        <option value="hearthstone">Hearthstone</option>
+                                        <option value="wot">World of Tanks</option>
+                                        <option value="overwatch">Overwatch</option>
+                                        <option value="cod">Call of Duty (серия игр)</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-gamepad" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <select class="form-control select2 select2-multiple" name="secondary_games[]" required multiple="multiple" >
+                                        <option value="dota">Dota</option>
+                                        <option value="cs:go">CS:GO</option>
+                                        <option value="lol">League of Legends</option>
+                                        <option value="hearthstone">Hearthstone</option>
+                                        <option value="wot">World of Tanks</option>
+                                        <option value="overwatch">Overwatch</option>
+                                        <option value="cod">Call of Duty (серия игр)</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-gamepad" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="inqured" name="inqured" required> Ознакомлен с <a href="#" data-toggle="modal" data-target="#exampleModalLong">условиями</a> и даю согласие на обработку моих данных</label>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" id="submit-btn" class="btn btn-primary btn-block">Отправить</button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -289,7 +287,7 @@ else
             </div>
         </div>
 
-        <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -315,7 +313,7 @@ else
     </div>
 
     <?php
-    Html::RenderHtmlFooter(false, Html::HTML_FRONT);
+    Html::RenderFrontFooter();
 }
 
 

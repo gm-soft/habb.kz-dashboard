@@ -47,13 +47,10 @@ abstract class Html
      *
      * @param string $pageTitle Заголовок страницы
      * @param bool $withNavbar Выводить ли навигацию
-     * @param string $type Тип футера: фронт или бэк
      */
-    public static function RenderHtmlHeader($pageTitle = "Панель управления HABB.KZ ", $withNavbar = true, $type = self::HTML_BACK){
+    public static function RenderHtmlHeader($pageTitle = "Панель управления HABB.KZ ", $withNavbar = true){
 
-        $filename = $_SERVER["DOCUMENT_ROOT"]."/shared/";
-        $filename .= $type == self::HTML_FRONT ? "front/" : "back/";
-        $filename .= "header.html";
+        $filename = $_SERVER["DOCUMENT_ROOT"]."/shared/back/header.html";
 
         $header = ApplicationHelper::readFromFile($filename);
         $header = str_replace("{pageTitle}", $pageTitle, $header);
@@ -62,8 +59,77 @@ abstract class Html
             self::RenderHtmlNavbar();
         }
         CookieHelper::RenderSessionMessages();
-
     }
+
+    /**
+     * Выводит на экран начальные теги страницы фронта
+     * @param string $pageTitle
+     * @param bool $withHeaderImage
+     */
+    public static function RenderFrontHtmlHeader($pageTitle = "Регистрация на habb.kz", $withHeaderImage = true){
+        ?>
+        <!DOCTYPE html>
+        <html lang="ru">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+            <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/assets/css/custom.css">
+            <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+            <link rel="stylesheet" href="/assets/css/select2.min.css"  />
+            <title><?= $pageTitle ?></title>
+        </head>
+        <body class="reg-body">
+
+        <?php
+        if ($withHeaderImage == true){
+            ?>
+            <div class="header box-shadow">
+                <img src="/assets/images/header.png" width="100%">
+            </div>
+            <?php
+        }
+        ?>
+        <?php
+    }
+
+    /**
+     * Выводит нижнюю часть фронт-страницы
+     */
+    public static function RenderFrontFooter(){
+        ?>
+
+        <script src="/assets/js/tether.min.js"></script>
+        <script src="/assets/js/jquery-3.1.1.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/select2.js"></script>
+        <script src="/assets/js/custom.js"></script>
+        <script type="text/javascript">
+            $('.select2').select2();
+            $(".select2-multiple").select2({
+                placeholder: "Иногда играю (можно выбрать несколько)",
+            });
+
+            $(".select2-single").select2({
+                placeholder: "Играю активно",
+            });
+
+            $('#form').submit(function(){
+                //$(this).find('input[type=submit]').prop('disabled', true);
+                $("#submit-btn").prop('disabled',true);
+                //$('#alert').append("<strong>ВНИМАНИЕ!</strong> Идет рассчет стоимости и обрабокта информации. НЕ ЗАКРЫВАЙТЕ окно!");
+            });
+        </script>
+
+        </body>
+        </html>
+
+        <?php
+    }
+
+
 
     /**
      * Выводит на экран текст полосы навигации

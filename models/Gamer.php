@@ -471,11 +471,19 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
         return $mysql->executeQuery($query);
     }
 
+    /**
+     * Возвращает текстовое отображение ключеового поля объекта для заполнения в селект-списки
+     * @return string
+     */
     public function getKey()
     {
         return $this->id;
     }
 
+    /**
+     * Возвращает текстовое отображение объекта для заполнения в селект-списки
+     * @return string
+     */
     public function getValue()
     {
         $result = "[ID ".$this->id."] ".$this->getFullName(). " ($this->phone)";

@@ -28,7 +28,7 @@ switch ($actionPerformed){
 
         $title = "Редактирование ".$instance->name;
         Html::RenderHtmlHeader("Редактирование турнира");
-        $formAction = "../teams/edit.php";
+        $formAction = "/tournaments/edit.php";
         $formData = $instance->getAsFormArray();
 
         ?>
@@ -36,7 +36,7 @@ switch ($actionPerformed){
             <div class="mt-2">
                 <h1>Редактирование турнира <?= $instance->name ?></h1>
             </div>
-            <?php FormSnippets::RenderTeamFormFields($formData, $gamers, $formAction) ?>
+            <?php FormSnippets::RenderTournamentsFormFields($instance, $formAction) ?>
         </div>
         <?php
         break;

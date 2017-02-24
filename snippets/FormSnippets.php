@@ -337,9 +337,11 @@ abstract class FormSnippets
 
 
 
-            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/shared/scoreEditFields.php"  ?>
+            <?php
+                SharedSnippets::RenderScoreFormFields($formData);
+            ?>
 
-            <div class="form-group row">
+            <div class="form-group">
                 <button type="submit" id="submit-btn" class="btn btn-primary">Сохранить</button>
 
             </div>
@@ -373,4 +375,166 @@ abstract class FormSnippets
         </form>
         <?php
     }
+
+
+    /**
+     * @param Tournament|null $instance
+     * @param string $formAction
+     */
+    public static function RenderTournamentsFormFields($instance = null, $formAction = ""){
+        $formData = !is_null($instance) ? $instance->getAsFormArray() : null;
+        $maxParticipantCount = !is_null($formData) ? $formData["participant_max_count"] : 16;
+        $participantIds = !is_null($formData) ? ApplicationHelper::joinArray($formData["participant_ids"]) : "";
+
+        $type = isset($formData["type"]) ? $formData["type"] : TournamentTypes::Teams;
+        $options = RequestHelper::Get("http://registration.habb.kz/rest/ajax.php", ["action" => "select2.participants.get", "type" => $type]);
+        $options = $options["result"];
+
+        ?>
+        <form id="form" method="post" action="<?= $formAction ?>">
+            <input type="hidden" name="actionPerformed" value="dataInput">
+            <?php
+            if (isset($formData)){
+                ?>
+                <div class="form-group">
+                    <label for="id">TEAM ID</label>
+                    <input type="number" id="id"  class="form-control" required maxlength="50" value="<?= $formData["id"] ?>" disabled>
+                    <input type="hidden" name="id" value="<?= $formData["id"] ?>" >
+                </div>
+                <?php
+            } else {
+                echo "<input type='hidden' name='id' value='-1' >";
+            }
+            ?>
+
+            <div class="form-group">
+                <label for="name">Название турнира</label>
+                <input type="text" class="form-control" maxlength="100" name="name" id="name" required value="<?= $formData["id"] ?>">
+                <small>Максимальное кол-во символов: 100</small>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Публичное описание</label>
+                <textarea class="form-control" maxlength="300" name="description" id="description" required><?= $formData["description"] ?></textarea>
+                <small>Описание будет отображаться на странице регистрации на турнир. Максимальное кол-во символов: 300</small>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="begin_date">Дата начала</label>
+                        <input type="datetime-local" class="form-control" name="begin_date" id="begin_date" required value="<?= $formData["begin_date"] ?>">
+                        <small>Дата будет отображаться на странице регистрации на турнир</small>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg_close_date">Дата закрытия регистрации</label>
+                        <input type="datetime-local" class="form-control" name="reg_close_date" id="reg_close_date" required value="<?= $formData["reg_close_date"] ?>">
+                        <small>После этой даты заявки не принимаются, а игрокам будет высвечено соответствующее собщение об этом</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="participant_max_count">Максимальное кол-во участников</label>
+                        <input type="number" class="form-control" name="participant_max_count" id="participant_max_count" required value="<?= $maxParticipantCount ?>">
+                        <small>Максимальное кол-во символов: 300</small>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="type">Тип турнира</label>
+                        <select type="datetime" class="form-control" id="type" name="type" required>
+                            <option value="<?= TournamentTypes::Teams ?>"  <?= $formData["type"] == TournamentTypes::Teams ? "selected" : ""?> >
+                                Командный
+                            </option>
+                            <option value="<?= TournamentTypes::Gamers ?>" <?= $formData["type"] == TournamentTypes::Gamers ? "selected" : ""?> >
+                                Индивидуальные игроки
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="challonge_tournament_id">ID турнира в Challonge.com</label>
+                        <input type="text" class="form-control" name="challonge_tournament_id" id="challonge_tournament_id" value="<?= $formData["challonge_tournament_id"] ?>">
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="comment">Комментарий пользователя</label>
+                        <textarea class="form-control" maxlength="300" name="comment" id="comment"><?= $formData["comment"] ?></textarea>
+                        <small>Максимальное кол-во символов: 300</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="participants">Список участников</label>
+                <select class="form-control" id="participants" name="participants" multiple="multiple">
+                    <?php
+                    foreach ($options as $option){
+                        echo "<option value='".$option["value"]."'>".$option["text"]."</option>";
+                    }
+                    ?>
+                </select>
+                <small>Без ограничения по кол-ву</small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" id="submit-btn" class="btn btn-primary">Сохранить</button>
+            </div>
+
+
+        </form>
+        <script type="text/javascript">
+            var participantSelect = $("#participants");
+            participantSelect.select2({
+                placeholder: "Для поиска участника начните вводить его имя/название",
+
+            });
+
+            var tournamentTypeSelect = $('#type');
+            tournamentTypeSelect.on('change', function(){
+                var value = $(this).val();
+                formHelpers.RequestDataToSelect(participantSelect, value, $(this));
+            });
+
+
+            $('#form').submit(function(){
+                $("#submit-btn").prop('disabled',true);
+            });
+        </script>
+
+        <?php
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

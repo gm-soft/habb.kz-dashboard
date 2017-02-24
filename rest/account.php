@@ -1,9 +1,6 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
 
-
-$access_data =  ServerHelper::readAccessData();
-
 $result = false;
 $action = $_REQUEST["action"];
 $response = array(
@@ -64,39 +61,6 @@ switch ($action) {
             $response["message"] = $error_to_show;
 
         }
-        break;
-
-    case "account.search":
-
-        header("Access-Control-Allow-Origin: *");
-        $searchField = isset($_REQUEST["field"]) ? FormHelper::ClearInputData($_REQUEST["field"]) : null;
-        $value = isset($_REQUEST["value"]) ? FormHelper::ClearInputData($_REQUEST["value"]) : null;
-
-        if (is_null($searchField) || is_null($value)){
-            $response["result"] = false;
-            $response["error"] = "search field or value has not been received";
-            break;
-        }
-
-        $account = Gamer::getInstanceFromDatabase($value, $_DATABASE, $searchField);
-        if (!is_null($account)){
-            $response["result"] = true;
-            $response["account"] = [
-                "id" => $account->id,
-                "name" => $account->name. " " . $account->last_name,
-                "email" => $account->email,
-                "phone" => $account->phone
-            ];
-            break;
-        }
-        $response["result"] = false;
-        $response["account"] = null;
-
-        break;
-
-    case "cities.get":
-        $cities = ApplicationHelper::getCities();
-        $response["result"] = $cities;
         break;
 
     case "month.score.init":

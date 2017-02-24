@@ -16,18 +16,26 @@ switch ($actionPerformed){
         ?>
         <div class="container">
             <div class="mt-2">
-                <h1><?= $title ?></h1>
+                <h1><?= $pageTitle ?></h1>
             </div>
-            <?php FormSnippets::RenderTeamFormFields(null, $gamers, $formAction) ?>
+            <?php FormSnippets::RenderTournamentsFormFields(null, $formAction) ?>
         </div>
         <?php
         break;
 
     case "dataInput":
+
+        // TODO Нужно посмотреть заполнение формы, если редактируется, в частности
+        // TODO ибо там заполоняется каждый раз выбранные элементы.
+        // TODO Как вариант, нужно передавать массив айдишников и проверять вхождение того или иного элемента в него
+        var_export($_REQUEST);
+        die();
+
         $_REQUEST["id"]             = -1;
         $_REQUEST["name"]           = FormHelper::ClearInputData($_REQUEST["name"]);
-        $_REQUEST["score"]          = FormHelper::ClearInputData($_REQUEST["score"]);
-        $_REQUEST["score_change"]   = ApplicationHelper:: formatPhone($_REQUEST["score_change"]);
+        $_REQUEST["description"]    = FormHelper::ClearInputData($_REQUEST["description"]);
+        $_REQUEST["begin_date"]     = str_replace("T"," ",$_REQUEST["begin_date"]);
+        $_REQUEST["reg_close_date"] = str_replace("T"," ",$_REQUEST["reg_close_date"]);
         $_REQUEST["captain_id"]     = FormHelper::ClearInputData($_REQUEST["captain_id"]);
         $_REQUEST["player_2_id"]    = FormHelper::ClearInputData($_REQUEST["player_2_id"]);
         $_REQUEST["player_3_id"]    = FormHelper::ClearInputData($_REQUEST["player_3_id"]);
@@ -40,7 +48,7 @@ switch ($actionPerformed){
 
 
 
-        $instance = Team::fromRequest($_REQUEST);
+        $instance = Tournament::fromDatabase($_REQUEST);
         $instance->lastOperation = "Пользователь ".$_COOKIE["login"]." создал запись";
 
         $updateResult = $instance->insertToDatabase($_DATABASE);
