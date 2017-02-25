@@ -10,7 +10,7 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
     public $name;
 
     /** @var string Фамилия клиента */
-    public $last_name;
+    public $lastName;
 
     /** @var DateTime День рождения (SQL) */
     public $birthday;
@@ -34,10 +34,10 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
     public $institution;
 
     /** @var string Активно играет в игру */
-    public $primary_game;
+    public $primaryGame;
 
     /** @var string[] Массив дополнительных игр, перечисленных через запятую */
-    public $secondary_games;
+    public $secondaryGames;
 
     /** @var string ID лида в битриксе */
     public $lead_id = '0';
@@ -50,7 +50,7 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
     {
         $this->id = $id;
         $this->name = "";
-        $this->last_name = "";
+        $this->lastName = "";
 
         $this->phone = "";
 
@@ -62,8 +62,8 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
         $this->status = "";
         $this->institution = "";
 
-        $this->primary_game = "";
-        $this->secondary_games = [];
+        $this->primaryGame = "";
+        $this->secondaryGames = [];
 
         $this->lead_id = "";
         $this->scoreArray = Score::getDefaultSet($this->id);
@@ -123,7 +123,7 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
         $this->id = isset($row["id"]) ? $row["id"] : $this->id ;
         $this->name = $row["name"];
 
-        $this->last_name = $row["last_name"];
+        $this->lastName = $row["last_name"];
         $this->birthday = DateTime::createFromFormat("Y-m-d H:i:s", $row["birthday"]);
         if ($this->birthday === false) {
             $this->birthday = DateTime::createFromFormat("Y-m-d", $row["birthday"]);
@@ -138,8 +138,8 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
         $this->status = $row["status"];
         $this->institution = $row["institution"];
 
-        $this->primary_game = $row["primary_game"];
-        $this->secondary_games = explode(", ", $row["secondary_games"]);
+        $this->primaryGame = $row["primary_game"];
+        $this->secondaryGames = explode(", ", $row["secondary_games"]);
 
         $this->lead_id = isset($row["lead_id"]) ? $row["lead_id"] : $this->lead_id;
 
@@ -162,7 +162,7 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
         $result = [
             "id" => $this->id,
             "name" => $this->name,
-            "last_name" => $this->last_name,
+            "last_name" => $this->lastName,
             "birthday" => $birthday,
             "phone" => $this->phone,
             "email" => $this->email,
@@ -170,8 +170,8 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
             "institution" => $this->institution,
             "vk" => $this->vk,
             "status" => $this->status,
-            "primary_game" => $this->primary_game,
-            "secondary_games" => $this->secondary_games,
+            "primary_game" => $this->primaryGame,
+            "secondary_games" => $this->secondaryGames,
             "lead_id" => $this->lead_id,
             "created_at" => $this->createdAt,
             "comment" => $this->comment ,
@@ -185,7 +185,7 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
      */
     public function getFullName()
     {
-        $full = $this->name." ".$this->last_name;
+        $full = $this->name." ".$this->lastName;
         return $full;
     }
 
@@ -199,7 +199,7 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
     }
 
     public function getSecondaryGamesString(){
-        return join(", ", $this->secondary_games);
+        return join(", ", $this->secondaryGames);
     }
 
 
@@ -225,7 +225,7 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
             "`secondary_games` ".
             ") values (".
             "'".$this->name."',".
-            "'".$this->last_name."',".
+            "'".$this->lastName."',".
             "'".$this->phone."',".
             "'".date("Y-m-d", $this->birthday->getTimestamp())."',".
             "'".$this->email."',".
@@ -233,7 +233,7 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
             "'".$this->vk."',".
             "'".$this->status."',".
             "'".$this->institution."',".
-            "'".$this->primary_game."',".
+            "'".$this->primaryGame."',".
             "'".$sec_games."'".
             ")";
         $query_result = $mysql->executeQuery($query);
@@ -281,7 +281,7 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
         $sec_games = $this->getSecondaryGamesString();
         $query = "UPDATE `".TABLE_CLIENTS."` SET ".
             "`name`='"      .$this->name."', ".
-            "`last_name`='" .$this->last_name."',".
+            "`last_name`='" .$this->lastName."',".
             "`phone`='"     .$this->phone."',".
             "`birthday`=STR_TO_DATE('".date("Y-m-d", $this->birthday->getTimestamp())."','%Y-%m-%d'),".
             "`email`='".$this->email."',".
@@ -289,7 +289,7 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
             "`vk`='".$this->vk."',".
             "`status`='".$this->status."',".
             "`institution`='".$this->institution."',".
-            "`primary_game`='".$this->primary_game."',".
+            "`primary_game`='".$this->primaryGame."',".
             "`secondary_games`='".$sec_games."', ".
             "`comment`='".$this->comment."', ".
             "`lead_id`='".$this->lead_id."' ".

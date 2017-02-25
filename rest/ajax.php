@@ -29,7 +29,7 @@ switch ($action) {
             $response["result"] = true;
             $response["account"] = [
                 "id" => $account->id,
-                "name" => $account->name. " " . $account->last_name,
+                "name" => $account->name. " " . $account->lastName,
                 "email" => $account->email,
                 "phone" => $account->phone
             ];

@@ -51,7 +51,7 @@ Html::RenderHtmlHeader($pageTitle);
                             <dt class="col-sm-3">Учреждение:</dt>
                             <dd class="col-sm-9"><?= $instance->institution ?></dd>
                             <dt class="col-sm-3">Играет активно:</dt>
-                            <dd class="col-sm-9"><?= $instance->primary_game ?></dd>
+                            <dd class="col-sm-9"><?= $instance->primaryGame ?></dd>
                             <dt class="col-sm-3">Играет второстепенно:</dt>
                             <dd class="col-sm-9"><?= $instance->getSecondaryGamesString() ?></dd>
                             <dt class="col-sm-3">ID Лида в Б24:</dt>

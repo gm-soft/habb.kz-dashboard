@@ -171,7 +171,7 @@ abstract class SharedSnippets
         $status = $status == "Капитан" ? "<b>Капитан</b>" : $status;
 
         if (!is_null($player)){
-            $title = $player->name. " ". $player->last_name;
+            $title = $player->name. " ". $player->lastName;
             $content = "<i>$status</i><br><a href='../gamers/view.php?id=$player->id'>ID $player->id</a>";
         } else {
             $title  = "Свободная карта";
@@ -379,6 +379,34 @@ abstract class SharedSnippets
 
         </table>
 
+        <?php
+    }
+
+    /**
+     * Выводит список игр
+     *
+     * @param string|null $selectedGame
+     * @param bool $isRequired
+     * @param string $name
+     * @param string $id
+     */
+    public static function RenderGameNameSelect($selectedGame = null, $isRequired = true, $name = "game_name", $id = "game_name") {
+        $games = Score::getGameArray();
+        $requiredState = $isRequired == true ? "required" : "";
+        ?>
+        <select class='form-control' name='<?=$name?>' id='<?=$id?>' <?=$requiredState?>>
+            <option value='' disabled>Игра</option>
+            <?php
+
+            for ($i = 0; $i<count($games); $i++) {
+
+                $selectedState = $selectedGame == $games[$i] ? "selected" : "";
+                echo "<option value='$games[$i]' $selectedState>$games[$i]</option>";
+            }
+
+
+            ?>
+        </select>
         <?php
     }
 }

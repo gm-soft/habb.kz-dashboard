@@ -3,6 +3,11 @@
  */
 
 
+$(document).ready(function(){
+    formHelpers.DataTablesInit();
+});
+
+
 var formHelpers = {
 
     RequestDataToSelect : function(selectElement, type, sourceTrigger) {
@@ -35,4 +40,10 @@ var formHelpers = {
             }
         });
     },
-}
+
+    DataTablesInit : function (){
+        $('.datatable').DataTable();
+    },
+};
+
+

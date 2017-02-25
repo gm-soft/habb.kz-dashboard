@@ -11,16 +11,16 @@ Html::RenderHtmlHeader($pageTitle);
     ?>
     <div class="container">
 
-        <div class="mt-2">
+        <div class="mt-2 mb-2">
             <h1>Список команд</h1>
         </div>
 
-        <div class="float-sm-right">
+        <div class="float-sm-right mb-1">
             <a class="btn btn-secondary" href="/teams/create.php">Создать новую запись</a>
         </div>
 
-        <div id="outputDiv">
-            <table class="table table-striped">
+        <p>
+            <table class="table table-striped datatable">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -73,7 +73,7 @@ Html::RenderHtmlHeader($pageTitle);
                 </tbody>
 
             </table>
-        </div>
+        </p>
     </div>
     <?php
 

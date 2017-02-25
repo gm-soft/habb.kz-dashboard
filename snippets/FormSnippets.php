@@ -397,7 +397,7 @@ abstract class FormSnippets
             if (isset($formData)){
                 ?>
                 <div class="form-group">
-                    <label for="id">TEAM ID</label>
+                    <label for="id">Tournament ID</label>
                     <input type="number" id="id"  class="form-control" required maxlength="50" value="<?= $formData["id"] ?>" disabled>
                     <input type="hidden" name="id" value="<?= $formData["id"] ?>" >
                 </div>
@@ -471,36 +471,57 @@ abstract class FormSnippets
 
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="comment">Комментарий пользователя</label>
-                        <textarea class="form-control" maxlength="300" name="comment" id="comment"><?= $formData["comment"] ?></textarea>
-                        <small>Максимальное кол-во символов: 300</small>
+                        <label for="game_name">Игра</label>
+                        <?php SharedSnippets::RenderGameNameSelect($formData["game_name"], true, "game_name", "game_name"); ?>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="participants">Список участников</label>
-                <select class="form-control" id="participants" name="participants" multiple="multiple">
+                <select class="form-control" id="participant_ids" name="participant_ids[]" multiple="multiple">
                     <?php
                     foreach ($options as $option){
-                        echo "<option value='".$option["value"]."'>".$option["text"]."</option>";
+                        $selected = !is_null($instance) && in_array($option["value"], $instance->participantIdS) ? "selected" : "";
+                        $op = "<option value='".$option["value"]."' $selected>".$option["text"]."</option>";
+                        echo $op;
                     }
                     ?>
                 </select>
-                <small>Без ограничения по кол-ву</small>
+                <small id="participants_hint">Можно выбрать <?= $maxParticipantCount ?> участников</small>
             </div>
 
             <div class="form-group">
                 <button type="submit" id="submit-btn" class="btn btn-primary">Сохранить</button>
             </div>
 
+            <div class="form-group">
+                <label for="comment">Комментарий пользователя</label>
+                <textarea class="form-control" maxlength="300" name="comment" id="comment"><?= $formData["comment"] ?></textarea>
+                <small>Максимальное кол-во символов: 300</small>
+            </div>
+
 
         </form>
         <script type="text/javascript">
-            var participantSelect = $("#participants");
+
+            var participantSelect = $("#participant_ids");
             participantSelect.select2({
                 placeholder: "Для поиска участника начните вводить его имя/название",
+                allowClear: true,
+                maximumSelectionLength: <?= $maxParticipantCount ?>
 
+            });
+
+            var maxParticipantCountInput = $('#participant_max_count');
+            maxParticipantCountInput.on('input', function() {
+                var value = parseInt($(this).val());
+                participantSelect.select2({
+                    maximumSelectionLength : value,
+                    placeholder: "Для поиска участника начните вводить его имя/название",
+                    allowClear: true
+                });
+                $('#participants_hint').text("Можно выбрать "+value+" участников");
             });
 
             var tournamentTypeSelect = $('#type');

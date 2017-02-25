@@ -32,7 +32,7 @@ abstract class BitrixHelper
         $params = array(
             "fields[TITLE]" => "Участник HABB.KZ ".$client->getFullName(),
             "fields[NAME]" => $client->name,
-            "fields[LAST_NAME]" => $client->last_name,
+            "fields[LAST_NAME]" => $client->lastName,
             "fields[PHONE][0][VALUE]" => $client->phone,
             "fields[EMAIL][0][VALUE]" => $client->email,
             "fields[UF_CRM_1479438123]" => $client->id, // habb id

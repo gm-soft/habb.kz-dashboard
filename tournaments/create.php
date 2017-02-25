@@ -28,29 +28,26 @@ switch ($actionPerformed){
         // TODO Нужно посмотреть заполнение формы, если редактируется, в частности
         // TODO ибо там заполоняется каждый раз выбранные элементы.
         // TODO Как вариант, нужно передавать массив айдишников и проверять вхождение того или иного элемента в него
-        var_export($_REQUEST);
-        die();
 
         $_REQUEST["id"]             = -1;
         $_REQUEST["name"]           = FormHelper::ClearInputData($_REQUEST["name"]);
         $_REQUEST["description"]    = FormHelper::ClearInputData($_REQUEST["description"]);
-        $_REQUEST["begin_date"]     = str_replace("T"," ",$_REQUEST["begin_date"]);
-        $_REQUEST["reg_close_date"] = str_replace("T"," ",$_REQUEST["reg_close_date"]);
-        $_REQUEST["captain_id"]     = FormHelper::ClearInputData($_REQUEST["captain_id"]);
-        $_REQUEST["player_2_id"]    = FormHelper::ClearInputData($_REQUEST["player_2_id"]);
-        $_REQUEST["player_3_id"]    = FormHelper::ClearInputData($_REQUEST["player_3_id"]);
-        $_REQUEST["player_4_id"]    = FormHelper::ClearInputData($_REQUEST["player_4_id"]);
-        $_REQUEST["player_5_id"]    = FormHelper::ClearInputData($_REQUEST["player_5_id"]);
-        $_REQUEST["player_2_id"]    = !empty($_REQUEST["player_2_id"]) ? $_REQUEST["player_2_id"] : "null";
-        $_REQUEST["player_3_id"]    = !empty($_REQUEST["player_3_id"]) ? $_REQUEST["player_3_id"] : "null";
-        $_REQUEST["player_4_id"]    = !empty($_REQUEST["player_4_id"]) ? $_REQUEST["player_4_id"] : "null";
-        $_REQUEST["player_5_id"]    = !empty($_REQUEST["player_5_id"]) ? $_REQUEST["player_5_id"] : "null";
+        $_REQUEST["begin_date"]     = str_replace("T"," ",$_REQUEST["begin_date"]).":00";
+        $_REQUEST["reg_close_date"] = str_replace("T"," ",$_REQUEST["reg_close_date"]).":00";
 
+        $_REQUEST["participant_max_count"] = FormHelper::ClearInputData($_REQUEST["participant_max_count"]);
+        $_REQUEST["participant_ids"] = ApplicationHelper::joinArray($_REQUEST["participant_ids"]);
 
+        $_REQUEST["challonge_tournament_id"] = FormHelper::ClearInputData($_REQUEST["challonge_tournament_id"]);
+        $_REQUEST["comment"]        = !empty($_REQUEST["player_2_id"]) ? $_REQUEST["comment"] : "null";
 
         $instance = Tournament::fromDatabase($_REQUEST);
-        $instance->lastOperation = "Пользователь ".$_COOKIE["login"]." создал запись";
 
+        $instance->lastOperation = "Пользователь ".$_COOKIE["login"]." создал запись";
+        echo "<pre>";
+        var_export($instance);
+        echo "</pre>";
+        die();
         $updateResult = $instance->insertToDatabase($_DATABASE);
 
         $message = null;

@@ -38,6 +38,12 @@ class Tournament extends BaseInstance
     /** @var int Кол-во участников турнира. Не участвует в базе данных */
     public $participantCount = 0;
 
+    function __construct()
+    {
+        $this->updatedAt = new DateTime();
+        $this->createdAt = new DateTime();
+    }
+
     /**
      * @param $searchable - ID клиента или иное искомое значение
      * @param $mysql MysqlHelper
