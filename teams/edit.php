@@ -93,9 +93,12 @@ switch ($actionPerformed){
         $scoreChangeText =  $changed > 0 ? "+$changed" : "$changed";
         $newScore = $score + $changed;
         $lastOperation = "Пользователь ".$_COOKIE["login"]." установил новое значение очков: $newScore ($scoreChangeText)";
-        $updateResult = $_DATABASE->updateTeamScore($clientId, $gameName, $newScore, $scoreChangeText);
 
         $team = Team::getInstanceFromDatabase($_REQUEST["clientId"], $_DATABASE);
+        //$updateResult = $_DATABASE->updateTeamScore($clientId, $gameName, $newScore, $scoreChangeText);
+        $updateResult = $team->updateTeamScore($_DATABASE, $gameName, $newScore, $scoreChangeText);
+
+
         $playerScoreUpdate = $_DATABASE->updateTeamPlayersScore($team->getPlayersIdAsArray(), $changed, $gameName);
 
 

@@ -537,6 +537,101 @@ abstract class FormSnippets
 
         <?php
     }
+
+    /**
+     * @param ITournamentParticipant[] $participants
+     * @param string $gameName - Название игры, по которой идет турнир
+     * @param int $tournamentId
+     * @param string $actionPage
+     */
+    public static function RenderTournamentParticipants($participants, $gameName, $tournamentId, $actionPage = "/tournaments/edit.php"){
+        ?>
+
+        <form method="post" action="<?=$actionPage?>">
+            <input type="hidden" name="tournament_id" value="<?= $tournamentId ?>" >
+            <input type="hidden" name="actionPerformed" value="tournamentScoreAdded" >
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Имя/Название</th>
+                        <th>Очки (<?= $gameName ?>)</th>
+                        <th>Тип</th>
+                        <th>Добавить очки</th>
+                        <th>Установить очки</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                <?php
+
+                    for($i = 0; $i < count($participants); $i++){
+
+                        $participant = $participants[$i];
+                        $id = $participant->getId();
+                        $name = "<a href='".$participant->getLink()."'>".$participant->getName()."</a>";
+                        $type = $participant->getClass();
+                        $score = $participant->getScore($gameName);
+                        $scoreVal = $score->value." (".HtmlHelper::WrapScoreValueChange($score->valueChange, true).")";
+
+
+                        ?>
+
+                        <tr>
+                            <td><?= $id ?></td>
+                            <td><?= $name ?></td>
+                            <td><?= $scoreVal ?></td>
+                            <td><?= $type ?></td>
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="scoreConfirm[<?= $i ?>]" class="form-check-input">
+                                        Добавить
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="number" step="1" max="100" min="-100" class="form-control" pattern="[0-9]" name="scoreAdd[<?= $i ?>]" placeholder="Введите целое число">
+                                </div>
+                            </td>
+                        </tr>
+
+                        <?php
+                    }
+                ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="7">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" name="confirm" class="form-check-input" required>
+                                            Подтвердить изменение
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="float-sm-right">
+                                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                                        <button type="reset" class="btn btn-secondary">Сбросить</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </td>
+                    </tr>
+                </tfoot>
+
+            </table>
+        </form>
+        <?php
+    }
 }
 
 

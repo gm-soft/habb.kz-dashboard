@@ -10,7 +10,20 @@ interface ITournamentParticipant
 {
     public function getId();
     public function getName();
+
+    /**
+     * @param $gameName
+     * @return Score
+     */
     public function getScore($gameName);
     public function getLink();
     public function getClass();
+
+    /**
+     * @param int $valueAdded
+     * @param string $gameName
+     * @param MysqlHelper $mysql
+     * @return mixed
+     */
+    public function addScoreValue($valueAdded, $gameName, $mysql);
 }

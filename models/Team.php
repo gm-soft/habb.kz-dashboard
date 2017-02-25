@@ -158,6 +158,26 @@ class Team extends BaseInstance implements ISelectableOption, ITournamentPartici
         return $result;
     }
 
+    /**
+     * Обновляет значение очков команды
+     *
+     * @param MysqlHelper $mysql - ID клиента
+     * @param $gameName - Название дисциплины
+     * @param $scoreValue - значение очков
+     * @param $changeText - значение измененного текста
+     * @return array
+     */
+    public function updateTeamScore($mysql, $gameName, $scoreValue, $changeText){
+        $query = "UPDATE ".TABLE_TEAM_SCORES." SET ".
+            "total_value=$scoreValue,".
+            "change_total='$changeText'".
+            " WHERE team_id=$this->id AND game_name='$gameName'";
+
+        $query_result = $mysql->executeQuery($query);
+        return $query_result;
+    }
+
+
     //-------------
     //-------------
     //-------------
@@ -365,7 +385,16 @@ class Team extends BaseInstance implements ISelectableOption, ITournamentPartici
 
     public function getClass()
     {
-        return get_class($this);
+        return strtolower(get_class($this));
     }
 
+    public function addScoreValue($valueAdded, $gameName, $mysql)
+    {
+        $scoreChangeText =  $valueAdded > 0 ? "+$valueAdded" : "$valueAdded";
+        $score = $this->getScore($gameName);
+        $currentValue = $score->value;
+
+        $newScore = $currentValue + $valueAdded;
+        return $this->updateTeamScore($mysql, $gameName, $newScore, $scoreChangeText);
+    }
 }

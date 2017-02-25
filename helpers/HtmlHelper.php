@@ -29,13 +29,17 @@ abstract class HtmlHelper
 
     /**
      * @param $scoreChange mixed
+     * @param bool $returnable
      * @return string
      */
-    public static function WrapScoreValueChange($scoreChange){
+    public static function WrapScoreValueChange($scoreChange, $returnable = false){
         $scoreChangeValue = intval($scoreChange);
         $class = $scoreChangeValue >= 0 ? "text-success" : "text-danger";
         $textChanged = $scoreChangeValue >= 0 ? "+".$scoreChange : $scoreChange;
-        echo "<span class='$class'>$textChanged</span>";
+        $result = "<span class='$class'>$textChanged</span>";
+
+        if ($returnable == true) return $result;
+        echo $result;
     }
 
     /**

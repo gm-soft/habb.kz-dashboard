@@ -75,6 +75,10 @@ switch ($actionPerformed){
         CookieHelper::AddSessionMessage($message, $type);
         ApplicationHelper::redirect($url);
         break;
+
+    case "tournamentScoreAdded":
+        echo "<pre>".var_export($_REQUEST, true)."</pre>";
+        break;
 }
 
 ?>

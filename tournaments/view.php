@@ -82,6 +82,10 @@ Html::RenderHtmlHeader($pageTitle);
             </div>
 
         </div>
+        <div class="pb-1">
+            <?php FormSnippets::RenderTournamentParticipants($instance->participants, $instance->gameName, $instance->id); ?>
+        </div>
+
     </div>
 
     <?php

@@ -533,6 +533,22 @@ class Gamer extends BaseInstance implements ISelectableOption, ITournamentPartic
      */
     public function getClass()
     {
-        return get_class($this);
+        return strtolower(get_class($this));
+    }
+
+    public function addScoreValue($valueAdded, $gameName, $mysql)
+    {
+        $scoreChangeText =  $valueAdded > 0 ? "+$valueAdded" : "$valueAdded";
+        $score = $this->getScore($gameName);
+        $currentValue = $score->value;
+
+        $newScore = $currentValue + $valueAdded;
+        $operation = intval($valueAdded) > 0 ? "+" : "";
+        $query = "UPDATE ".TABLE_SCORES." SET ".
+            "total_value=total_value$operation$valueAdded, ".
+            "change_total='$scoreChangeText' ".
+            " WHERE gamer_id=$this->id AND game_name='$gameName' ";
+        $query_result = $mysql->executeQuery($query);
+        return $query_result;
     }
 }
