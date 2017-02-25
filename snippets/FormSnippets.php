@@ -382,9 +382,9 @@ abstract class FormSnippets
      * @param string $formAction
      */
     public static function RenderTournamentsFormFields($instance = null, $formAction = ""){
-        $formData = !is_null($instance) ? $instance->getAsFormArray() : [];
+        $formData = !is_null($instance) ? $instance->getAsFormArray() : null;
         $maxParticipantCount = !is_null($formData) ? $formData["participant_max_count"] : 16;
-        $participantIds = !is_null($formData) ? ApplicationHelper::joinArray($formData["participant_ids"]) : "";
+        $participantIds = !is_null($formData) && isset($formData["participant_ids"]) ? ApplicationHelper::joinArray($formData["participant_ids"]) : "";
 
         $beginDate = !is_null($formData) ? str_replace(" ", "T", $formData["begin_date"]) : null;
         $regCloseDate = !is_null($formData) ? str_replace(" ", "T", $formData["reg_close_date"]) : null;

@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b7737df8-22e8-42f4-bb8f-27ec48001a37" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/helpers/HtmlHelper.php" afterPath="$PROJECT_DIR$/helpers/HtmlHelper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfaces/ITournamentParticipant.php" afterPath="$PROJECT_DIR$/interfaces/ITournamentParticipant.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Gamer.php" afterPath="$PROJECT_DIR$/models/Gamer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Team.php" afterPath="$PROJECT_DIR$/models/Team.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snippets/FormSnippets.php" afterPath="$PROJECT_DIR$/snippets/FormSnippets.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/teams/edit.php" afterPath="$PROJECT_DIR$/teams/edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tournaments/edit.php" afterPath="$PROJECT_DIR$/tournaments/edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tournaments/view.php" afterPath="$PROJECT_DIR$/tournaments/view.php" />
     </list>
     <ignored path="newb24.next.kz.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,15 +24,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FormSnippets.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FormSnippets.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/snippets/FormSnippets.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="605" column="40" lean-forward="false" selection-start-line="605" selection-start-column="40" selection-end-line="605" selection-end-column="40" />
+            <state relative-caret-position="196">
+              <caret line="383" column="81" lean-forward="false" selection-start-line="383" selection-start-column="81" selection-end-line="383" selection-end-column="81" />
               <folding>
                 <element signature="n#RenderDeleteFormFields#0;n#FormSnippets#0;n#!!top" expanded="false" />
-                <marker date="1488034573870" expanded="true" signature="24296:25175" ph="..." />
-                <marker date="1488034573870" expanded="true" signature="27178:28205" ph="..." />
+                <marker date="1488035690651" expanded="true" signature="24337:25216" ph="..." />
               </folding>
             </state>
           </provider>
@@ -48,8 +40,8 @@
       <file leaf-file-name="Html.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/helpers/Html.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="50" column="33" lean-forward="true" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+            <state relative-caret-position="850">
+              <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
               <folding>
                 <element signature="n#RenderFrontFooter#0;n#Html#0;n#!!top" expanded="false" />
               </folding>
@@ -73,17 +65,17 @@
       <file leaf-file-name="view.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournaments/view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1147">
+            <state relative-caret-position="1445">
               <caret line="85" column="120" lean-forward="false" selection-start-line="85" selection-start-column="120" selection-end-line="85" selection-end-column="120" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="edit.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournaments/edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="637">
+            <state relative-caret-position="663">
               <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
               <folding />
             </state>
@@ -103,7 +95,7 @@
       <file leaf-file-name="Score.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Score.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
+            <state relative-caret-position="3298">
               <caret line="194" column="25" lean-forward="false" selection-start-line="194" selection-start-column="13" selection-end-line="194" selection-end-column="25" />
               <folding>
                 <marker date="1487925616215" expanded="true" signature="4239:4281" ph="SELECT * FRO... ${$tableName}" />
@@ -227,6 +219,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -455,8 +449,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -579,21 +571,22 @@
       <workItem from="1488001413802" duration="3075000" />
       <workItem from="1488009112430" duration="1120000" />
       <workItem from="1488021353661" duration="6869000" />
+      <workItem from="1488035478064" duration="318000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115699000" />
+    <option name="totallyTimeSpent" value="116017000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16979167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16979167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21247357" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21247357" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -710,7 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -718,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="61" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -726,11 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4667">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="46" />
-          <folding>
-            <marker date="1487939980626" expanded="true" signature="722:896" ph="..." />
-            <marker date="1487939980626" expanded="true" signature="722:993" ph="..." />
-            <marker date="1487939980626" expanded="true" signature="722:998" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -738,7 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="63" column="14" lean-forward="false" selection-start-line="63" selection-start-column="14" selection-end-line="63" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -821,7 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -837,7 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="31" column="66" lean-forward="false" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -845,7 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="53" column="75" lean-forward="false" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="75" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -853,7 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
           <caret line="47" column="47" lean-forward="false" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -861,7 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="51" lean-forward="false" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,7 +880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
           <caret line="35" column="65" lean-forward="false" selection-start-line="35" selection-start-column="65" selection-end-line="35" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -908,7 +887,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="89" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -973,8 +951,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/helpers/Html.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="50" column="33" lean-forward="true" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+        <state relative-caret-position="850">
+          <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
           <folding>
             <element signature="n#RenderFrontFooter#0;n#Html#0;n#!!top" expanded="false" />
           </folding>
@@ -992,19 +970,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interfaces/ITournamentParticipant.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/teams/edit.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
           <caret line="93" column="38" lean-forward="true" selection-start-line="92" selection-start-column="8" selection-end-line="93" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1021,9 +990,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tournaments/view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="85" column="120" lean-forward="false" selection-start-line="85" selection-start-column="120" selection-end-line="85" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tournaments/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfaces/ITournamentParticipant.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/Score.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
+        <state relative-caret-position="3298">
           <caret line="194" column="25" lean-forward="false" selection-start-line="194" selection-start-column="13" selection-end-line="194" selection-end-column="25" />
           <folding>
             <marker date="1487925616215" expanded="true" signature="4239:4281" ph="SELECT * FRO... ${$tableName}" />
@@ -1037,29 +1030,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/snippets/FormSnippets.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="605" column="40" lean-forward="false" selection-start-line="605" selection-start-column="40" selection-end-line="605" selection-end-column="40" />
+        <state relative-caret-position="196">
+          <caret line="383" column="81" lean-forward="false" selection-start-line="383" selection-start-column="81" selection-end-line="383" selection-end-column="81" />
           <folding>
             <element signature="n#RenderDeleteFormFields#0;n#FormSnippets#0;n#!!top" expanded="false" />
-            <marker date="1488034573870" expanded="true" signature="24296:25175" ph="..." />
-            <marker date="1488034573870" expanded="true" signature="27178:28205" ph="..." />
+            <marker date="1488035690651" expanded="true" signature="24337:25216" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tournaments/view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1147">
-          <caret line="85" column="120" lean-forward="false" selection-start-line="85" selection-start-column="120" selection-end-line="85" selection-end-column="120" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tournaments/edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
