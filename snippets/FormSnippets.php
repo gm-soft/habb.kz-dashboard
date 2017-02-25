@@ -382,9 +382,12 @@ abstract class FormSnippets
      * @param string $formAction
      */
     public static function RenderTournamentsFormFields($instance = null, $formAction = ""){
-        $formData = !is_null($instance) ? $instance->getAsFormArray() : null;
+        $formData = !is_null($instance) ? $instance->getAsFormArray() : [];
         $maxParticipantCount = !is_null($formData) ? $formData["participant_max_count"] : 16;
         $participantIds = !is_null($formData) ? ApplicationHelper::joinArray($formData["participant_ids"]) : "";
+
+        $beginDate = !is_null($formData) ? str_replace(" ", "T", $formData["begin_date"]) : null;
+        $regCloseDate = !is_null($formData) ? str_replace(" ", "T", $formData["reg_close_date"]) : null;
 
         $type = isset($formData["type"]) ? $formData["type"] : TournamentTypes::Teams;
         $options = RequestHelper::Get("http://registration.habb.kz/rest/ajax.php", ["action" => "select2.participants.get", "type" => $type]);
@@ -396,11 +399,7 @@ abstract class FormSnippets
             <?php
             if (isset($formData)){
                 ?>
-                <div class="form-group">
-                    <label for="id">Tournament ID</label>
-                    <input type="number" id="id"  class="form-control" required maxlength="50" value="<?= $formData["id"] ?>" disabled>
-                    <input type="hidden" name="id" value="<?= $formData["id"] ?>" >
-                </div>
+                <input type="hidden" name="id" value="<?= $formData["id"] ?>" >
                 <?php
             } else {
                 echo "<input type='hidden' name='id' value='-1' >";
@@ -409,7 +408,7 @@ abstract class FormSnippets
 
             <div class="form-group">
                 <label for="name">Название турнира</label>
-                <input type="text" class="form-control" maxlength="100" name="name" id="name" required value="<?= $formData["id"] ?>">
+                <input type="text" class="form-control" maxlength="100" name="name" id="name" required value="<?= $formData["name"] ?>">
                 <small>Максимальное кол-во символов: 100</small>
             </div>
 
@@ -423,7 +422,7 @@ abstract class FormSnippets
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="begin_date">Дата начала</label>
-                        <input type="datetime-local" class="form-control" name="begin_date" id="begin_date" required value="<?= $formData["begin_date"] ?>">
+                        <input type="datetime-local" class="form-control" name="begin_date" id="begin_date" required value="<?= $beginDate ?>">
                         <small>Дата будет отображаться на странице регистрации на турнир</small>
                     </div>
                 </div>
@@ -431,7 +430,7 @@ abstract class FormSnippets
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="reg_close_date">Дата закрытия регистрации</label>
-                        <input type="datetime-local" class="form-control" name="reg_close_date" id="reg_close_date" required value="<?= $formData["reg_close_date"] ?>">
+                        <input type="datetime-local" class="form-control" name="reg_close_date" id="reg_close_date" required value="<?= $regCloseDate ?>">
                         <small>После этой даты заявки не принимаются, а игрокам будет высвечено соответствующее собщение об этом</small>
                     </div>
                 </div>
@@ -465,7 +464,7 @@ abstract class FormSnippets
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="challonge_tournament_id">ID турнира в Challonge.com</label>
-                        <input type="text" class="form-control" name="challonge_tournament_id" id="challonge_tournament_id" value="<?= $formData["challonge_tournament_id"] ?>">
+                        <input type="text" class="form-control" name="challonge_tournament_id" id="challonge_tournament_id" value="<?= $formData["challonge_tournament_id"] ?>" maxlength="20">
                     </div>
                 </div>
 
@@ -492,13 +491,13 @@ abstract class FormSnippets
             </div>
 
             <div class="form-group">
-                <button type="submit" id="submit-btn" class="btn btn-primary">Сохранить</button>
-            </div>
-
-            <div class="form-group">
                 <label for="comment">Комментарий пользователя</label>
                 <textarea class="form-control" maxlength="300" name="comment" id="comment"><?= $formData["comment"] ?></textarea>
                 <small>Максимальное кол-во символов: 300</small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" id="submit-btn" class="btn btn-primary">Сохранить</button>
             </div>
 
 

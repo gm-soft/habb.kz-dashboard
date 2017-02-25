@@ -39,29 +39,25 @@ switch ($actionPerformed){
         $_REQUEST["participant_ids"] = ApplicationHelper::joinArray($_REQUEST["participant_ids"]);
 
         $_REQUEST["challonge_tournament_id"] = FormHelper::ClearInputData($_REQUEST["challonge_tournament_id"]);
-        $_REQUEST["comment"]        = !empty($_REQUEST["player_2_id"]) ? $_REQUEST["comment"] : "null";
+        $_REQUEST["comment"]        = !empty($_REQUEST["comment"]) ? $_REQUEST["comment"] : "null";
 
+        $_REQUEST["last_operation"] = "Пользователь ".$_COOKIE["login"]." создал запись";
         $instance = Tournament::fromDatabase($_REQUEST);
-
-        $instance->lastOperation = "Пользователь ".$_COOKIE["login"]." создал запись";
-        echo "<pre>";
-        var_export($instance);
-        echo "</pre>";
-        die();
+        ApplicationHelper::debug($instance->getVarExport());
         $updateResult = $instance->insertToDatabase($_DATABASE);
 
         $message = null;
         $type = null;
 
         if ($updateResult["result"] == true){
-            $message = "Команда сохранена";
+            $message = "Турнир создан";
             $type = CookieHelper::SUCCESS;
 
-            $url = "../tournaments/view.php?id=".$updateResult["data"];
+            $url = "/tournaments/view.php?id=".$updateResult["data"];
         } else {
             $message = $updateResult["data"];
             $type = CookieHelper::DANGER;
-            $url = "../tournaments/create.php";
+            $url = "/tournaments/create.php";
         }
         CookieHelper::AddSessionMessage($message, $type);
         ApplicationHelper::redirect($url);

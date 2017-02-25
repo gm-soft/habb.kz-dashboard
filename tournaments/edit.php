@@ -15,7 +15,7 @@ if (!$currentUser->checkPermission(1)) {
 switch ($actionPerformed){
     case "initiated":
 
-        $instance = Team::getInstanceFromDatabase($_REQUEST["id"], $_DATABASE);
+        $instance = Tournament::getInstanceFromDatabase($_REQUEST["id"], $_DATABASE);
 
 
 
@@ -34,7 +34,7 @@ switch ($actionPerformed){
         ?>
         <div class="container">
             <div class="mt-2">
-                <h1>Редактирование турнира <?= $instance->name ?></h1>
+                <h1>Редактирование турнира <?= $instance->name ?> [ID<?= $instance->id ?> ]</h1>
             </div>
             <?php FormSnippets::RenderTournamentsFormFields($instance, $formAction) ?>
         </div>
@@ -44,23 +44,19 @@ switch ($actionPerformed){
     case "dataInput":
 
         $_REQUEST["id"]          = FormHelper::ClearInputData($_REQUEST["id"]);
-        $_REQUEST["name"]        = FormHelper::ClearInputData($_REQUEST["name"]);
+        $_REQUEST["name"]           = FormHelper::ClearInputData($_REQUEST["name"]);
+        $_REQUEST["description"]    = FormHelper::ClearInputData($_REQUEST["description"]);
+        $_REQUEST["begin_date"]     = str_replace("T"," ",$_REQUEST["begin_date"]);
+        $_REQUEST["reg_close_date"] = str_replace("T"," ",$_REQUEST["reg_close_date"]);
 
-        $_REQUEST["captain_id"]  = FormHelper::ClearInputData($_REQUEST["captain_id"]);
-        $_REQUEST["player_2_id"] = FormHelper::ClearInputData($_REQUEST["player_2_id"]);
-        $_REQUEST["player_3_id"] = FormHelper::ClearInputData($_REQUEST["player_3_id"]);
-        $_REQUEST["player_4_id"] = FormHelper::ClearInputData($_REQUEST["player_4_id"]);
-        $_REQUEST["player_5_id"] = FormHelper::ClearInputData($_REQUEST["player_5_id"]);
+        $_REQUEST["participant_max_count"] = FormHelper::ClearInputData($_REQUEST["participant_max_count"]);
+        $_REQUEST["participant_ids"] = ApplicationHelper::joinArray($_REQUEST["participant_ids"]);
 
-        $_REQUEST["player_2_id"] = !empty($_REQUEST["player_2_id"]) ? $_REQUEST["player_2_id"] : "null";
-        $_REQUEST["player_3_id"] = !empty($_REQUEST["player_3_id"]) ? $_REQUEST["player_3_id"] : "null";
-        $_REQUEST["player_4_id"] = !empty($_REQUEST["player_4_id"]) ? $_REQUEST["player_4_id"] : "null";
-        $_REQUEST["player_5_id"] = !empty($_REQUEST["player_5_id"]) ? $_REQUEST["player_5_id"] : "null";
+        $_REQUEST["challonge_tournament_id"] = FormHelper::ClearInputData($_REQUEST["challonge_tournament_id"]);
+        $_REQUEST["comment"]        = !empty($_REQUEST["comment"]) ? $_REQUEST["comment"] : "null";
+        $_REQUEST["last_operation"] = "Пользователь ".$_COOKIE["login"]." отредактировал запись";
 
-
-
-        $instance = Team::fromRequest($_REQUEST);
-        $instance->lastOperation = "Пользователь ".$_COOKIE["login"]." отредактировал запись";
+        $instance = Tournament::fromDatabase($_REQUEST);
 
         $updateResult = $instance->updateInDatabase($_DATABASE);
 
@@ -68,7 +64,7 @@ switch ($actionPerformed){
         $type = null;
 
         if ($updateResult["result"] == true){
-            $message = "Команда сохранена";
+            $message = "Турнир сохранен";
             $type = CookieHelper::SUCCESS;
             $url = "/tournaments/view.php?id=".$_REQUEST["id"];
         } else {
@@ -79,45 +75,6 @@ switch ($actionPerformed){
         CookieHelper::AddSessionMessage($message, $type);
         ApplicationHelper::redirect($url);
         break;
-
-    case "scoreInput":
-        $score = intval($_REQUEST["currentScore"]);
-        $changed = intval($_REQUEST["scoreAddition"]);
-        $gameName = $_REQUEST["gameName"];
-        $scoreId = $_REQUEST["scoreId"];
-        $clientId = $_REQUEST["clientId"];
-
-        if ($changed == 0) ApplicationHelper::redirect("/tournaments/view.php?id=$clientId");
-
-
-        $scoreChangeText =  $changed > 0 ? "+$changed" : "$changed";
-        $newScore = $score + $changed;
-        $lastOperation = "Пользователь ".$_COOKIE["login"]." установил новое значение очков: $newScore ($scoreChangeText)";
-        $updateResult = $_DATABASE->updateTeamScore($clientId, $gameName, $newScore, $scoreChangeText);
-
-        $team = Team::getInstanceFromDatabase($_REQUEST["clientId"], $_DATABASE);
-        $playerScoreUpdate = $_DATABASE->updateTeamPlayersScore($team->getPlayersIdAsArray(), $changed, $gameName);
-
-
-
-        $message = null;
-        $type = null;
-
-        if ($updateResult["result"] == true && $playerScoreUpdate == true){
-            $url = "/tournaments/view.php?id=$clientId";
-            $message = "Очки записаны";
-            $type = CookieHelper::SUCCESS;
-        } else {
-            $message = $updateResult["data"];
-            $type = CookieHelper::DANGER;
-            $url = "/tournaments/edit.php?id=$clientId";
-
-        }
-        CookieHelper::AddSessionMessage($message, $type);
-
-        ApplicationHelper::redirect($url);
-        break;
-
 }
 
 ?>

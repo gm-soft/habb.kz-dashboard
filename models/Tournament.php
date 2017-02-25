@@ -117,7 +117,7 @@ class Tournament extends BaseInstance
             "'$this->description',".
             "STR_TO_DATE('".date("Y-m-d H:i:s", $this->beginDate->getTimestamp())."','%Y-%m-%d %H:%i:%s'), ".
             "STR_TO_DATE('".date("Y-m-d H:i:s", $this->registrationCloseDate->getTimestamp())."','%Y-%m-%d %H:%i:%s'), ".
-            " $this->participantMaxCount ".
+            " $this->participantMaxCount, ".
             "'$participantIds', ".
             "'$this->tournamentType', ".
             "'$this->challongeTournamentId', ".
@@ -156,7 +156,7 @@ class Tournament extends BaseInstance
             "name='$this->name', ".
             "description='$this->description',".
             "begin_date=STR_TO_DATE('".date("Y-m-d H:i:s", $this->beginDate->getTimestamp())."','%Y-%m-%d %H:%i:%s'), ".
-            "reg_close_date=STR_TO_DATE('".date("Y-m-d", $this->registrationCloseDate->getTimestamp())."','%Y-%m-%d'), ".
+            "reg_close_date=STR_TO_DATE('".date("Y-m-d H:i:s", $this->registrationCloseDate->getTimestamp())."','%Y-%m-%d %H:%i:%s'), ".
             "participant_max_count=$this->participantMaxCount,".
             "participant_ids='$participantIds', ".
             "type='$this->tournamentType', ".
@@ -177,8 +177,15 @@ class Tournament extends BaseInstance
         $this->description = $row["description"];
 
 
-        $this->beginDate = DateTime::createFromFormat("Y-m-d H:i:s", $row["begin_date"]);
+        $parsed = DateTime::createFromFormat("Y-m-d H:i:s", $row["begin_date"]);
+        if ($parsed == false) $parsed = DateTime::createFromFormat("Y-m-d H:i", $row["begin_date"]);
+        $this->beginDate = $parsed != false ? $parsed : new DateTime();
+
         $this->registrationCloseDate = DateTime::createFromFormat("Y-m-d H:i:s", $row["reg_close_date"]);
+
+        $parsed = DateTime::createFromFormat("Y-m-d H:i:s", $row["reg_close_date"]);
+        if ($parsed == false) $parsed = DateTime::createFromFormat("Y-m-d H:i", $row["reg_close_date"]);
+        $this->registrationCloseDate = $parsed != false ? $parsed : new DateTime();
 
         $this->participantMaxCount = intval($row["participant_max_count"]);
         $this->participantIdS = explode(",", $row["participant_ids"]);

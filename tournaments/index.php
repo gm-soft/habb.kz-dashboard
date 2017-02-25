@@ -13,62 +13,47 @@ Html::RenderHtmlHeader($pageTitle);
             <h1>Список турниров</h1>
         </div>
 
-        <div class="float-sm-right">
+        <div class="float-sm-right mb-1 mt-1">
             <a class="btn btn-secondary" href="/tournaments/create.php">Создать новую запись</a>
         </div>
 
-        <div id="outputDiv">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Название</th>
-                    <th>Дата начала</th>
-                    <th>Макс. участников</th>
-                    <th>Участников всего</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
+        <table class="table table-striped dataTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Тип</th>
+                <th>Дисциплина</th>
+                <th>Дата начала</th>
+                <th>Макс. участников</th>
+                <th>Участников всего</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
 
-                for ($i = 0; $i < count($instances); $i++){
+            for ($i = 0; $i < count($instances); $i++){
 
-                    $instance = $instances[$i];
-                    $team = $instance["team"];
-                    $players = $instance["players"];
-
-                    ?>
-
-                    <tr>
-                        <td><?= $team["id"] ?></td>
-                        <td><b><a href='/teams/view.php?id=<?= $team["id"] ?>'><?= $team["name"] ?></a></b></td>
-                        <td><?= $team["value"] ?> (<?= HtmlHelper::WrapScoreValueChange($team["change"]) ?>)</td>
-
-                        <td class="">
-                            <?php
-                            echo "<i><a href='/gamers/view.php?id=".$players[0]["id"]."'>".$players[0]["name"]."</a></i><br>Рейтинг ".$players[0]["value"]."";
-                            ?>
-                        </td>
-
-                        <?php
-                        for ($n = 1; $n < count($players); $n++){
-                            if (!is_null($players[$n]["id"])) {
-                                echo "<td><a href='/gamers/view.php?id=".$players[$n]["id"]."'>".$players[$n]["name"]."</a><br>Рейтинг ".$players[$n]["value"]."</td>";
-                            }
-                            else {
-                                echo "<td>Отсутствует</td>";
-                            }
-                        } ?>
-                    </tr>
-
-                    <?php
-                }
+                $instance = $instances[$i];
                 ?>
 
-                </tbody>
+                <tr>
+                    <td><?= $instance->id ?></td>
+                    <td><b><a href='/tournaments/view.php?id=<?= $instance->id ?>'><?= $instance->name ?></a></b></td>
+                    <td><?= date("H:i d-m-Y", $instance->beginDate->getTimestamp()) ?></td>
+                    <td><?= $instance->tournamentType ?></td>
+                    <td><?= $instance->gameName ?></td>
+                    <td><?= $instance->participantMaxCount ?></td>
+                    <td><?= $instance->participantCount ?></td>
+                </tr>
 
-            </table>
-        </div>
+                <?php
+            }
+            ?>
+
+            </tbody>
+
+        </table>
     </div>
     <?php
 

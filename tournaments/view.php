@@ -78,20 +78,10 @@ Html::RenderHtmlHeader($pageTitle);
                             </dl>
                         </div>
                     </div>
+                </div>
             </div>
 
         </div>
-
-        <div class="row">
-
-            <?php
-            SharedSnippets::RenderParticipantTable($instance->participants, $instance->gameName);
-
-            ?>
-
-        </div>
-
-
     </div>
 
     <?php
