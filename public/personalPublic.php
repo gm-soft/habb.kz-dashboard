@@ -1,5 +1,5 @@
 <?php
-require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
+require($_SERVER["DOCUMENT_ROOT"] . "/include/config.php");
 
 if (isset($_GET["game"]) &&
     ($_GET["game"] == Score::SCORE_DOTA || $_GET["game"] == Score::SCORE_HEARTHSTONE) ){
@@ -28,7 +28,7 @@ Html::RenderFrontHtmlHeader($pageTitle, !$displayHeaderImage);
     <div class="container-fluid">
         <h1 class="mt-2">Личный рейтинг <?= $gameTitle ?></h1>
 
-        <?= HtmlHelper::RenderRatingGameButtons($gameName, "../rating/personalPublic.php"); ?>
+        <?= HtmlHelper::RenderRatingGameButtons($gameName, "../public/personalPublic.php"); ?>
 
         <table class="table table-striped">
             <thead>

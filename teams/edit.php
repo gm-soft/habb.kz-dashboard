@@ -82,31 +82,34 @@ switch ($actionPerformed){
 
     case "scoreInput":
         $score = intval($_REQUEST["currentScore"]);
-        $changed = intval($_REQUEST["scoreAddition"]);
+        $valueAdded = intval($_REQUEST["scoreAddition"]);
         $gameName = $_REQUEST["gameName"];
         $scoreId = $_REQUEST["scoreId"];
         $clientId = $_REQUEST["clientId"];
 
-        if ($changed == 0) ApplicationHelper::redirect("/teams/view.php?id=$clientId");
+        if ($valueAdded == 0) ApplicationHelper::redirect("/teams/view.php?id=$clientId");
 
 
-        $scoreChangeText =  $changed > 0 ? "+$changed" : "$changed";
-        $newScore = $score + $changed;
+        $scoreChangeText =  $valueAdded > 0 ? "+$valueAdded" : "$valueAdded";
+        $newScore = $score + $valueAdded;
         $lastOperation = "Пользователь ".$_COOKIE["login"]." установил новое значение очков: $newScore ($scoreChangeText)";
 
         $team = Team::getInstanceFromDatabase($_REQUEST["clientId"], $_DATABASE);
         //$updateResult = $_DATABASE->updateTeamScore($clientId, $gameName, $newScore, $scoreChangeText);
-        $updateResult = $team->updateTeamScore($_DATABASE, $gameName, $newScore, $scoreChangeText);
+
+        $updateResult = $team->addScoreValue($valueAdded, $gameName, $_DATABASE);
+
+        //$updateResult = $team->updateTeamScore($_DATABASE, $gameName, $newScore, $scoreChangeText);
 
 
-        $playerScoreUpdate = $_DATABASE->updateTeamPlayersScore($team->getPlayersIdAsArray(), $changed, $gameName);
+        //$playerScoreUpdate = $_DATABASE->updateTeamPlayersScore($team->getPlayersIdAsArray(), $valueAdded, $gameName);
 
 
 
         $message = null;
         $type = null;
 
-        if ($updateResult["result"] == true && $playerScoreUpdate == true){
+        if ($updateResult["result"] == true /*&& $playerScoreUpdate == true*/){
             $url = "/teams/view.php?id=$clientId";
             $message = "Очки записаны";
             $type = CookieHelper::SUCCESS;

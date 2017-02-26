@@ -25,7 +25,7 @@ $position = 1;
     <div class="container">
         <h1 class="mt-2">Личный рейтинг <?= $gameTitle ?></h1>
 
-        <?= HtmlHelper::RenderRatingGameButtons($gameName, "../rating/account.php"); ?>
+        <?= HtmlHelper::RenderRatingGameButtons($gameName, "/rating/personal.php"); ?>
 
         <table class="table table-hover">
             <thead>

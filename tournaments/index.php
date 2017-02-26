@@ -22,9 +22,9 @@ Html::RenderHtmlHeader($pageTitle);
             <tr>
                 <th>ID</th>
                 <th>Название</th>
+                <th>Начало</th>
                 <th>Тип</th>
                 <th>Дисциплина</th>
-                <th>Дата начала</th>
                 <th>Макс. участников</th>
                 <th>Участников всего</th>
             </tr>

@@ -388,6 +388,9 @@ class Team extends BaseInstance implements ISelectableOption, ITournamentPartici
         return strtolower(get_class($this));
     }
 
+    /**
+     * Реализация метода добавления очков. Одновременно с этим добавляются очки и игрокам
+     */
     public function addScoreValue($valueAdded, $gameName, $mysql)
     {
         $scoreChangeText =  $valueAdded > 0 ? "+$valueAdded" : "$valueAdded";
@@ -395,6 +398,12 @@ class Team extends BaseInstance implements ISelectableOption, ITournamentPartici
         $currentValue = $score->value;
 
         $newScore = $currentValue + $valueAdded;
-        return $this->updateTeamScore($mysql, $gameName, $newScore, $scoreChangeText);
+        $teamUpdate = $this->updateTeamScore($mysql, $gameName, $newScore, $scoreChangeText);
+        $playerScoreUpdate = $mysql->updateTeamPlayersScore($this->getPlayersIdAsArray(), $valueAdded, $gameName);
+
+        ApplicationHelper::debug(var_export($playerScoreUpdate, true));
+        return $teamUpdate ;
     }
+
+
 }

@@ -8,6 +8,50 @@
  */
 abstract class SharedSnippets
 {
+    /**
+     * @param User $instance
+     */
+    public static function RenderUserView($instance){
+        switch ($instance->permission){
+
+            case 0:
+                $permission = "Демонстрационный";
+                break;
+
+            case 1:
+                $permission = "Пользователь";
+                break;
+
+            case 2:
+                $permission = "Редактор";
+                break;
+            case 4:
+                $permission = "Бог";
+                break;
+            default:
+                $permission = "Не известно";
+                break;
+        }
+
+        ?>
+
+        <dl class="row">
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9"><?= $instance->id ?></dd>
+
+            <dt class="col-sm-3">Логин</dt>
+            <dd class="col-sm-9"><?= $instance->login ?></dd>
+
+            <dt class="col-sm-3">Уровень доступа</dt>
+            <dd class="col-sm-9"><?= $permission ?> (<?= $instance->permission ?>)</dd>
+
+            <dt class="col-sm-3">Был создан</dt>
+            <dd class="col-sm-9"><?= $instance->getCreatedAtString()  ?></dd>
+        </dl>
+        <?php
+    }
+
+
     public static function RenderScoreFormFields($formData){
         if (isset($formData)){
             ?>
@@ -215,6 +259,7 @@ abstract class SharedSnippets
             <?php
             for ($i = 0; $i < count($gamers); $i++) {
                 $gamer = $gamers[$i];
+                if (is_null($gamer)) continue;
                 $id = $gamer->id;
                 $status = $i == 0 ? "<i>Капитан</i>" : "Игрок ".($i+1);
                 $name = "ID".$id." <b>".$gamer->getFullName()."</b>";

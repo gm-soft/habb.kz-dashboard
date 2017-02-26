@@ -1,5 +1,5 @@
 <?php
-require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
+require($_SERVER["DOCUMENT_ROOT"] . "/include/config.php");
 
 
 if (isset($_GET["game"]) &&
@@ -29,7 +29,7 @@ Html::RenderFrontHtmlHeader($pageTitle, !$displayHeaderImage);
 
         <h1 class="mt-2">Командный рейтинг <?= $gameTitle ?></h1>
 
-        <?= HtmlHelper::RenderRatingGameButtons($gameName, "../rating/teamPublic.php"); ?>
+        <?= HtmlHelper::RenderRatingGameButtons($gameName, "../public/teamPublic.php"); ?>
 
         <table class="table table-striped">
             <thead>

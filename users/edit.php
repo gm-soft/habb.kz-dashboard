@@ -47,7 +47,7 @@ switch ($actionPerformed){
             <div class="mt-2">
                 <h1>Редактирование пользователя <?= $instance->login ?></h1>
             </div>
-            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/users/formFields.php"; ?>
+            <?php FormSnippets::RenderUserFormFields($currentUser, $instance, $formAction) ?>
         </div>
         <?php
         break;

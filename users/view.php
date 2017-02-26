@@ -28,7 +28,7 @@ $instance = User::getInstanceFromDatabase($id, $_DATABASE, "user_id");
         </div>
 
        
-        <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/users/viewFields.php"; ?>
+        <?php SharedSnippets::RenderUserView($instance) ?>
 
         <div class="float-sm-left">
             <a href="../users/"  class="btn btn-secondary"><i class="fa fa-chevron-circle-left"  aria-hidden="true"></i> В список</a>

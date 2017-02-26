@@ -43,9 +43,9 @@ Html::RenderHtmlHeader($pageTitle);
                                 <dt class="col-sm-3">Последняя операция:</dt>
                                 <dd class="col-sm-9"> <?= $instance->lastOperation ?></dd>
                                 <dt class="col-sm-3">Обновлена:</dt>
-                                <dd class="col-sm-9"><?= date("d.m.Y H:i:s", $instance->updatedAt->getTimestamp()) ?></dd>
+                                <dd class="col-sm-9"><?= $instance->getUpdatedAtString() ?></dd>
                                 <dt class="col-sm-3">Создана:</dt>
-                                <dd class="col-sm-9"><?= date("d.m.Y H:i:s", $instance->createdAt->getTimestamp()) ?></dd>
+                                <dd class="col-sm-9"><?= $instance->getCreatedAtString() ?></dd>
                                 <dt class="col-sm-3">Комментарий:</dt>
                                 <dd class="col-sm-9"><?= $instance->comment ?></dd>
                             </dl>

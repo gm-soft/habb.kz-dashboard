@@ -209,6 +209,133 @@ abstract class FormSnippets
     }
 
     /**
+     * @param User $currUser - Текущий залогиненный юзер
+     * @param User $instance - Редактируемый юзер
+     * @param string $formAction
+     */
+    public static function RenderUserFormFields($currUser, $instance = null, $formAction = ""){
+        $formData = !is_null($instance) ? $instance->getAsFormArray() : null;
+        $viewPermission = $currUser->checkPermission(2);
+        $setPermission = $currUser->checkPermission(3);
+        $godPermission = $currUser->checkPermission(4);
+        ?>
+        <form class="form-horizontal" id="form" method="post" action="<?= $formAction ?>">
+            <input type="hidden" name="actionPerformed" value="dataInput">
+            <fieldset>
+                <legend>Пользователь системы</legend>
+
+                <?php
+                if (isset($formData)){
+                    ?>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="userId">ID</label>
+                        <div class="col-sm-10">
+                            <input type="number" id="userId" class="form-control" value="<?= $formData["user_id"] ?>" disabled>
+                        </div>
+                        <input type="hidden" name="id" value="<?= $formData["user_id"] ?>">
+                    </div>
+                    <?php
+                }
+                ?>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="userLogin">Логин пользователя</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="userLogin" name="userLogin" class="form-control" required placeholder="Введите логин (32)" maxlength="32" value="<?= $formData["user_login"] ?>" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="userPassword">Пароль пользователя</label>
+                    <div class="col-sm-10">
+
+                        <div class="input-group">
+                            <input type="password" id="userPassword" name="userPassword" class="form-control" <?= isset($formData) ? "" : "required" ?> placeholder="Введите пароль (32)" maxlength="32" value="" autocomplete="off">
+                            <span class="input-group-btn">
+                                <button type="button" id="showPassword" class="btn btn-secondary"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                            </span>
+                            <span class="input-group-btn">
+                                <button type="button" id="generatePassword" class="btn btn-secondary">Сгенерировать</button>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <?php
+                if (isset($setPermission) && $setPermission == true){
+                    ?>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="permission">Уровень доступа</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="permission" name="permission" required>
+                                <?php
+                                $permission = isset($formData["user_permission"]) ? $formData["user_permission"] : "1";
+                                ?>
+                                <option value="0" <?=$permission == "1" ? "selected" : "" ?>>Демонстрационный</option>
+                                <option value="1" <?=$permission == "1" ? "selected" : "" ?>>Пользователь</option>
+                                <option value="2" <?=$permission == "2" ? "selected" : "" ?>>Редактор</option>
+                                <?php
+                                $selected = $godPermission == true && $formData["user_permission"] == 4 ? "selected" : "";
+                                echo "<option value='4' $selected>Бог</option>";
+
+                                ?>
+
+                            </select>
+                        </div>
+                    </div>
+                    <?php
+                }  else {
+                    ?>
+                    <input type="hidden" name="permission" value="0">
+                    <?php
+                }?>
+
+
+                </fieldset>
+
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <div class="float-sm-right">
+                            <button type="submit" id="submit-btn" class="btn btn-primary">Сохранить</button>
+                            <a href="../users/" class="btn btn-secondary">Отмена</a>
+                        </div>
+                    </div>
+                </div>
+
+                </form>
+
+                <script type="text/javascript">
+                    var passShowBtn = $('#showPassword');
+                    var passInput = $('#userPassword');
+                    var generatePassBtn = $('#generatePassword');
+
+                    passShowBtn.mousedown(function(){
+                        passInput.prop("type", "text");
+                    });
+                    passShowBtn.mouseup(function(){
+                        passInput.prop("type", "password");
+                    });
+
+                    generatePassBtn.on("click", function(){
+                        var pass = generateRandomPass();
+                    });
+
+                    function generateRandomPass(length){
+                        length = typeof length !== 'undefined' ? length : 6;
+
+                    }
+
+
+                    $('#form').submit(function(){
+                        $("#submit-btn").prop('disabled',true);
+                    });
+                </script>
+        <?php
+    }
+
+    /**
      * Выводит поля формы для команды
      * @param null $formData
      * @param Gamer[] $gamers
@@ -386,6 +513,7 @@ abstract class FormSnippets
         $maxParticipantCount = !is_null($formData) ? $formData["participant_max_count"] : 16;
         $participantIds = !is_null($formData) && isset($formData["participant_ids"]) ? ApplicationHelper::joinArray($formData["participant_ids"]) : "";
 
+
         $beginDate = !is_null($formData) ? str_replace(" ", "T", $formData["begin_date"]) : null;
         $regCloseDate = !is_null($formData) ? str_replace(" ", "T", $formData["reg_close_date"]) : null;
 
@@ -396,6 +524,7 @@ abstract class FormSnippets
         ?>
         <form id="form" method="post" action="<?= $formAction ?>">
             <input type="hidden" name="actionPerformed" value="dataInput">
+            <input type="hidden" name="participant_scores" value="<?= $formData["participant_scores"]?>">
             <?php
             if (isset($formData)){
                 ?>
@@ -539,17 +668,22 @@ abstract class FormSnippets
     }
 
     /**
-     * @param ITournamentParticipant[] $participants
-     * @param string $gameName - Название игры, по которой идет турнир
-     * @param int $tournamentId
+     * @param Tournament $instance
      * @param string $actionPage
      */
-    public static function RenderTournamentParticipants($participants, $gameName, $tournamentId, $actionPage = "/tournaments/edit.php"){
+    public static function RenderTournamentParticipants($instance, $actionPage = "/tournaments/edit.php"){
+        $participants = $instance->participants;
+        $gameName = $instance->gameName;
+        $tournamentId = $instance->id;
+        $tournamentScores = $instance->participantScores;
+
+
         ?>
 
         <form method="post" action="<?=$actionPage?>">
             <input type="hidden" name="tournament_id" value="<?= $tournamentId ?>" >
             <input type="hidden" name="actionPerformed" value="tournamentScoreAdded" >
+            <input type="hidden" name="gameName" value="<?=$gameName ?>" >
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -557,6 +691,7 @@ abstract class FormSnippets
                         <th>Имя/Название</th>
                         <th>Очки (<?= $gameName ?>)</th>
                         <th>Тип</th>
+                        <th>Турнирные очки</th>
                         <th>Добавить очки</th>
                         <th>Установить очки</th>
                     </tr>
@@ -568,6 +703,8 @@ abstract class FormSnippets
                     for($i = 0; $i < count($participants); $i++){
 
                         $participant = $participants[$i];
+                        $tournamentScore = isset($tournamentScores[$i]) ? $tournamentScores[$i] : 0;
+
                         $id = $participant->getId();
                         $name = "<a href='".$participant->getLink()."'>".$participant->getName()."</a>";
                         $type = $participant->getClass();
@@ -582,7 +719,10 @@ abstract class FormSnippets
                             <td><?= $name ?></td>
                             <td><?= $scoreVal ?></td>
                             <td><?= $type ?></td>
+                            <td><?= $tournamentScore ?></td>
                             <td>
+                                <input type="hidden" name="participantId[<?= $i ?>]" value="<?= $participant->getId() ?>">
+                                <input type="hidden" name="participantType[<?= $i ?>]" value="<?= $participant->getClass() ?>">
                                 <div class="form-check">
                                     <label class="form-check-label">
                                         <input type="checkbox" name="scoreConfirm[<?= $i ?>]" class="form-check-input">
@@ -592,7 +732,7 @@ abstract class FormSnippets
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input type="number" step="1" max="100" min="-100" class="form-control" pattern="[0-9]" name="scoreAdd[<?= $i ?>]" placeholder="Введите целое число">
+                                    <input type="number" step="1" max="100" min="-100" class="form-control" pattern="[0-9]" name="scoreAdd[<?= $i ?>]" placeholder="Целое число">
                                 </div>
                             </td>
                         </tr>

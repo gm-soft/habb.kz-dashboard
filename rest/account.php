@@ -8,7 +8,7 @@ $response = array(
     "action" => $action
 );
 $ip = $_SERVER['REMOTE_ADDR'];
-ApplicationHelper::logEvent("account.php: \$_REQUEST[\"action\"]=".$action);
+ApplicationHelper::logEvent("gamer.php: \$_REQUEST[\"action\"]=".$action);
 
 switch ($action) {
 

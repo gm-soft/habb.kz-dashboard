@@ -1,6 +1,6 @@
 <?php
 
-require($_SERVER["DOCUMENT_ROOT"]."/include/config.php");
+require($_SERVER["DOCUMENT_ROOT"] . "/include/config.php");
 $displayHeaderImage = isset($_GET["iframed"]);
 if (isset($_POST["processed"]) && (
         !empty($_REQUEST["name"]) &&
@@ -59,7 +59,7 @@ else
                 </div>
 
 
-                <form id="form" method="post" action="account.php">
+                <form id="form" method="post" action="gamer.php">
                     <input type="hidden" name="processed" value="true"/>
 
                     <div class="row">

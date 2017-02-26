@@ -15,6 +15,7 @@ if (is_null($instance)) {
 
 $pageTitle = "Турнир ".$instance->name;
 Html::RenderHtmlHeader($pageTitle);
+ApplicationHelper::debug($instance->getVarExport())
     ?>
     <div class="container">
 
@@ -38,11 +39,11 @@ Html::RenderHtmlHeader($pageTitle);
                                 <dt class="col-sm-3">Последняя операция:</dt>
                                 <dd class="col-sm-9"> <?= $instance->lastOperation ?></dd>
 
-                                <dt class="col-sm-3">Обновлена:</dt>
-                                <dd class="col-sm-9"><?= date("d.m.Y H:i:s", $instance->updatedAt->getTimestamp()) ?></dd>
+                                <dt class="col-sm-3">Дата начала:</dt>
+                                <dd class="col-sm-9"><?= date("d.m.Y H:i", $instance->beginDate->getTimestamp()) ?></dd>
 
-                                <dt class="col-sm-3">Создана:</dt>
-                                <dd class="col-sm-9"><?= date("d.m.Y H:i:s", $instance->createdAt->getTimestamp()) ?></dd>
+                                <dt class="col-sm-3">Дата закрытия регистрации:</dt>
+                                <dd class="col-sm-9"><?= date("d.m.Y H:i", $instance->registrationCloseDate->getTimestamp()) ?></dd>
                             </dl>
                         </p>
 
@@ -63,18 +64,24 @@ Html::RenderHtmlHeader($pageTitle);
                 <div class="card">
                     <div class="card-block">
                         <div class="card-text">
-                            <dl>
-                                <dt>Дата начала:</dt>
-                                <dd><?= date("d.m.Y H:i", $instance->beginDate->getTimestamp()) ?></dd>
+                            <dl class="row">
+                                <dt class="col-sm-6">Тип:</dt>
+                                <dd class="col-sm-6"><?= $instance->tournamentType ?></dd>
 
-                                <dt>Дата закрытия регистрации:</dt>
-                                <dd><?= date("d.m.Y H:i", $instance->registrationCloseDate->getTimestamp()) ?></dd>
+                                <dt class="col-sm-6">Игра:</dt>
+                                <dd class="col-sm-6"><?= $instance->gameName ?></dd>
 
-                                <dt>Максимальное кол-во участников:</dt>
-                                <dd> <?= $instance->participantMaxCount ?></dd>
+                                <dt class="col-sm-6">Максимум:</dt>
+                                <dd class="col-sm-6"> <?= $instance->participantMaxCount ?> участников</dd>
 
-                                <dt>Участников зарегистрировано:</dt>
-                                <dd> <?= $instance->participantCount ?></dd>
+                                <dt class="col-sm-6">Всего:</dt>
+                                <dd class="col-sm-6"> <?= $instance->participantCount ?> участников</dd>
+
+                                <dt class="col-sm-6">Обновлена:</dt>
+                                <dd class="col-sm-6"><?= $instance->getUpdatedAtString() ?></dd>
+
+                                <dt class="col-sm-6">Создана:</dt>
+                                <dd class="col-sm-6"><?= $instance->getCreatedAtString() ?></dd>
                             </dl>
                         </div>
                     </div>
@@ -83,7 +90,7 @@ Html::RenderHtmlHeader($pageTitle);
 
         </div>
         <div class="pb-1">
-            <?php FormSnippets::RenderTournamentParticipants($instance->participants, $instance->gameName, $instance->id); ?>
+            <?php FormSnippets::RenderTournamentParticipants($instance); ?>
         </div>
 
     </div>

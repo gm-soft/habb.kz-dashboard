@@ -2,8 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7737df8-22e8-42f4-bb8f-27ec48001a37" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webResources.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfaces/TournamentFactory.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/users/viewFields.php" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/account.php" afterPath="$PROJECT_DIR$/public/gamer.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/include/lib/ChallongeAPIClass.php" afterPath="$PROJECT_DIR$/helpers/ChallongeAPIClass.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/rating/personalPublic.php" afterPath="$PROJECT_DIR$/public/personalPublic.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/rating/teamPublic.php" afterPath="$PROJECT_DIR$/public/teamPublic.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/helpers/MysqlHelper.php" afterPath="$PROJECT_DIR$/helpers/MysqlHelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/config.php" afterPath="$PROJECT_DIR$/include/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/BaseInstance.php" afterPath="$PROJECT_DIR$/models/BaseInstance.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Team.php" afterPath="$PROJECT_DIR$/models/Team.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Tournament.php" afterPath="$PROJECT_DIR$/models/Tournament.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rating/personal.php" afterPath="$PROJECT_DIR$/rating/personal.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/account.php" afterPath="$PROJECT_DIR$/rest/account.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shared/back/navbar.html" afterPath="$PROJECT_DIR$/shared/back/navbar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snippets/FormSnippets.php" afterPath="$PROJECT_DIR$/snippets/FormSnippets.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snippets/SharedSnippets.php" afterPath="$PROJECT_DIR$/snippets/SharedSnippets.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/teams/edit.php" afterPath="$PROJECT_DIR$/teams/edit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/teams/view.php" afterPath="$PROJECT_DIR$/teams/view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tournaments/edit.php" afterPath="$PROJECT_DIR$/tournaments/edit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tournaments/index.php" afterPath="$PROJECT_DIR$/tournaments/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tournaments/view.php" afterPath="$PROJECT_DIR$/tournaments/view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/users/create.php" afterPath="$PROJECT_DIR$/users/create.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/users/edit.php" afterPath="$PROJECT_DIR$/users/edit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/users/remove.php" afterPath="$PROJECT_DIR$/users/remove.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/users/view.php" afterPath="$PROJECT_DIR$/users/view.php" />
     </list>
     <ignored path="newb24.next.kz.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -18,6 +46,52 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="habb.kz@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="habb.kz@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="users" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="habb.kz@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="tournaments" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="newb24.next.kz" />
@@ -27,23 +101,12 @@
       <file leaf-file-name="FormSnippets.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/snippets/FormSnippets.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="383" column="81" lean-forward="false" selection-start-line="383" selection-start-column="81" selection-end-line="383" selection-end-column="81" />
+            <state relative-caret-position="223">
+              <caret line="252" column="208" lean-forward="false" selection-start-line="252" selection-start-column="208" selection-end-line="252" selection-end-column="208" />
               <folding>
+                <element signature="n#RenderGamerFormFields#0;n#FormSnippets#0;n#!!top" expanded="false" />
                 <element signature="n#RenderDeleteFormFields#0;n#FormSnippets#0;n#!!top" expanded="false" />
-                <marker date="1488035690651" expanded="true" signature="24337:25216" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Html.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/helpers/Html.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
-              <folding>
-                <element signature="n#RenderFrontFooter#0;n#Html#0;n#!!top" expanded="false" />
+                <marker date="1488086952541" expanded="true" signature="30270:31149" ph="..." />
               </folding>
             </state>
           </provider>
@@ -52,8 +115,8 @@
       <file leaf-file-name="SharedSnippets.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/snippets/SharedSnippets.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="173" column="34" lean-forward="false" selection-start-line="173" selection-start-column="30" selection-end-line="173" selection-end-column="34" />
+            <state relative-caret-position="255">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
                 <element signature="n#RenderScoreFormFields#0;n#SharedSnippets#0;n#!!top" expanded="false" />
                 <element signature="n#RenderFastScoreFields#0;n#SharedSnippets#0;n#!!top" expanded="false" />
@@ -63,46 +126,96 @@
         </entry>
       </file>
       <file leaf-file-name="view.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tournaments/view.php">
+        <entry file="file://$PROJECT_DIR$/users/view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="85" column="120" lean-forward="false" selection-start-line="85" selection-start-column="120" selection-end-line="85" selection-end-column="120" />
+            <state relative-caret-position="459">
+              <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="formFields.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/users/formFields.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1989">
+              <caret line="115" column="9" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="115" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/users/create.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="31" column="12" lean-forward="false" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="88" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="edit.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tournaments/edit.php">
+        <entry file="file://$PROJECT_DIR$/users/edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ITournamentParticipant.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfaces/ITournamentParticipant.php">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/User.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-              <folding />
+              <caret line="112" column="47" lean-forward="true" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
+              <folding>
+                <marker date="1487925667940" expanded="true" signature="3688:3752" ph="select * fro... ${TABLE_USERS}" />
+                <marker date="1487925667940" expanded="true" signature="4181:4195" ph="select * fro... ${TABLE_USERS}" />
+                <marker date="1487925667940" expanded="true" signature="4931:5134" ph="insert into `${TABLE_USERS}`... " />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Score.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Score.php">
+      <file leaf-file-name="Team.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/Team.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3298">
-              <caret line="194" column="25" lean-forward="false" selection-start-line="194" selection-start-column="13" selection-end-line="194" selection-end-column="25" />
+            <state relative-caret-position="2778">
+              <caret line="393" column="27" lean-forward="false" selection-start-line="393" selection-start-column="27" selection-end-line="393" selection-end-column="27" />
               <folding>
-                <marker date="1487925616215" expanded="true" signature="4239:4281" ph="SELECT * FRO... ${$tableName}" />
-                <marker date="1487925616215" expanded="true" signature="5382:5480" ph="INSERT INTO ${$tableName}... " />
-                <marker date="1487925616215" expanded="true" signature="6159:6543" ph="UPDATE ${$ta... " />
-                <marker date="1487925616215" expanded="true" signature="7022:7054" ph="DELETE FROM " />
-                <marker date="1487925616215" expanded="true" signature="7562:7602" ph="delete from " />
+                <element signature="n#fill#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#getAsFormArray#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#insertToDatabase#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#getInstanceFromDatabase#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#updateInDatabase#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#deleteFromDatabase#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#setActiveStatus#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#filterInstancesFromDatabase#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#getKey#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#getId#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#getScore#0;n#Team#0;n#!!top" expanded="false" />
+                <element signature="n#getLink#0;n#Team#0;n#!!top" expanded="false" />
+                <marker date="1488082417137" expanded="true" signature="5541:6040" ph="insert into `${TABLE_TEAMS}`... " />
+                <marker date="1488082417137" expanded="true" signature="6898:6954" ph="select * fro... ${TABLE_TEAMS}" />
+                <marker date="1488082417137" expanded="true" signature="7488:7502" ph="select * fro... ${TABLE_TEAMS}" />
+                <marker date="1488082417137" expanded="true" signature="9512:9780" ph="INSERT INTO ${TABLE_TEAM_SCORES}... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MysqlHelper.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/helpers/MysqlHelper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="340" column="58" lean-forward="false" selection-start-line="340" selection-start-column="58" selection-end-line="340" selection-end-column="58" />
+              <folding>
+                <marker date="1488082298555" expanded="true" signature="12643:12704" ph="delete from " />
+                <marker date="1488082298555" expanded="true" signature="16484:16498" ph="SELECT * FRO... ${$table}" />
+                <marker date="1488082298555" expanded="true" signature="16587:16598" ph="DROP TABLE $... " />
+                <marker date="1488082298555" expanded="true" signature="16925:16956" ph="INSERT INTO ${$table}... " />
               </folding>
             </state>
           </provider>
@@ -131,22 +244,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/gamers/remove.php" />
-        <option value="$PROJECT_DIR$/teams/remove.php" />
-        <option value="$PROJECT_DIR$/assets/css/custom.css" />
-        <option value="$PROJECT_DIR$/interfaces/ISelectable.php" />
-        <option value="$PROJECT_DIR$/interfaces/ISelectableOption.php" />
-        <option value="$PROJECT_DIR$/models/BaseInstance.php" />
-        <option value="$PROJECT_DIR$/teams/view.php" />
-        <option value="$PROJECT_DIR$/teams/create.php" />
-        <option value="$PROJECT_DIR$/include/constants.php" />
-        <option value="$PROJECT_DIR$/models/TournamentTypes.php" />
-        <option value="$PROJECT_DIR$/helpers/MysqlHelper.php" />
-        <option value="$PROJECT_DIR$/include/config.php" />
-        <option value="$PROJECT_DIR$/gamers/edit.php" />
-        <option value="$PROJECT_DIR$/models/Score.php" />
-        <option value="$PROJECT_DIR$/models/Statistic.php" />
-        <option value="$PROJECT_DIR$/users/edit.php" />
         <option value="$PROJECT_DIR$/models/User.php" />
         <option value="$PROJECT_DIR$/helpers/ApplicationHelper.php" />
         <option value="$PROJECT_DIR$/interfaces/IDatabaseObject.php" />
@@ -155,9 +252,7 @@
         <option value="$PROJECT_DIR$/account.php" />
         <option value="$PROJECT_DIR$/rating/personalPublic.php" />
         <option value="$PROJECT_DIR$/rating/teamPublic.php" />
-        <option value="$PROJECT_DIR$/shared/back/navbar.html" />
         <option value="$PROJECT_DIR$/assets/js/datetimepicker.js" />
-        <option value="$PROJECT_DIR$/rest/account.php" />
         <option value="$PROJECT_DIR$/assets/js/custom.js" />
         <option value="$PROJECT_DIR$/assets/css/dataTables.min.css" />
         <option value="$PROJECT_DIR$/assets/js/dataTables.min.js" />
@@ -167,20 +262,38 @@
         <option value="$PROJECT_DIR$/teams/index.php" />
         <option value="$PROJECT_DIR$/helpers/BitrixHelper.php" />
         <option value="$PROJECT_DIR$/rest/ajax.php" />
-        <option value="$PROJECT_DIR$/snippets/SharedSnippets.php" />
         <option value="$PROJECT_DIR$/gamers/view.php" />
         <option value="$PROJECT_DIR$/gamers/index.php" />
-        <option value="$PROJECT_DIR$/tournaments/index.php" />
-        <option value="$PROJECT_DIR$/models/Tournament.php" />
         <option value="$PROJECT_DIR$/tournaments/create.php" />
         <option value="$PROJECT_DIR$/tournaments/remove.php" />
-        <option value="$PROJECT_DIR$/teams/edit.php" />
         <option value="$PROJECT_DIR$/interfaces/ITournamentParticipant.php" />
-        <option value="$PROJECT_DIR$/models/Team.php" />
         <option value="$PROJECT_DIR$/models/Gamer.php" />
         <option value="$PROJECT_DIR$/helpers/HtmlHelper.php" />
-        <option value="$PROJECT_DIR$/tournaments/view.php" />
+        <option value="$PROJECT_DIR$/rating/gamer.php" />
+        <option value="$PROJECT_DIR$/rest/account.php" />
+        <option value="$PROJECT_DIR$/shared/back/navbar.html" />
+        <option value="$PROJECT_DIR$/rating/personal.php" />
+        <option value="$PROJECT_DIR$/public/personalPublic.php" />
+        <option value="$PROJECT_DIR$/public/teamPublic.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/tournaments/index.php" />
+        <option value="$PROJECT_DIR$/helpers/MysqlHelper.php" />
+        <option value="$PROJECT_DIR$/models/Team.php" />
+        <option value="$PROJECT_DIR$/teams/edit.php" />
+        <option value="$PROJECT_DIR$/include/config.php" />
+        <option value="$PROJECT_DIR$/interfaces/TournamentFactory.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2df6d50d-919d-4d59-a1d4-99d53dae0db7/console.sql" />
+        <option value="$PROJECT_DIR$/models/Tournament.php" />
         <option value="$PROJECT_DIR$/tournaments/edit.php" />
+        <option value="$PROJECT_DIR$/tournaments/view.php" />
+        <option value="$PROJECT_DIR$/models/BaseInstance.php" />
+        <option value="$PROJECT_DIR$/users/viewFields.php" />
+        <option value="$PROJECT_DIR$/snippets/SharedSnippets.php" />
+        <option value="$PROJECT_DIR$/users/view.php" />
+        <option value="$PROJECT_DIR$/teams/view.php" />
+        <option value="$PROJECT_DIR$/users/remove.php" />
+        <option value="$PROJECT_DIR$/users/create.php" />
+        <option value="$PROJECT_DIR$/users/edit.php" />
         <option value="$PROJECT_DIR$/snippets/FormSnippets.php" />
       </list>
     </option>
@@ -299,91 +412,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="session" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rest" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rating" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="log" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -425,24 +454,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="include" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration.habb.kz" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="helpers" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -461,14 +472,15 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Development\registration.habb.kz\helpers" />
+      <recent name="C:\Development\registration.habb.kz\public" />
+      <recent name="C:\Development\registration.habb.kz\rating" />
       <recent name="C:\Development\registration.habb.kz\interfaces" />
       <recent name="C:\Development\registration.habb.kz\include" />
-      <recent name="C:\Development\registration.habb.kz\helpers" />
-      <recent name="C:\Development\registration.habb.kz\shared\back" />
-      <recent name="C:\Development\registration.habb.kz\shared" />
     </key>
   </component>
   <component name="RunManager">
@@ -572,34 +584,36 @@
       <workItem from="1488009112430" duration="1120000" />
       <workItem from="1488021353661" duration="6869000" />
       <workItem from="1488035478064" duration="318000" />
+      <workItem from="1488074936841" duration="12019000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116017000" />
+    <option name="totallyTimeSpent" value="128036000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16979167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21247357" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21247357" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16979167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,110 +637,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/helpers/CookieHelper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2354">
-          <caret line="154" column="12" lean-forward="false" selection-start-line="154" selection-start-column="12" selection-end-line="154" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfaces/IDatabaseObject.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="80" lean-forward="true" selection-start-line="10" selection-start-column="80" selection-end-line="10" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Statistic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3291">
-          <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
-          <folding>
-            <marker date="1487925631957" expanded="true" signature="3327:3341" ph="SELECT * FRO... ${TABLE_STATISTIC}" />
-            <marker date="1487925631957" expanded="true" signature="4450:4516" ph="SELECT * FRO... ${TABLE_STATISTIC}" />
-            <marker date="1487925631957" expanded="true" signature="5148:5266" ph="INSERT INTO ${TABLE_STATISTIC}... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/helpers/ApplicationHelper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="211" column="33" lean-forward="false" selection-start-line="211" selection-start-column="33" selection-end-line="211" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/front/footer.html" />
-    <entry file="file://$PROJECT_DIR$/shared/front/header.html" />
-    <entry file="file://$PROJECT_DIR$/shared/scoreFields.php" />
-    <entry file="file://$PROJECT_DIR$/shared/scoreEditFields.php" />
-    <entry file="file://$PROJECT_DIR$/rating/personalPublic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="24" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rating/teamPublic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="88" column="26" lean-forward="false" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/back/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="29" column="77" lean-forward="false" selection-start-line="29" selection-start-column="77" selection-end-line="29" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/datetimepicker.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/select2.full.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="6370" column="4" lean-forward="false" selection-start-line="6370" selection-start-column="4" selection-end-line="6370" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/select2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="5659" column="4" lean-forward="false" selection-start-line="5659" selection-start-column="4" selection-end-line="5659" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest/control.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="61" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4667">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest/account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" column="14" lean-forward="false" selection-start-line="63" selection-start-column="14" selection-end-line="63" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/custom.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
@@ -776,14 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="44" lean-forward="false" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="48" column="43" lean-forward="false" selection-start-line="48" selection-start-column="43" selection-end-line="48" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -838,44 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tournaments/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="51" lean-forward="false" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Tournament.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-          <folding>
-            <element signature="n#deleteFromDatabase#0;n#Tournament#0;n#!!top" expanded="false" />
-            <element signature="n#initiateParticipantArray#0;n#Tournament#0;n#!!top" expanded="false" />
-            <marker date="1488003155768" expanded="true" signature="1666:1728" ph="SELECT * FRO... ${TABLE_CLIENTS}" />
-            <marker date="1488003155768" expanded="true" signature="2469:2483" ph="select * fro... ${TABLE_TEAMS}" />
-            <marker date="1488003155768" expanded="true" signature="3122:4129" ph="INSERT into `${TABLE_TOURNAMENTS}`... " />
-            <marker date="1488003155768" expanded="true" signature="3128:4129" ph="insert into `${TABLE_CLIENTS}`... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/BaseInstance.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/TournamentTypes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="51" lean-forward="false" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tournaments/remove.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
@@ -911,33 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Team.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="387" column="15" lean-forward="false" selection-start-line="387" selection-start-column="15" selection-end-line="387" selection-end-column="44" />
-          <folding>
-            <element signature="n#fromRequest#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#fill#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayersIdAsArray#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#getAsFormArray#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#insertToDatabase#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#getInstanceFromDatabase#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#updateInDatabase#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#deleteFromDatabase#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#setActiveStatus#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#filterInstancesFromDatabase#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#getKey#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#getId#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#getScore#0;n#Team#0;n#!!top" expanded="false" />
-            <element signature="n#getLink#0;n#Team#0;n#!!top" expanded="false" />
-            <marker date="1488028670785" expanded="true" signature="5541:6040" ph="insert into `${TABLE_TEAMS}`... " />
-            <marker date="1488028670785" expanded="true" signature="6898:6954" ph="select * fro... ${TABLE_TEAMS}" />
-            <marker date="1488028670785" expanded="true" signature="7488:7502" ph="select * fro... ${TABLE_TEAMS}" />
-            <marker date="1488028670785" expanded="true" signature="9512:9780" ph="INSERT INTO ${TABLE_TEAM_SCORES}... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/helpers/HtmlHelper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
@@ -946,63 +783,6 @@
             <marker date="1488028850525" expanded="true" signature="1663:1719" ph="..." />
             <marker date="1488028850525" expanded="true" signature="1663:1766" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/helpers/Html.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
-          <folding>
-            <element signature="n#RenderFrontFooter#0;n#Html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/snippets/SharedSnippets.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="173" column="34" lean-forward="false" selection-start-line="173" selection-start-column="30" selection-end-line="173" selection-end-column="34" />
-          <folding>
-            <element signature="n#RenderScoreFormFields#0;n#SharedSnippets#0;n#!!top" expanded="false" />
-            <element signature="n#RenderFastScoreFields#0;n#SharedSnippets#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/teams/edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="93" column="38" lean-forward="true" selection-start-line="92" selection-start-column="8" selection-end-line="93" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/helpers/MysqlHelper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="350" column="12" lean-forward="false" selection-start-line="350" selection-start-column="12" selection-end-line="350" selection-end-column="60" />
-          <folding>
-            <marker date="1487925239015" expanded="true" signature="12554:12615" ph="delete from " />
-            <marker date="1487925239015" expanded="true" signature="16395:16409" ph="SELECT * FRO... ${$table}" />
-            <marker date="1487925239015" expanded="true" signature="16498:16509" ph="DROP TABLE $... " />
-            <marker date="1487925239015" expanded="true" signature="16836:16867" ph="INSERT INTO ${$table}... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tournaments/view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" column="120" lean-forward="false" selection-start-line="85" selection-start-column="120" selection-end-line="85" selection-end-column="120" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tournaments/edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1016,7 +796,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/Score.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3298">
+        <state relative-caret-position="657">
           <caret line="194" column="25" lean-forward="false" selection-start-line="194" selection-start-column="13" selection-end-line="194" selection-end-column="25" />
           <folding>
             <marker date="1487925616215" expanded="true" signature="4239:4281" ph="SELECT * FRO... ${$tableName}" />
@@ -1028,13 +808,296 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/helpers/Html.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="657">
+          <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+          <folding>
+            <element signature="n#RenderFrontFooter#0;n#Html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/teamPublic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="69" lean-forward="false" selection-start-line="31" selection-start-column="69" selection-end-line="31" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/personalPublic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="30" column="69" lean-forward="false" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/gamer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/account.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="824">
+          <caret line="83" column="86" lean-forward="false" selection-start-line="83" selection-start-column="86" selection-end-line="83" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rating/personal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="27" column="76" lean-forward="false" selection-start-line="27" selection-start-column="76" selection-end-line="27" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/back/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="15" column="62" lean-forward="false" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tournaments/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="35" lean-forward="false" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="85" lean-forward="false" selection-start-line="9" selection-start-column="85" selection-end-line="9" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teams/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="93" column="40" lean-forward="false" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/TournamentTypes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2df6d50d-919d-4d59-a1d4-99d53dae0db7/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/d3578f55/2df6d50d-919d-4d59-a1d4-99d53dae0db7/habb&amp;dot;kz.gamers">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Team.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2778">
+          <caret line="393" column="27" lean-forward="false" selection-start-line="393" selection-start-column="27" selection-end-line="393" selection-end-column="27" />
+          <folding>
+            <element signature="n#fill#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#getAsFormArray#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#insertToDatabase#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#getInstanceFromDatabase#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#updateInDatabase#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#deleteFromDatabase#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#setActiveStatus#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#filterInstancesFromDatabase#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#getKey#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#getId#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#getScore#0;n#Team#0;n#!!top" expanded="false" />
+            <element signature="n#getLink#0;n#Team#0;n#!!top" expanded="false" />
+            <marker date="1488082417137" expanded="true" signature="5541:6040" ph="insert into `${TABLE_TEAMS}`... " />
+            <marker date="1488082417137" expanded="true" signature="6898:6954" ph="select * fro... ${TABLE_TEAMS}" />
+            <marker date="1488082417137" expanded="true" signature="7488:7502" ph="select * fro... ${TABLE_TEAMS}" />
+            <marker date="1488082417137" expanded="true" signature="9512:9780" ph="INSERT INTO ${TABLE_TEAM_SCORES}... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/BaseInstance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="46" column="32" lean-forward="false" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tournaments/view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="80" column="57" lean-forward="false" selection-start-line="80" selection-start-column="57" selection-end-line="80" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tournaments/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="110" column="50" lean-forward="false" selection-start-line="110" selection-start-column="50" selection-end-line="110" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Tournament.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="318" column="18" lean-forward="false" selection-start-line="318" selection-start-column="18" selection-end-line="318" selection-end-column="18" />
+          <folding>
+            <element signature="n#deleteFromDatabase#0;n#Tournament#0;n#!!top" expanded="false" />
+            <marker date="1488085332568" expanded="true" signature="1779:1841" ph="SELECT * FRO... ${TABLE_CLIENTS}" />
+            <marker date="1488085332568" expanded="true" signature="2582:2596" ph="select * fro... ${TABLE_TEAMS}" />
+            <marker date="1488085332568" expanded="true" signature="3320:4378" ph="INSERT into `${TABLE_TOURNAMENTS}`... " />
+            <marker date="1488085332568" expanded="true" signature="3326:4378" ph="insert into `${TABLE_CLIENTS}`... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teams/view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="47" column="87" lean-forward="true" selection-start-line="47" selection-start-column="87" selection-end-line="47" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/viewFields.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="40" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/remove.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="30" column="58" lean-forward="false" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfaces/TournamentFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="70" lean-forward="false" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helpers/MysqlHelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="340" column="58" lean-forward="false" selection-start-line="340" selection-start-column="58" selection-end-line="340" selection-end-column="58" />
+          <folding>
+            <marker date="1488082298555" expanded="true" signature="12643:12704" ph="delete from " />
+            <marker date="1488082298555" expanded="true" signature="16484:16498" ph="SELECT * FRO... ${$table}" />
+            <marker date="1488082298555" expanded="true" signature="16587:16598" ph="DROP TABLE $... " />
+            <marker date="1488082298555" expanded="true" signature="16925:16956" ph="INSERT INTO ${$table}... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snippets/SharedSnippets.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="n#RenderScoreFormFields#0;n#SharedSnippets#0;n#!!top" expanded="false" />
+            <element signature="n#RenderFastScoreFields#0;n#SharedSnippets#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/formFields.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1989">
+          <caret line="115" column="9" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="115" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/create.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="31" column="12" lean-forward="false" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="112" column="47" lean-forward="true" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
+          <folding>
+            <marker date="1487925667940" expanded="true" signature="3688:3752" ph="select * fro... ${TABLE_USERS}" />
+            <marker date="1487925667940" expanded="true" signature="4181:4195" ph="select * fro... ${TABLE_USERS}" />
+            <marker date="1487925667940" expanded="true" signature="4931:5134" ph="insert into `${TABLE_USERS}`... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/snippets/FormSnippets.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="383" column="81" lean-forward="false" selection-start-line="383" selection-start-column="81" selection-end-line="383" selection-end-column="81" />
+        <state relative-caret-position="223">
+          <caret line="252" column="208" lean-forward="false" selection-start-line="252" selection-start-column="208" selection-end-line="252" selection-end-column="208" />
           <folding>
+            <element signature="n#RenderGamerFormFields#0;n#FormSnippets#0;n#!!top" expanded="false" />
             <element signature="n#RenderDeleteFormFields#0;n#FormSnippets#0;n#!!top" expanded="false" />
-            <marker date="1488035690651" expanded="true" signature="24337:25216" ph="..." />
+            <marker date="1488086952541" expanded="true" signature="30270:31149" ph="..." />
           </folding>
         </state>
       </provider>

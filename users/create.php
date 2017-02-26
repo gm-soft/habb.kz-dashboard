@@ -9,11 +9,9 @@ if (!isset($_COOKIE["hash"])){
 
 $currentUser = CookieHelper::GetCurrentUser($_DATABASE);
 
-$viewPermission = $currentUser->checkPermission(2);
-$setPermission = $currentUser->checkPermission(3);
-$godPermission = $currentUser->checkPermission(4);
 
-if ($viewPermission == false) {
+
+if (!$currentUser->checkPermission(2)) {
     CookieHelper::AddSessionMessage("У Вас недостаточно прав для этого действия", CookieHelper::DANGER);
     ApplicationHelper::redirect("../users/");
 }
@@ -31,7 +29,7 @@ switch ($actionPerformed){
             <div class="mt-2">
                 <h1>Создание нового пользователя</h1>
             </div>
-            <?php require_once $_SERVER["DOCUMENT_ROOT"]."/users/formFields.php"; ?>
+            <?php FormSnippets::RenderUserFormFields($currentUser, null, $formAction) ?>
         </div>
         <?php
         break;

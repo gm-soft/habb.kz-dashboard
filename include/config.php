@@ -4,41 +4,24 @@
     $_DocumentRoot = $_SERVER["DOCUMENT_ROOT"];
 
     require "$_DocumentRoot/include/constants.php";
-    require("$_DocumentRoot/interfaces/IDatabaseObject.php");
-    require("$_DocumentRoot/interfaces/ISelectableOption.php");
-    require("$_DocumentRoot/interfaces/ITournamentParticipant.php");
-
-    /** Snippets */
-    require "$_DocumentRoot/snippets/SharedSnippets.php";
-    require "$_DocumentRoot/snippets/FormSnippets.php";
-
-    require ("$_DocumentRoot/include/lib/ChallongeAPIClass.php");
-    require("$_DocumentRoot/models/BaseInstance.php");
-
-    require("$_DocumentRoot/models/Gamer.php");
-    require("$_DocumentRoot/models/User.php");
-    require("$_DocumentRoot/models/Team.php");
-
-    require("$_DocumentRoot/models/Score.php");
-    require("$_DocumentRoot/models/Statistic.php");
     require("$_DocumentRoot/include/ConfigClass.php");
 
-    require("$_DocumentRoot/models/TournamentTypes.php");
-    require("$_DocumentRoot/models/Tournament.php");
+    /*
+     * Инициализация всех вспомогательных файлов, храниящихся в указанных директориях
+     */
+    $dirs = ["interfaces", "models", "snippets","helpers"];
+    foreach ($dirs as $dir){
+        $dir = $_DocumentRoot."/".$dir;
+        $files = scandir($dir);
+        if ($files == false) continue;
+        foreach ($files as $file) {
 
-    require ("$_DocumentRoot/helpers/RequestHelper.php");
-    require ("$_DocumentRoot/helpers/FormHelper.php");
-    require ("$_DocumentRoot/helpers/SmtpEmailClass.php");
-    require ("$_DocumentRoot/helpers/Challonge.php");
-    require ("$_DocumentRoot/helpers/Html.php");
-    require ("$_DocumentRoot/helpers/CollectionHelper.php");
-    require ("$_DocumentRoot/helpers/HtmlHelper.php");
-    require ("$_DocumentRoot/helpers/VkHelper.php");
-    require ("$_DocumentRoot/helpers/ServerHelper.php");
-    require ("$_DocumentRoot/helpers/ApplicationHelper.php");
-    require ("$_DocumentRoot/helpers/CookieHelper.php");
-    require ("$_DocumentRoot/helpers/MysqlHelper.php");
-    require ("$_DocumentRoot/helpers/BitrixHelper.php");
+            if ($file == "." | $file == "..") continue;
+
+            $filename = "$dir/$file";
+            require $filename;
+        }
+    }
 
 
     // Html::RenderError();
@@ -58,9 +41,7 @@
         if ($_SERVER['REQUEST_URI'] == "/session/login.php" ||
             strpos($_SERVER['REQUEST_URI'], '/rest/') !== false ||
             strpos($_SERVER['REQUEST_URI'], '/server/') !== false ||
-            strpos($_SERVER['REQUEST_URI'], 'personalPublic.php') !== false ||
-            strpos($_SERVER['REQUEST_URI'], 'teamPublic.php') !== false ||
-            strpos($_SERVER['REQUEST_URI'], '/account.php') !== false
+            strpos($_SERVER['REQUEST_URI'], '/public/') !== false
 
         ) {
             ApplicationHelper::logEvent("requested url: ".$_SERVER['REQUEST_URI']);

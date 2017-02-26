@@ -28,7 +28,7 @@ if (!isset($_POST["confirmed"])){
         <div class="mt-2">
             <h1>Удаление пользователя <?= $instance->login ?> (<?= $instance->id ?>)</h1>
         </div>
-        <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/users/viewFields.php"; ?>
+        <?php SharedSnippets::RenderUserView($instance) ?>
 
         <form method="post" action="">
             <input type="hidden" name="id" value="<?= $instance->id ?>">

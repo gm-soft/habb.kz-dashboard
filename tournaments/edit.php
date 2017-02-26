@@ -56,9 +56,13 @@ switch ($actionPerformed){
         $_REQUEST["comment"]        = !empty($_REQUEST["comment"]) ? $_REQUEST["comment"] : "null";
         $_REQUEST["last_operation"] = "Пользователь ".$_COOKIE["login"]." отредактировал запись";
 
-        $instance = Tournament::fromDatabase($_REQUEST);
+        $previousInstance = Tournament::getInstanceFromDatabase($_REQUEST["id"], $_DATABASE);
+        $newInstance = Tournament::fromDatabase($_REQUEST);
+        $newInstance->copyParticipantScores($previousInstance);
 
-        $updateResult = $instance->updateInDatabase($_DATABASE);
+
+
+        $updateResult = $newInstance->updateInDatabase($_DATABASE);
 
         $message = null;
         $type = null;
@@ -77,7 +81,48 @@ switch ($actionPerformed){
         break;
 
     case "tournamentScoreAdded":
-        echo "<pre>".var_export($_REQUEST, true)."</pre>";
+
+        if (!isset($_REQUEST["scoreAdd"]) || !isset($_REQUEST["scoreConfirm"])) {
+            CookieHelper::AddSessionMessage("Вы не внесли очки для участников", CookieHelper::WARNING);
+            ApplicationHelper::redirect($_SERVER['HTTP_REFERER']);
+        }
+
+        $tournament = Tournament::getInstanceFromDatabase($_REQUEST["tournament_id"], $_DATABASE);
+
+        $results = [];
+        $result = true;
+        $gameName = $_REQUEST["gameName"];
+
+        for ($i = 0; $i < count($_REQUEST["scoreAdd"]); $i++){
+            if (!isset($_REQUEST["scoreConfirm"][$i]) || $_REQUEST["scoreConfirm"][$i] != "on") continue;
+
+            $additionValue = intval($_REQUEST["scoreAdd"][$i]);
+            if ($additionValue == 0) continue;
+
+            $id = $_REQUEST["participantId"][$i];
+            $type = $_REQUEST["participantType"][$i];
+
+            $instance = TournamentFactory::getParticipantByType($id, $type, $_DATABASE);
+            $res = $instance->addScoreValue($additionValue, $gameName, $_DATABASE);
+            $result = $result && $res["result"];
+            $tournament->addScoreToParticipant($id, $additionValue);
+        }
+
+        $tournament->updateInDatabase($_DATABASE);
+        $url = "/tournaments/view.php?id=".$tournament->id;
+        $message = null;
+        $type = null;
+
+        if ($result == true) {
+            $message = "Очки записаны";
+            $type = CookieHelper::SUCCESS;
+        } else {
+            $type = CookieHelper::DANGER;
+            $message = "Возникла ошибка при сохранении данных. Проверьте значения очков участников";
+        }
+
+        CookieHelper::AddSessionMessage($message, $type);
+        ApplicationHelper::redirect($url);
         break;
 }
 

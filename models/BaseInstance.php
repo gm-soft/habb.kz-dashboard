@@ -37,4 +37,14 @@ abstract class BaseInstance implements IDatabaseObject
         return $content;
     }
 
+    public function getCreatedAtString($format = "d.m.Y H:i:s") {
+        $ts = $this->createdAt->getTimestamp() + 6*3600;
+        return date($format, $ts);
+    }
+
+    public function getUpdatedAtString($format = "d.m.Y H:i:s") {
+        $ts = $this->updatedAt->getTimestamp() + 6*3600;
+        return date($format, $ts);
+    }
+
 }

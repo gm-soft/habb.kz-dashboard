@@ -338,18 +338,18 @@ class MysqlHelper
     }
 
     /**
-     * @param array $playerIds
-     * @param int $scoreValue
+     * @param array $playerIds - массив айдишников игроков
+     * @param int $scoreValueAdded - Добавляемое(убавляемое) значение очков
      * @param string $gameName
      * @return array|bool
      */
-    public function updateTeamPlayersScore(array $playerIds, $scoreValue, $gameName){
+    public function updateTeamPlayersScore(array $playerIds, $scoreValueAdded, $gameName){
         $result = true;
         foreach ($playerIds as $id) {
             if (is_null($id) || $id == "null") continue;
 
-            $operation = intval($scoreValue) > 0 ? "+" : "";
-            $query = "UPDATE ".TABLE_SCORES." SET total_value=total_value$operation$scoreValue WHERE gamer_id=$id AND game_name='$gameName' ";
+            $operation = intval($scoreValueAdded) > 0 ? "+" : "";
+            $query = "UPDATE ".TABLE_SCORES." SET total_value=total_value$operation$scoreValueAdded WHERE gamer_id=$id AND game_name='$gameName' ";
             $query_result = $this->executeQuery($query);
             $result = $result && $query_result["result"];
         }

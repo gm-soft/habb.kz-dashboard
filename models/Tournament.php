@@ -26,6 +26,9 @@ class Tournament extends BaseInstance
     /** @var ITournamentParticipant[] Массив участников в турнире */
     public $participants = array();
 
+    /** @var int[] Массив набранных за турнир очков для участников  */
+    public $participantScores = array();
+
     /** @var string Тип турнира. Может быть командный и личный */
     public $tournamentType = TournamentTypes::Teams;
 
@@ -100,18 +103,20 @@ class Tournament extends BaseInstance
     public function insertToDatabase($mysql)
     {
         $participantIds = ApplicationHelper::joinArray($this->participantIdS);
-        $query = "INSERT INTO `".TABLE_TOURNAMENTS."` (".
-            "`name`, ".
-            "`description`, ".
-            "`begin_date`, ".
-            "`reg_close_date`, ".
-            "`participant_max_count`, ".
-            "`participant_ids`, ".
-            "`type`, ".
-            "`challonge_tournament_id`, ".
-            "`game_name`, ".
-            "`comment`, ".
-            "`last_operation` ".
+        $participantScores = ApplicationHelper::joinArray($this->participantScores);
+        $query = "INSERT INTO ".TABLE_TOURNAMENTS." (".
+            "name, ".
+            "description, ".
+            "begin_date, ".
+            "reg_close_date, ".
+            "participant_max_count, ".
+            "participant_ids, ".
+            " participant_scores, ".
+            "type, ".
+            "challonge_tournament_id, ".
+            "game_name, ".
+            "comment, ".
+            "last_operation ".
             ") values (".
             "'$this->name',".
             "'$this->description',".
@@ -119,6 +124,7 @@ class Tournament extends BaseInstance
             "STR_TO_DATE('".date("Y-m-d H:i:s", $this->registrationCloseDate->getTimestamp())."','%Y-%m-%d %H:%i:%s'), ".
             " $this->participantMaxCount, ".
             "'$participantIds', ".
+            "'$participantScores', ".
             "'$this->tournamentType', ".
             "'$this->challongeTournamentId', ".
             "'$this->gameName', ".
@@ -152,6 +158,7 @@ class Tournament extends BaseInstance
     public function updateInDatabase($mysql)
     {
         $participantIds = ApplicationHelper::joinArray($this->participantIdS);
+        $participantScores = ApplicationHelper::joinArray($this->participantScores);
         $query = "UPDATE ".TABLE_TOURNAMENTS." SET ".
             "name='$this->name', ".
             "description='$this->description',".
@@ -159,6 +166,7 @@ class Tournament extends BaseInstance
             "reg_close_date=STR_TO_DATE('".date("Y-m-d H:i:s", $this->registrationCloseDate->getTimestamp())."','%Y-%m-%d %H:%i:%s'), ".
             "participant_max_count=$this->participantMaxCount,".
             "participant_ids='$participantIds', ".
+            "participant_scores='$participantScores', ".
             "type='$this->tournamentType', ".
             "challonge_tournament_id='$this->challongeTournamentId', ".
             "game_name='$this->gameName', ".
@@ -189,6 +197,23 @@ class Tournament extends BaseInstance
 
         $this->participantMaxCount = intval($row["participant_max_count"]);
         $this->participantIdS = explode(",", $row["participant_ids"]);
+
+        if (isset($row["participant_scores"])) {
+            $participantScores = ApplicationHelper::explodeArray($row["participant_scores"]);
+            ApplicationHelper::debug(var_export($participantScores, true));
+            $this->participantScores  = [];
+            for ($i=0; $i < count($this->participantIdS);$i++){
+                $score = isset($participantScores[$i]) ? intval($participantScores[$i]) : 0;
+                $this->participantScores[] = $score;
+            }
+        } else {
+            for($i = 0; $i< count($this->participantIdS); $i++){
+                $this->participantScores[] = 0;
+            }
+        }
+
+
+
         $this->tournamentType = TournamentTypes::getTournamentType($row["type"]);
         $this->challongeTournamentId = $row["challonge_tournament_id"];
 
@@ -238,7 +263,7 @@ class Tournament extends BaseInstance
     {
         $beginDate = date("Y-m-d H:i:s", $this->beginDate->getTimestamp());
         $regCloseDate = date("Y-m-d H:i:s", $this->registrationCloseDate->getTimestamp());
-
+        $participantScores = ApplicationHelper::joinArray($this->participantScores);
 
         $result = [
             "id" => $this->id,
@@ -248,11 +273,59 @@ class Tournament extends BaseInstance
             "reg_close_date" => $regCloseDate,
             "participant_max_count" => $this->participantMaxCount,
             "participant_ids" => $this->participantIdS,
+            "participant_scores" => $participantScores,
             "type" => $this->tournamentType,
             "challonge_tournament_id" => $this->challongeTournamentId,
             "game_name" => $this->gameName,
             "comment" => $this->comment
         ];
+        return $result;
+    }
+
+    /**
+     * @param Tournament $prevInstance
+     * @return bool
+     */
+    public function copyParticipantScores($prevInstance){
+        if ($prevInstance->tournamentType != $this->tournamentType) return false;
+
+        $prevIds = [];
+        foreach ($prevInstance->participants as $p) {
+            $prevIds[] = $p->getId();
+        }
+
+        for($i=0; $i<count($this->participants);$i++){
+
+            $newParticipant = $this->participants[$i];
+            if (!in_array($newParticipant->getId(), $prevIds)) {
+                $this->participantScores[$i] = 0;
+                continue;
+            }
+
+            for($j = 0; $j < count($prevInstance->participants);$j++){
+                $prevParticipant = $prevInstance->participants[$j];
+                if ($newParticipant->getId() != $prevParticipant->getId()) continue;
+                $this->participantScores[$i] = $prevInstance->participantScores[$j];
+            }
+
+        }
+        return true;
+    }
+
+    /**
+     * Добавляет(убавляет) очки участнику турнира. Без записи в БД, поэтому необходимо сохранить
+     *
+     * @param $id - ID участника
+     * @param int $scoreAdd - добавляемое значение
+     * @return bool
+     */
+    public function addScoreToParticipant($id, $scoreAdd){
+        $result = false;
+        for($i=0; $i<count($this->participants);$i++){
+            if ($this->participants[$i]->getId() != $id) continue;
+            $this->participantScores[$i] += $scoreAdd;
+            $result = true;
+        }
         return $result;
     }
 
