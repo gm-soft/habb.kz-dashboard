@@ -117,7 +117,7 @@ abstract class HtmlHelper
 
                 foreach ($games as $game){
                     $class = $game == $currentGame ? "primary" : "secondary";
-                    $disableState = ($game == Score::SCORE_CSGO) ? "" : "disabled";
+                    $disableState = ($game != Score::SCORE_HEARTHSTONE) ? "" : "disabled";
                     echo "<a href='$link?game=$game'  class='btn btn-$class $disableState'>".$game."</a>\n";
                 }
 

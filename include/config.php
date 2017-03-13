@@ -38,7 +38,8 @@
 
 
 
-        if ($_SERVER['REQUEST_URI'] == "/session/login.php" ||
+        if ($_SERVER['REQUEST_URI'] == "/" ||
+            $_SERVER['REQUEST_URI'] == "/session/login.php" ||
             strpos($_SERVER['REQUEST_URI'], '/rest/') !== false ||
             strpos($_SERVER['REQUEST_URI'], '/server/') !== false ||
             strpos($_SERVER['REQUEST_URI'], '/public/') !== false
